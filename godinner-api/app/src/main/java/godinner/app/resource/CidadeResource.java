@@ -1,0 +1,28 @@
+package godinner.app.resource;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import godinner.app.model.Cidade;
+import godinner.app.repository.CidadeRepository;
+
+
+
+
+@RestController
+@RequestMapping("/cidade")
+public class CidadeResource {
+	
+	@Autowired
+	CidadeRepository cidadeRepository;
+
+	@GetMapping
+	public List<Cidade> getCidades() {
+		return cidadeRepository.findAll();
+	}
+	
+}
