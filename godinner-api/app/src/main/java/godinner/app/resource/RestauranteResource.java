@@ -3,6 +3,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,14 +51,14 @@ public class RestauranteResource {
 	}
 	
 	
-	@GetMapping("/valida/cnpj")
-	public boolean validarCnpj(@RequestBody String cnpj) {
-		return restauranteRepository.validarCnpjUnico(cnpj) == 0? false: true;
+	@GetMapping("/valida/cnpj/{cnpj}")
+	public boolean validarCnpj(@PathVariable String cnpj) {
+		return restauranteRepository.validarCnpjUnico(cnpj) == 0? true: false;
 	}
 	
-	@GetMapping("/valida/email")
-	public boolean validarEmail(@RequestBody String email) {
-		return restauranteRepository.validarEmailUnico(email) == 0? false: true;
+	@GetMapping("/valida/email/{email}")
+	public boolean validarEmail(@PathVariable String email) {
+		return restauranteRepository.validarEmailUnico(email) == 0? true: false;
 	}
 
 }
