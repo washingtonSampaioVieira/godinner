@@ -53,6 +53,7 @@ public class RestauranteResource {
 	
 	@GetMapping("/valida/cnpj/{cnpj}")
 	public boolean validarCnpj(@PathVariable String cnpj) {
+		cnpj = cnpj.replace("@", "/");
 		return restauranteRepository.validarCnpjUnico(cnpj) == 0? true: false;
 	}
 	

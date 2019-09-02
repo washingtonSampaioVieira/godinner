@@ -48,14 +48,14 @@ public class ConsumidorResource {
 		return consumidorSalvo;
 	}
 	
-	@GetMapping("/valida/cpf")
-	public boolean validarCpf(@RequestBody String cnpj) {
-		return consumidorRepository.validarCpfUnico(cnpj) == 0? false: true;
+	@GetMapping("/valida/cpf/{cpf}")
+	public boolean validarCpf(@RequestBody String cpf) {
+		return consumidorRepository.validarCpfUnico(cpf) == 0? true: false;
 	}
 	
 	@GetMapping("/valida/email")
 	public boolean validarEmail(@RequestBody String email) {
-		return consumidorRepository.validarEmailUnico(email) == 0? false: true;
+		return consumidorRepository.validarEmailUnico(email) == 0? true: false;
 	}
 	
 }
