@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
@@ -49,13 +51,30 @@ public class ConsumidorResource {
 	}
 	
 	@GetMapping("/valida/cpf/{cpf}")
-	public boolean validarCpf(@RequestBody String cpf) {
-		return consumidorRepository.validarCpfUnico(cpf) == 0? true: false;
+	public boolean validarCpf(@PathVariable String cpf) {
+		if(cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")){
+			ValidaCadastro validaCadastro = new ValidaCadastro();
+			if(validaCadastro.isCPF(cpf)) {;
+				return consumidorRepository.validarCpfUnico(cpf) == 0? true: false;
+			}else {
+				return false;
+			}
+			
+		}else {
+			return false;
+		}
+		
+		
 	}
 	
-	@GetMapping("/valida/email")
-	public boolean validarEmail(@RequestBody String email) {
-		return consumidorRepository.validarEmailUnico(email) == 0? true: false;
+	@GetMapping("/valida/email/{email}")
+	public boolean validarEmail(@PathVariable String email) {
+		if(email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
+			return consumidorRepository.validarEmailUnico(email) == 0? true: false;
+		}else {
+			return false;
+		}
+		
 	}
 	
 }

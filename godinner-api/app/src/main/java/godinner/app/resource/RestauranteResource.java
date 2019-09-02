@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Endereco;
 import godinner.app.model.Restaurante;
@@ -54,12 +54,28 @@ public class RestauranteResource {
 	@GetMapping("/valida/cnpj/{cnpj}")
 	public boolean validarCnpj(@PathVariable String cnpj) {
 		cnpj = cnpj.replace("@", "/");
-		return restauranteRepository.validarCnpjUnico(cnpj) == 0? true: false;
+		if(cnpj.matches("[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}")){
+			ValidaCadastro validaCadastro = new ValidaCadastro();
+			if(validaCadastro.isCNPJ(cnpj)) {
+				return restauranteRepository.validarCnpjUnico(cnpj) == 0? true: false;
+			}else {
+				return false;
+			}
+			
+		}else {
+			return false;
+		}
+		
 	}
 	
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
-		return restauranteRepository.validarEmailUnico(email) == 0? true: false;
+		if(email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
+			return restauranteRepository.validarEmailUnico(email) == 0? true: false;
+		}else {
+			return false;
+		}
+		
 	}
 
 }
