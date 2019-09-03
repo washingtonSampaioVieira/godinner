@@ -2,6 +2,7 @@ package godinner.app.resource;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import godinner.app.repository.RestauranteRepository;
 
 @RestController
 @RequestMapping("/restaurante")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RestauranteResource {
 	
 	@Autowired

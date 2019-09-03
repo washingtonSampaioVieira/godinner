@@ -28,13 +28,13 @@ import godinner.app.repository.EnderecoRepository;
 import javassist.expr.NewArray;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/endereco")
 public class EnderecoResource {
 	@Autowired EnderecoRepository enderecoRepository;
 	@Autowired CidadeRepository cidadeRepository;
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	
 	@GetMapping("/cep/{cep}")
 	public Endereco montaEnderecoViaCep(@PathVariable  String cep){
 		
@@ -70,20 +70,12 @@ public class EnderecoResource {
                 linha = bufferedReader.readLine();
                 dados = dados + linha;
             }
-	        
-//	        System.out.println(dados);
-	        
 	        ObjectMapper mapper = new ObjectMapper();
-	        
 	        EnderecoViaCep viaCep = mapper.readValue(dados, EnderecoViaCep.class);
-	        	       
- 	        System.out.println(viaCep.localidade);
- 	        
- 	        endereco.setLogradouro(viaCep.localidade);
+ 	        endereco.setLogradouro(viaCep.logradouro);
  	        endereco.setBairro(viaCep.bairro);
  	        endereco.setCep(viaCep.cep);
  	        Cidade c = cidadeRepository.getCidadePorCidade(viaCep.localidade);
- 	        //System.out.println(c.getCidade());
  	        endereco.setCidade(c);
  	        
  	        
@@ -94,10 +86,6 @@ public class EnderecoResource {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-        
 		return endereco;
-
   }
 }

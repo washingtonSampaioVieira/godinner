@@ -3,6 +3,7 @@ package godinner.app.resource;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import godinner.app.storage.Disco;
 
 @RestController
 @RequestMapping("/foto")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FotoResource {
 
 	@Autowired
