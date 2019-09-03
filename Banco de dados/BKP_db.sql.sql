@@ -16,6 +16,60 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tbl_categoria`
+--
+
+DROP TABLE IF EXISTS `tbl_categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_categoria` (
+  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `descricao` varchar(45) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_categoria`
+--
+
+LOCK TABLES `tbl_categoria` WRITE;
+/*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_categoria_produto`
+--
+
+DROP TABLE IF EXISTS `tbl_categoria_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_categoria_produto` (
+  `id_categoria_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_categoria` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  PRIMARY KEY (`id_categoria_produto`),
+  KEY `fk_categoria_produto_idx` (`id_categoria`),
+  KEY `fk_produto_categoria_idx` (`id_produto`),
+  CONSTRAINT `fk_categoria_produto` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categoria` (`id_categoria`),
+  CONSTRAINT `fk_produto_categoria` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produto` (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_categoria_produto`
+--
+
+LOCK TABLES `tbl_categoria_produto` WRITE;
+/*!40000 ALTER TABLE `tbl_categoria_produto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_categoria_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_cidade`
 --
 
@@ -95,7 +149,7 @@ CREATE TABLE `tbl_endereco` (
   PRIMARY KEY (`id_endereco`),
   KEY `fk_endereco_cidade_idx` (`id_cidade`),
   CONSTRAINT `fk_cidade_endereco` FOREIGN KEY (`id_cidade`) REFERENCES `tbl_cidade` (`id_cidade`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +158,7 @@ CREATE TABLE `tbl_endereco` (
 
 LOCK TABLES `tbl_endereco` WRITE;
 /*!40000 ALTER TABLE `tbl_endereco` DISABLE KEYS */;
-INSERT INTO `tbl_endereco` VALUES (20,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(21,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(22,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031);
+INSERT INTO `tbl_endereco` VALUES (20,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(21,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(22,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(23,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031);
 /*!40000 ALTER TABLE `tbl_endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,6 +188,65 @@ INSERT INTO `tbl_estado` VALUES (11,'Rondônia','RO'),(12,'Acre','AC'),(13,'Amaz
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_foto_produto`
+--
+
+DROP TABLE IF EXISTS `tbl_foto_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_foto_produto` (
+  `id_foto_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `index_foto` int(11) DEFAULT NULL,
+  `legenda` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id_foto_produto`),
+  KEY `fk_foto_produto_idx` (`id_produto`),
+  CONSTRAINT `fk_foto_produto` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produto` (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_foto_produto`
+--
+
+LOCK TABLES `tbl_foto_produto` WRITE;
+/*!40000 ALTER TABLE `tbl_foto_produto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_foto_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_produto`
+--
+
+DROP TABLE IF EXISTS `tbl_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_produto` (
+  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `preco` int(11) NOT NULL,
+  `desconto` int(11) NOT NULL DEFAULT '0',
+  `id_restaurante` int(11) NOT NULL,
+  `descricao` varchar(40) DEFAULT NULL,
+  `vendidos` int(11) DEFAULT '0',
+  `status` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id_produto`),
+  KEY `fk_produto_restaurante_idx` (`id_restaurante`),
+  CONSTRAINT `fk_produto_restaurante` FOREIGN KEY (`id_restaurante`) REFERENCES `tbl_restaurante` (`id_restaurante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_produto`
+--
+
+LOCK TABLES `tbl_produto` WRITE;
+/*!40000 ALTER TABLE `tbl_produto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_restaurante`
 --
 
@@ -157,7 +270,7 @@ CREATE TABLE `tbl_restaurante` (
   UNIQUE KEY `cnpj_UNIQUE` (`cnpj`),
   KEY `fk_endereco_restaurante_idx` (`id_endereco`),
   CONSTRAINT `fk_endereco_restaurante` FOREIGN KEY (`id_endereco`) REFERENCES `tbl_endereco` (`id_endereco`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +279,7 @@ CREATE TABLE `tbl_restaurante` (
 
 LOCK TABLES `tbl_restaurante` WRITE;
 /*!40000 ALTER TABLE `tbl_restaurante` DISABLE KEYS */;
-INSERT INTO `tbl_restaurante` VALUES (1,'lalallalalllaaaa','123456789a','lalalallalal','47.729.263/0001-08','11 97800-4846',20,1,'2019-08-29 19:01:44','2019-08-29 19:28:48','C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg'),(3,'la252lallalalllaaaa','123456789a','lalalallalal','46.729.263/0001-08','11 97800-4846',22,1,'2019-08-29 19:36:22','2019-08-29 19:36:22',NULL);
+INSERT INTO `tbl_restaurante` VALUES (1,'lalallalalllaaaa','123456789a','lalalallalal','47.729.263/0001-08','11 97800-4846',20,1,'2019-08-29 19:01:44','2019-08-29 19:28:48','C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg'),(3,'la252lallalalllaaaa','123456789a','lalalallalal','46.729.263/0001-08','11 97800-4846',22,1,'2019-08-29 19:36:22','2019-08-29 19:36:22',NULL),(4,'lalallalassslllaaaa','123456789a','lsssalalallalal','40.729.263/0051-08','11 98900-4846',23,1,'2019-09-02 19:41:40','2019-09-03 18:54:39','C:/Users/18175942/Desktop/fotos/restaurante/1567536879115-Desktop-500x540px-02.png');
 /*!40000 ALTER TABLE `tbl_restaurante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-30 14:13:54
+-- Dump completed on 2019-09-03 16:58:52
