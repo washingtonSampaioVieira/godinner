@@ -32,7 +32,7 @@ public class Restaurante {
     @NotNull
     String email;
     
-    @Size(max = 255 , min = 8)
+    @Size(max = 255 , min = 6)
 	@Column(name = "senha")
     @NotNull
     String senha;

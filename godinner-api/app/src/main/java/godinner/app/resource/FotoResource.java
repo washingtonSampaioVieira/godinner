@@ -46,7 +46,7 @@ public class FotoResource {
 	@PostMapping("/consumidor")
 	public Consumidor uploadConsumidor(@RequestParam MultipartFile foto, @RequestParam int id){
 		Consumidor c = null;
-	
+		
 		String localFoto = disco.salvarFoto(foto, "consumidor");
 		if(localFoto != null) {
 			c = consumidorRepository.getPorId(id);
