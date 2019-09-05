@@ -14,6 +14,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.UniqueElements;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import godinner.app.model.Endereco;
 
 
@@ -35,6 +37,7 @@ public class Restaurante {
     @Size(max = 255 , min = 6)
 	@Column(name = "senha")
     @NotNull
+    @JsonIgnore
     String senha;
     
     @Size(max = 50 , min = 2)

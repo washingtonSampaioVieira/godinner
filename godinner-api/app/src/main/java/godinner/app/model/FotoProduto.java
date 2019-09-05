@@ -24,7 +24,7 @@ public class FotoProduto {
 	@JoinColumn(name="id_produto")
 	Produto produto;
 	
-	@Column(name="inde_foto")
+	@Column(name="index_foto")
 	int indexFoto;
 	
 	String legenda;

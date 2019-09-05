@@ -37,6 +37,7 @@ public class ConsumidorResource {
 		return consumidorRepository.findAll();
 	}
 	
+	
 	@PostMapping("/novo")
 	public Consumidor setConsumidor (@Validated @RequestBody Consumidor consumidor) {
 		Endereco endereco = consumidor.getEndereco();

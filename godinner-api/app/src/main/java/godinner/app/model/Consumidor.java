@@ -6,10 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tbl_consumidor")
@@ -30,6 +34,7 @@ public class Consumidor {
 
 	@NotNull
 	@Size(min = 6, max = 255)
+	@JsonIgnore
 	String senha;
 
 	@NotNull
@@ -47,6 +52,19 @@ public class Consumidor {
 	@OneToOne
 	@NotNull
 	Endereco endereco;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_nivel_usuario")
+	NivelUsuario nivelUsuario;
+	
+	
+	public NivelUsuario getNivelUsuario() {
+		return nivelUsuario;
+	}
+	
+	public void setNivelUsuario(NivelUsuario nivelUsuario) {
+		this.nivelUsuario = nivelUsuario;
+	}
 
 	public Integer getId() {
 		return id;
