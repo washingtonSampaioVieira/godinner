@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import godinner.app.model.Consumidor;
+import godinner.app.model.Restaurante;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -55,21 +56,31 @@ public class JwtTokenUtill implements Serializable {
 	public String generateTokenConsumidor(Consumidor consumidor) {
 		Map<String, Object> claims = new HashMap<>();
 		
-		return doGenerateToken(claims, consumidor.getNome(), consumidor.getId());
+		return doGenerateToken(claims, consumidor.getEmail(), consumidor.getId());
 	}
+	
+	//intermediario da geracao do token
+		public String generateTokenRestaurante(Restaurante restaurante) {
+			Map<String, Object> claims = new HashMap<>();
+			
+			return doGenerateToken(claims, restaurante.getEmail(), restaurante.getId());
+		}
 
 
 	//gerando o tokem com o id e nome do usuario 
 	private String doGenerateToken(Map<String, Object> claims, String subject, int id) {
-		return Jwts.builder().setClaims(claims).setSubject(subject).setSubject(String.valueOf(id)).setIssuedAt(new Date(System.currentTimeMillis()))
+		
+		System.out.println(subject + "generate token");
+		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
 
 	//	
-	public Boolean validateToken(String token, UserDetails consumidor) {
+	public Boolean validateToken(String token, UserDetails userDetails) {
 		final String username = getUsernameFromToken(token);
-		return (username.equals(consumidor.getUsername()) && !isTokenExpired(token));
+		
+		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
 
 }

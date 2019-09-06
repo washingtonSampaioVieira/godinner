@@ -5,9 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "tbl_produto")
 public class Produto {
@@ -31,10 +36,23 @@ public class Produto {
 
 	@Column(name = "vendidos")
 	Integer vendidos;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "id_restaurante")
+	Restaurante restaurante;
 
+	@JsonIgnore
 	@Column(name = "status")
 	String status;
 
+	
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -82,11 +100,12 @@ public class Produto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", descricao=" + descricao + ", vendidos="
-				+ vendidos + ", status=" + status + "]";
+				+ vendidos + ", restaurante=" + restaurante + ", status=" + status + "]";
 	}
+
+	
 
 }

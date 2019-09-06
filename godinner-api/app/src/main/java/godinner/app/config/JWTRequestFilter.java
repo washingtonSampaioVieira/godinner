@@ -29,12 +29,10 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-		final String requestTokenHeader = request.getHeader("Authorization");
+		final String requestTokenHeader = request.getHeader("token");
 		String username = null;
 		String jwtToken = null;
-//		System.out.println(requestTokenHeader.startsWith("eyJhbGciOiJIUzUxMiJ9"));
-// JWT Token is in the form "Bearer token". Remove Bearer word and get
-// only the Token
+
 		if (requestTokenHeader != null) {
 			jwtToken = requestTokenHeader;
 			try {
@@ -51,9 +49,13 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 		}
 // Once we get the token validate it.
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			
 			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
-
+			
+			jwtTokenUtil.validateToken(jwtToken, userDetails);
+			
 			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
+				
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
 				usernamePasswordAuthenticationToken

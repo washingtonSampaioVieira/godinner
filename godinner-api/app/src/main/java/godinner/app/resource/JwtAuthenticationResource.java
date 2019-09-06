@@ -14,7 +14,9 @@ import godinner.app.config.JwtTokenUtill;
 import godinner.app.model.Consumidor;
 import godinner.app.model.JWTRequest;
 import godinner.app.model.JWTResponse;
+import godinner.app.model.Restaurante;
 import godinner.app.repository.ConsumidorRepository;
+import godinner.app.repository.RestauranteRepository;
 
 @RestController
 @CrossOrigin
@@ -26,25 +28,41 @@ public class JwtAuthenticationResource {
 
 	@Autowired
 	ConsumidorRepository consumidorRepository;
-//	@Autowired
-//	private JwtUserDetailsService userDetailsService;
-
-	@PostMapping("/authenticate")
+		
+	@Autowired
+	RestauranteRepository restauranteRepository;
 	
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTRequest authenticationRequest) throws Exception {
-		
-		
-		
-		
-		authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-		
+	@PostMapping("/login/consumidor")
+	public ResponseEntity<?> createAuthenticationTokenConsumidor(@RequestBody JWTRequest authenticationRequest) throws Exception {
+
+//		authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
+
+		System.out.println("ola");
 		final Consumidor consumidor = consumidorRepository.getConsumidorByEmail(authenticationRequest.getEmail());
-		System.out.println(consumidor);
-		final String token = jwtTokenUtil.generateTokenConsumidor(consumidor);
-		
-		return ResponseEntity.ok(new JWTResponse(token));
-		
+
+		if (consumidor != null) {
+			final String token = jwtTokenUtil.generateTokenConsumidor(consumidor);
+			return ResponseEntity.ok(new JWTResponse(token));
+		}
+
+		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
+
 	}
+	
+	@PostMapping("/login/restaurante")
+	public ResponseEntity<?> createAuthenticationTokenRestaurante(@RequestBody JWTRequest authenticationRequest) throws Exception {
+//		final Consumidor consumidor = consumidorRepository.getConsumidorByEmail(authenticationRequest.getEmail());
+		final Restaurante restaurante = restauranteRepository.getRestauranteByEmail(authenticationRequest.getEmail());
+		
+		if (restaurante != null) {
+			final String token = jwtTokenUtil.generateTokenRestaurante(restaurante);
+			return ResponseEntity.ok(new JWTResponse(token));
+		}
+
+		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
+
+	}
+	
 
 	private void authenticate(String username, String password) throws Exception {
 		try {
