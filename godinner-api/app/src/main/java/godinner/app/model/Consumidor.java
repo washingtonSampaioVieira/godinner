@@ -53,18 +53,7 @@ public class Consumidor {
 	@NotNull
 	Endereco endereco;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_nivel_usuario")
-	NivelUsuario nivelUsuario;
 	
-	
-	public NivelUsuario getNivelUsuario() {
-		return nivelUsuario;
-	}
-	
-	public void setNivelUsuario(NivelUsuario nivelUsuario) {
-		this.nivelUsuario = nivelUsuario;
-	}
 
 	public Integer getId() {
 		return id;
@@ -135,5 +124,7 @@ public class Consumidor {
 		return "Consumidor [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
 				+ ", telefone=" + telefone + ", fotoPerfil=" + fotoPerfil + ", endereco=" + endereco + "]";
 	}
+
+	
 
 }

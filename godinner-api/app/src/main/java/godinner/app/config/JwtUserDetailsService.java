@@ -29,11 +29,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		Consumidor c = consumidorRepository.getConsumidorByEmail(email);
 		Restaurante r = restauranteRepository.getRestauranteByEmail(email);
-		if (c.getId() != null) {
+		if (c != null) {
 			User u = new User(c.getEmail(), c.getId().toString(), new ArrayList<>());
 
 			return u;
-		} else if (r.getId() != null) {
+		} else if (r != null) {
 			User u = new User(r.getEmail(), r.getId().toString(), new ArrayList<>());
 
 			return u;
