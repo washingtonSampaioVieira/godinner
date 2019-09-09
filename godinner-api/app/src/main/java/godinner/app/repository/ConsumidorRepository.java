@@ -24,4 +24,8 @@ public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
 
 	@Query("SELECT c FROM Consumidor c WHERE c.email = ?1 ")
 	public Consumidor getConsumidorByEmail(String email);
+
+
+	@Query("SELECT c FROM Consumidor c WHERE c.email = ?1 and c.senha = ?2")
+	public Consumidor getConsumidorByEmailAndPass(String email, String password);
 }

@@ -9,10 +9,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.model.Produto;
+import godinner.app.model.Restaurante;
 import godinner.app.repository.ProdutoRepository;
 import godinner.app.repository.RestauranteRepository;
 
@@ -34,13 +37,19 @@ public class ProdutoResource {
 	
 	
 	@GetMapping("/{id}")
-	public List<Produto> getProdutoPorId(@PathVariable int id){
+	public Produto getProdutoPorId(@PathVariable int id){
 		return produtoRepository.getProdutosById(id);
 	}
 	
 	@GetMapping("todos/{id}")
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id){
 		return produtoRepository.getProdutosByIdRestaurante(id);
+	}
+	
+	@PostMapping("/novo")
+	public Produto setRestaurante(@RequestBody Produto p) {
+		p = produtoRepository.save(p);
+		return p;
 	}
 	
 }

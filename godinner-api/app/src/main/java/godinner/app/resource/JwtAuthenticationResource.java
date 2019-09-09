@@ -34,11 +34,7 @@ public class JwtAuthenticationResource {
 	
 	@PostMapping("/login/consumidor")
 	public ResponseEntity<?> createAuthenticationTokenConsumidor(@RequestBody JWTRequest authenticationRequest) throws Exception {
-
-//		authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-
-		System.out.println("ola");
-		final Consumidor consumidor = consumidorRepository.getConsumidorByEmail(authenticationRequest.getEmail());
+		final Consumidor consumidor = consumidorRepository.getConsumidorByEmailAndPass(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 
 		if (consumidor != null) {
 			final String token = jwtTokenUtil.generateTokenConsumidor(consumidor);
@@ -51,8 +47,7 @@ public class JwtAuthenticationResource {
 	
 	@PostMapping("/login/restaurante")
 	public ResponseEntity<?> createAuthenticationTokenRestaurante(@RequestBody JWTRequest authenticationRequest) throws Exception {
-//		final Consumidor consumidor = consumidorRepository.getConsumidorByEmail(authenticationRequest.getEmail());
-		final Restaurante restaurante = restauranteRepository.getRestauranteByEmail(authenticationRequest.getEmail());
+		final Restaurante restaurante = restauranteRepository.getRestauranteByEmailAndPass(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 		
 		if (restaurante != null) {
 			final String token = jwtTokenUtil.generateTokenRestaurante(restaurante);

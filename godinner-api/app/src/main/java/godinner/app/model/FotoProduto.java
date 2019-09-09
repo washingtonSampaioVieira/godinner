@@ -10,23 +10,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "tbl_foto_produto")
 public class FotoProduto {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_foto_produto")
 	Integer id;
 	String foto;
-	
+
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name="id_produto")
+	@JoinColumn(name = "id_produto")
+	@JsonIgnoreProperties({ "restaurante", "nome", "descricao", "preco", "vendidos" })
 	Produto produto;
-	
-	@Column(name="index_foto")
+
+	@JsonIgnore
+	@Column(name = "index_foto")
 	int indexFoto;
-	
+
 	String legenda;
 
 	public Integer getId() {
@@ -74,6 +79,5 @@ public class FotoProduto {
 		return "FotoProduto [id=" + id + ", foto=" + foto + ", produto=" + produto + ", indexFoto=" + indexFoto
 				+ ", legenda=" + legenda + "]";
 	}
-	
-	
+
 }
