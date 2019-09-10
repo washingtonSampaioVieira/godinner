@@ -62,18 +62,5 @@ public class ProdutoResource {
 	
 	
 	
-	private List<ProdutoExibicao> setDistancia(List<ProdutoExibicao> produtos){
-		
-		for (int i = 0; i < produtos.size(); i++) {
-			
-			produtos.get(i).setTempoEntrega("10mins");
-			produtos.get(i).setDistacia("2km");;
-			
-			
-		}
-		
-		return produtos;
-		
-	}
 	
 }

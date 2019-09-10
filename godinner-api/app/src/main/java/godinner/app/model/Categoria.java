@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_categoria")
 public class Categoria {
@@ -21,6 +23,7 @@ public class Categoria {
 	String nome;
 	String foto;
 	String descricao;
+	@JsonIgnore
 	String status;
 
 	public Integer getId() {

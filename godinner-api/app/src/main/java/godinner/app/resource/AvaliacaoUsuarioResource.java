@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import godinner.app.model.Categoria;
-import godinner.app.repository.CategoriaRepository;
+import godinner.app.model.AvaliacaoUsuario;
+import godinner.app.repository.AvaliacaoUsuarioRepository;
 
 @RestController
-@RequestMapping("/categoria")
 @CrossOrigin(origins = "http://localhost:3000")
-public class CategoriaResource {
+@RequestMapping("/avaliacao")
+public class AvaliacaoUsuarioResource {
 	
 	@Autowired
-	CategoriaRepository categoriaRepository;
+	AvaliacaoUsuarioRepository avaliacaoUsuarioRepository;
 	
 	@GetMapping("/todas")
-	public List<Categoria> getCategorias(){
-		return categoriaRepository.findAll();
+	public List<AvaliacaoUsuario> getAvaliacoesUsuario(){
+		return avaliacaoUsuarioRepository.findAll();
 	}
-
+	
 }
