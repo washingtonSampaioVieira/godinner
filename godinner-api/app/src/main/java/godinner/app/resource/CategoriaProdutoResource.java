@@ -13,7 +13,7 @@ import godinner.app.repository.CategoriaProdutoRepository;
 import godinner.app.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping("/categoriaProduto")
+@RequestMapping("/categoriaproduto")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CategoriaProdutoResource {
 	

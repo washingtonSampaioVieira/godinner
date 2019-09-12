@@ -25,7 +25,17 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 	@Query("SELECT r FROM Restaurante r WHERE r.email = ?1 and r.senha = ?2")
 	public Restaurante getRestauranteByEmailAndPass(String email, String senha);
 
-	@Query(value = "SELECT r.* FROM tbl_restaurante AS r where id_endereco = ?1 limit 12;", nativeQuery = true)
-	public List<Restaurante> getRestauranteExibicao(int idEndereco);
+	@Query(value = "SELECT *"
+			+ "FROM" 
+			+"    tbl_restaurante AS r" 
+			+"        INNER JOIN" 
+			+"    tbl_endereco AS e ON e.id_endereco = r.id_endereco" 
+			+"        INNER JOIN" 
+			+"    tbl_cidade AS c ON c.id_cidade = e.id_cidade" 
+			+"        INNER JOIN" 
+			+"    tbl_estado AS es ON es.id_estado = c.id_estado" 
+			+" WHERE" 
+			+"		es.uf = ?1 limit 1", nativeQuery = true)
+	public List<Restaurante> getRestauranteExibicao(String uf);
 
 }
