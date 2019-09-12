@@ -22,11 +22,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import godinner.app.config.JwtTokenUtill;
+import godinner.app.config.JwtUserDetailsService;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
@@ -56,6 +59,8 @@ public class RestauranteResource {
 	CidadeRepository cidadeRepository;
 	@Autowired
 	ConsumidorRepository consumidorRepository;
+	@Autowired
+	private JwtTokenUtill jwtTokenUtil;
 
 	@GetMapping("/todos")
 	public List<Restaurante> getRestaurantes() {
@@ -144,13 +149,14 @@ public class RestauranteResource {
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
 
-		String destino =c.getEndereco().getCep().replace("-", "");
+		String destino = c.getEndereco().getCep().replace("-", "");
 		String origin = "";
 		for (int i = 0; i < restaurantes.size(); i++) {
 //			Rua Eulália, 387 - Jardim Julieta, Itapevi - SP
 			origin = enderecoOCmpleto(restaurantes.get(i).getEndereco());
 
-			ArrayList<String> dados = buscarDistanciaTempoGoogle( restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
+			ArrayList<String> dados = buscarDistanciaTempoGoogle(
+					restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
 
 			restaurantes.get(i).setTempoEntrega("10mins");
 			restaurantes.get(i).setDistancia("2km");
@@ -171,8 +177,8 @@ public class RestauranteResource {
 
 //		https://viacep.com.br/ws/06653430/json/
 		URL url;
-		String urlString ="https://maps.googleapis.com/maps/api/directions/json?origin=" + origin+""
-				+ "&destination="+destino+"&key=AIzaSyCVVT9Dl4bQDouAtP_PBniF2qtY8hL9CHE";
+		String urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + ""
+				+ "&destination=" + destino + "&key=AIzaSyCVVT9Dl4bQDouAtP_PBniF2qtY8hL9CHE";
 
 		ArrayList<String> retorno = new ArrayList<String>();
 
@@ -188,19 +194,19 @@ public class RestauranteResource {
 			InputStream inputStream = conexao.getInputStream();
 			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-			
+
 			String linha = "";
 			String dados = "";
 
 			while (linha != null) {
-				
+
 				dados = dados + linha;
 				linha = bufferedReader.readLine();
 			}
 			System.out.println(dados);
 //			JSONObject jsonObject = new JSONObject(dados);
 //			JSONObject
-		
+
 //			System.out.println( jsonObject.get("routes"));
 //		     cidade = new Cidade();
 //		     cidade.setCodCidade(jsonObject.getInt("codCidade"));
@@ -217,6 +223,13 @@ public class RestauranteResource {
 		return retorno;
 	}
 
-//	 );
+	@GetMapping("/este")
+	public Restaurante getRestauranteByToken(@RequestHeader String token) {
+		System.out.println(token);
+//		String a = t.getUsernameFromToken(token);
+		String email = jwtTokenUtil.getUsernameFromToken(token);
+		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
+		return restauranteLogado;
+	}
 
 }
