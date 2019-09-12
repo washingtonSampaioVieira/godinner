@@ -86,29 +86,30 @@ public class RestauranteResource {
 
 	}
 	
-
-	@GetMapping("/todos/exibicao/{id}")
-	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id){
-		List<RestauranteExibicao> r =  restauranteRepository.getRestauranteExibicao();
-		Consumidor c = consumidorRepository.getPorId(id);
-		List<RestauranteExibicao> restaurantesExibicao =  setDadosExibicao(r, c);
-		
-		return restaurantesExibicao ;
-	}
-
-	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
-
-		for (int i = 0; i < restaurantes.size(); i++) {
-			restaurantes.get(i).setTempoEntrega("10mins");
-			restaurantes.get(i).setDistancia("2km");
-			restaurantes.get(i).setNota(5.0);
-
-		}
-
-//		return restaurantes;
-		return null;
-
-	}
+//
+//	@GetMapping("/todos/exibicao/{id}")
+//	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id){
+////		List<RestauranteExibicao> r =  restauranteRepository.getRestauranteExibicao();
+//		Consumidor c = consumidorRepository.getPorId(id);
+////		List<RestauranteExibicao> restaurantesExibicao =  setDadosExibicao(r, c);
+//		
+////		return restaurantesExibicao ;
+//		return null ;
+//	}
+//
+//	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
+//
+//		for (int i = 0; i < restaurantes.size(); i++) {
+//			restaurantes.get(i).setTempoEntrega("10mins");
+//			restaurantes.get(i).setDistancia("2km");
+//			restaurantes.get(i).setNota(5.0);
+//
+//		}
+//
+////		return restaurantes;
+//		return null;
+//
+//	}
 
 }
 

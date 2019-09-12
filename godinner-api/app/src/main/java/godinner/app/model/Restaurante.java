@@ -18,65 +18,44 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import godinner.app.model.Endereco;
 
-
 @Entity
 @Table(name = "tbl_restaurante")
 public class Restaurante {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_restaurante")
-    Integer id;
-	
-    
-    @Size(max = 100 , min = 8)
+	Integer id;
+
+	@Size(max = 100, min = 8)
 	@Column(name = "email", unique = true)
-    @NotNull
-    String email;
-    
-    @Size(max = 255 , min = 6)
+	@NotNull
+	String email;
+
+	@Size(max = 255, min = 6)
 	@Column(name = "senha")
-    @NotNull
-    @JsonIgnore
-    String senha;
-    
-    @Size(max = 50 , min = 2)
+	@NotNull
+	@JsonIgnore
+	String senha;
+
+	@Size(max = 50, min = 2)
 	@Column(name = "razao_social")
-    @NotNull
-    String razaoSocial;
-    
-    
-    @Size(max = 18 , min = 13)
+	@NotNull
+	String razaoSocial;
+
+	@Size(max = 18, min = 13)
 	@Column(name = "cnpj", unique = true)
-    @NotNull
-    String cnpj;
-	
-    
+	@NotNull
+	String cnpj;
+
 	@Column(name = "telefone")
-    String telefone;
-    
+	String telefone;
+
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
-    Endereco endereco;
-	
+	Endereco endereco;
+
 	String foto;
-	
-	
-	public String getFoto() {
-		return foto;
-	}
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-	
-//	@Column(name = "status")
-//    String status;
-//	
-//	@Column(name = "criacao")
-//    String criacao;
-//	
-//	@Column(name = "ultima_atualizacao")
-//    String ultimaAtualizacao;
 
 	public Integer getId() {
 		return id;
@@ -133,18 +112,19 @@ public class Restaurante {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public String toString() {
 		return "Restaurante [id=" + id + ", email=" + email + ", senha=" + senha + ", razaoSocial=" + razaoSocial
 				+ ", cnpj=" + cnpj + ", telefone=" + telefone + ", endereco=" + endereco + ", foto=" + foto + "]";
 	}
 
-	
-
-	
-
-	
-	
-	
-	
 }
