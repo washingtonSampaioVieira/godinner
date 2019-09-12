@@ -1,6 +1,9 @@
 package godinner.app.resource;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -86,30 +89,59 @@ public class RestauranteResource {
 
 	}
 	
-//
-//	@GetMapping("/todos/exibicao/{id}")
-//	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id){
-////		List<RestauranteExibicao> r =  restauranteRepository.getRestauranteExibicao();
-//		Consumidor c = consumidorRepository.getPorId(id);
-////		List<RestauranteExibicao> restaurantesExibicao =  setDadosExibicao(r, c);
-//		
-////		return restaurantesExibicao ;
-//		return null ;
-//	}
-//
-//	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
-//
-//		for (int i = 0; i < restaurantes.size(); i++) {
-//			restaurantes.get(i).setTempoEntrega("10mins");
-//			restaurantes.get(i).setDistancia("2km");
-//			restaurantes.get(i).setNota(5.0);
-//
-//		}
-//
-////		return restaurantes;
+
+	
+	
+	private List<RestauranteExibicao> castListRestauranteExibicao(List<Restaurante> rs) {
+		
+		List<RestauranteExibicao> es = new ArrayList<>();
+		
+		for (int i = 0; i < rs.size(); i++) {
+			
+			RestauranteExibicao e = new RestauranteExibicao();
+			
+			e.setId(rs.get(i).getId());
+			e.setCnpj(rs.get(i).getCnpj());
+			e.setEmail(rs.get(i).getEmail());
+			e.setEndereco(rs.get(i).getEndereco());
+			e.setFoto(rs.get(i).getFoto());
+			e.setRazaoSocial(rs.get(i).getRazaoSocial());
+			e.setTelefone(rs.get(i).getTelefone());
+			
+			es.add(e);
+			
+		}
+		
+		return es;
+	}
+	
+	@GetMapping("/todos/exibicao/{id}")
+	public List<?> getRestaurantesExibicao(@PathVariable int id){
+		
+		Consumidor c = consumidorRepository.getPorId(id);
+		
+		List<Restaurante> r = restauranteRepository.getRestauranteExibicao(c.getEndereco().getId()); 
+		
+		 List<RestauranteExibicao> e  =  castListRestauranteExibicao(r);
+		
+		 e =  setDadosExibicao(e, c);
+		
+		return e;
+	}
+
+	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
+
+		for (int i = 0; i < restaurantes.size(); i++) {
+			restaurantes.get(i).setTempoEntrega("10mins");
+			restaurantes.get(i).setDistancia("2km");
+			restaurantes.get(i).setNota(5.0);
+
+		}
+
+		return restaurantes;
 //		return null;
-//
-//	}
+
+	}
 
 }
 
