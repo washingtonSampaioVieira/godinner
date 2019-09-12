@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tbl_avaliacao_usuario`
+--
+
+DROP TABLE IF EXISTS `tbl_avaliacao_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_avaliacao_usuario` (
+  `id_avaliacao_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_restaurante` int(11) NOT NULL,
+  `id_consumidor` int(11) NOT NULL,
+  `comentario` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id_avaliacao_usuario`),
+  KEY `fk_comentario_restaurante_idx` (`id_restaurante`),
+  KEY `fk_comentario_consumidor_idx` (`id_consumidor`),
+  CONSTRAINT `fk_comentario_consumidor` FOREIGN KEY (`id_consumidor`) REFERENCES `tbl_consumidor` (`id_consumidor`),
+  CONSTRAINT `fk_comentario_restaurante` FOREIGN KEY (`id_restaurante`) REFERENCES `tbl_restaurante` (`id_restaurante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_avaliacao_usuario`
+--
+
+LOCK TABLES `tbl_avaliacao_usuario` WRITE;
+/*!40000 ALTER TABLE `tbl_avaliacao_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_avaliacao_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_categoria`
 --
 
@@ -112,11 +141,14 @@ CREATE TABLE `tbl_consumidor` (
   `telefone` varchar(13) DEFAULT NULL,
   `foto_perfil` varchar(255) DEFAULT NULL,
   `id_endereco` int(11) NOT NULL,
+  `id_nivel_usuario` int(11) NOT NULL DEFAULT '3',
   PRIMARY KEY (`id_consumidor`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`),
   KEY `fk_endereco_consumidor_idx` (`id_endereco`),
-  CONSTRAINT `fk_endereco_consumidor` FOREIGN KEY (`id_endereco`) REFERENCES `tbl_endereco` (`id_endereco`)
+  KEY `fk_nivel_usuario_idx` (`id_nivel_usuario`),
+  CONSTRAINT `fk_endereco_consumidor` FOREIGN KEY (`id_endereco`) REFERENCES `tbl_endereco` (`id_endereco`),
+  CONSTRAINT `fk_nivel_consumidor_usuairo` FOREIGN KEY (`id_nivel_usuario`) REFERENCES `tbl_nivel_usuario` (`id_nivel_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,7 +158,7 @@ CREATE TABLE `tbl_consumidor` (
 
 LOCK TABLES `tbl_consumidor` WRITE;
 /*!40000 ALTER TABLE `tbl_consumidor` DISABLE KEYS */;
-INSERT INTO `tbl_consumidor` VALUES (2,'Joao','Ejnskaljs;.dsa','1321546789','123.123.123-05','11 0258-8520','img.jpg',20);
+INSERT INTO `tbl_consumidor` VALUES (2,'nome','email','senha','123.123.123-05','11 0258-8520','img.jpg',20,3);
 /*!40000 ALTER TABLE `tbl_consumidor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +235,7 @@ CREATE TABLE `tbl_foto_produto` (
   PRIMARY KEY (`id_foto_produto`),
   KEY `fk_foto_produto_idx` (`id_produto`),
   CONSTRAINT `fk_foto_produto` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produto` (`id_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +244,34 @@ CREATE TABLE `tbl_foto_produto` (
 
 LOCK TABLES `tbl_foto_produto` WRITE;
 /*!40000 ALTER TABLE `tbl_foto_produto` DISABLE KEYS */;
+INSERT INTO `tbl_foto_produto` VALUES (1,3,'C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg',1,'Foto bolada 1'),(2,3,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056034667-burger-king-oferta-5-reais-geek-publicitario.png',1,'Foto 1'),(4,3,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056275004-60680684-082b-4723-b86d-26469d4ecbb2.jpg',1,'Foto 1'),(5,4,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056472479-burger-king-oferta-5-reais-geek-publicitario.png',1,'Foto 1');
 /*!40000 ALTER TABLE `tbl_foto_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_nivel_usuario`
+--
+
+DROP TABLE IF EXISTS `tbl_nivel_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_nivel_usuario` (
+  `id_nivel_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nivel` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `descricao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_nivel_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_nivel_usuario`
+--
+
+LOCK TABLES `tbl_nivel_usuario` WRITE;
+/*!40000 ALTER TABLE `tbl_nivel_usuario` DISABLE KEYS */;
+INSERT INTO `tbl_nivel_usuario` VALUES (1,1,'ADIMIN','Adiministradores do sistema'),(2,2,'RESTAURANTE','Restaurantes do sistema'),(3,3,'CONSUMIDOR','Consumidores do sistema');
+/*!40000 ALTER TABLE `tbl_nivel_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -229,12 +288,12 @@ CREATE TABLE `tbl_produto` (
   `desconto` int(11) NOT NULL DEFAULT '0',
   `id_restaurante` int(11) NOT NULL,
   `descricao` varchar(40) DEFAULT NULL,
-  `vendidos` int(11) DEFAULT '0',
+  `vendidos` int(11) NOT NULL DEFAULT '0',
   `status` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`id_produto`),
   KEY `fk_produto_restaurante_idx` (`id_restaurante`),
   CONSTRAINT `fk_produto_restaurante` FOREIGN KEY (`id_restaurante`) REFERENCES `tbl_restaurante` (`id_restaurante`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,6 +302,7 @@ CREATE TABLE `tbl_produto` (
 
 LOCK TABLES `tbl_produto` WRITE;
 /*!40000 ALTER TABLE `tbl_produto` DISABLE KEYS */;
+INSERT INTO `tbl_produto` VALUES (3,'Produto 1',100,0,1,'BUrguer com duas carnes',0,1),(4,'Produto 2',100,0,1,'BUrguer com duas carnes',0,NULL);
 /*!40000 ALTER TABLE `tbl_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,11 +325,14 @@ CREATE TABLE `tbl_restaurante` (
   `criacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ultima_atualizacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `foto` varchar(255) DEFAULT NULL,
+  `id_nivel_usuario` int(11) DEFAULT '2',
   PRIMARY KEY (`id_restaurante`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `cnpj_UNIQUE` (`cnpj`),
   KEY `fk_endereco_restaurante_idx` (`id_endereco`),
-  CONSTRAINT `fk_endereco_restaurante` FOREIGN KEY (`id_endereco`) REFERENCES `tbl_endereco` (`id_endereco`)
+  KEY `fk_nivel_restaurante_usuario_idx` (`id_nivel_usuario`),
+  CONSTRAINT `fk_endereco_restaurante` FOREIGN KEY (`id_endereco`) REFERENCES `tbl_endereco` (`id_endereco`),
+  CONSTRAINT `fk_nivel_restaurante_usuario` FOREIGN KEY (`id_nivel_usuario`) REFERENCES `tbl_nivel_usuario` (`id_nivel_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -279,7 +342,7 @@ CREATE TABLE `tbl_restaurante` (
 
 LOCK TABLES `tbl_restaurante` WRITE;
 /*!40000 ALTER TABLE `tbl_restaurante` DISABLE KEYS */;
-INSERT INTO `tbl_restaurante` VALUES (1,'lalallalalllaaaa','123456789a','lalalallalal','47.729.263/0001-08','11 97800-4846',20,1,'2019-08-29 19:01:44','2019-08-29 19:28:48','C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg'),(3,'la252lallalalllaaaa','123456789a','lalalallalal','46.729.263/0001-08','11 97800-4846',22,1,'2019-08-29 19:36:22','2019-08-29 19:36:22',NULL),(4,'lalallalassslllaaaa','123456789a','lsssalalallalal','40.729.263/0051-08','11 98900-4846',23,1,'2019-09-02 19:41:40','2019-09-03 18:54:39','C:/Users/18175942/Desktop/fotos/restaurante/1567536879115-Desktop-500x540px-02.png');
+INSERT INTO `tbl_restaurante` VALUES (1,'email','senha','lalalallalal','47.729.263/0001-08','11 97800-4846',20,1,'2019-08-29 19:01:44','2019-09-06 17:56:21','C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg',2),(3,'la252lallalalllaaaa','123456789a','lalalallalal','46.729.263/0001-08','11 97800-4846',22,1,'2019-08-29 19:36:22','2019-08-29 19:36:22',NULL,2),(4,'lalallalassslllaaaa','123456789a','lsssalalallalal','40.729.263/0051-08','11 98900-4846',23,1,'2019-09-02 19:41:40','2019-09-03 18:54:39','C:/Users/18175942/Desktop/fotos/restaurante/1567536879115-Desktop-500x540px-02.png',2);
 /*!40000 ALTER TABLE `tbl_restaurante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,4 +363,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-03 16:58:52
+-- Dump completed on 2019-09-12 13:19:47
