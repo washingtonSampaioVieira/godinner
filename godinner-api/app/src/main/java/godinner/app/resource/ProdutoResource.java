@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import org.hibernate.validator.cfg.context.ReturnValueTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.model.Produto;
+import godinner.app.model.ProdutoExibicao;
 import godinner.app.model.Restaurante;
 import godinner.app.repository.ProdutoRepository;
 import godinner.app.repository.RestauranteRepository;
@@ -41,15 +43,24 @@ public class ProdutoResource {
 		return produtoRepository.getProdutosById(id);
 	}
 	
-	@GetMapping("todos/{id}")
+	@GetMapping("/exibicao/{id}")
+	public List<ProdutoExibicao> getProdutoExibicao(@PathVariable int id){
+		
+		return produtoRepository.getProdutoExibicao();
+	}
+	
+	@GetMapping("/todos/{id}")
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id){
 		return produtoRepository.getProdutosByIdRestaurante(id);
 	}
 	
 	@PostMapping("/novo")
-	public Produto setRestaurante(@RequestBody Produto p) {
+	public Produto setRestaurante(@Validated @RequestBody Produto p) {
 		p = produtoRepository.save(p);
 		return p;
 	}
+	
+	
+	
 	
 }

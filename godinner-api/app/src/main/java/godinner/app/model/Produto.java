@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tbl_produto")
 public class Produto {
@@ -40,6 +41,7 @@ public class Produto {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante")
+	@JsonIgnoreProperties({"endereco", "telefone", "razaoSocial", "email","foto", "cnpj" })
 	Restaurante restaurante;
 
 	@JsonIgnore
