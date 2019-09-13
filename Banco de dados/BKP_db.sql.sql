@@ -58,7 +58,7 @@ CREATE TABLE `tbl_categoria` (
   `descricao` varchar(45) DEFAULT NULL,
   `status` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `tbl_categoria` (
 
 LOCK TABLES `tbl_categoria` WRITE;
 /*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
+INSERT INTO `tbl_categoria` VALUES (1,'Açai','img.jps','lalla',1);
 /*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +87,7 @@ CREATE TABLE `tbl_categoria_produto` (
   KEY `fk_produto_categoria_idx` (`id_produto`),
   CONSTRAINT `fk_categoria_produto` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categoria` (`id_categoria`),
   CONSTRAINT `fk_produto_categoria` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produto` (`id_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +96,7 @@ CREATE TABLE `tbl_categoria_produto` (
 
 LOCK TABLES `tbl_categoria_produto` WRITE;
 /*!40000 ALTER TABLE `tbl_categoria_produto` DISABLE KEYS */;
+INSERT INTO `tbl_categoria_produto` VALUES (1,1,3);
 /*!40000 ALTER TABLE `tbl_categoria_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +192,7 @@ CREATE TABLE `tbl_endereco` (
 
 LOCK TABLES `tbl_endereco` WRITE;
 /*!40000 ALTER TABLE `tbl_endereco` DISABLE KEYS */;
-INSERT INTO `tbl_endereco` VALUES (20,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(21,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(22,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031),(23,'06653-430','387','Casa na rua eua','Lalal','lalal','allala',1100031);
+INSERT INTO `tbl_endereco` VALUES (20,'06653-430','387','Rua Eualalia','Jardin Juliera','casa 2','allala',1100031),(21,'06653-430','387','Rua Eualalia','Rua Eualalia','lalal','allala',1100031),(22,'06653-430','387','Rua Eualalia','Rua Eualalia','lalal','allala',1100031),(23,'06653-430','387','Rua Eualalia','Rua Eualalia','lalal','allala',1100031);
 /*!40000 ALTER TABLE `tbl_endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +237,7 @@ CREATE TABLE `tbl_foto_produto` (
   PRIMARY KEY (`id_foto_produto`),
   KEY `fk_foto_produto_idx` (`id_produto`),
   CONSTRAINT `fk_foto_produto` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produto` (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +246,7 @@ CREATE TABLE `tbl_foto_produto` (
 
 LOCK TABLES `tbl_foto_produto` WRITE;
 /*!40000 ALTER TABLE `tbl_foto_produto` DISABLE KEYS */;
-INSERT INTO `tbl_foto_produto` VALUES (1,3,'C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg',1,'Foto bolada 1'),(2,3,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056034667-burger-king-oferta-5-reais-geek-publicitario.png',1,'Foto 1'),(4,3,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056275004-60680684-082b-4723-b86d-26469d4ecbb2.jpg',1,'Foto 1'),(5,4,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056472479-burger-king-oferta-5-reais-geek-publicitario.png',1,'Foto 1');
+INSERT INTO `tbl_foto_produto` VALUES (1,3,'C:/Users/18175942/Desktop/TCC-GoDinner/fotos/restaurante/1567106928105-60680684-082b-4723-b86d-26469d4ecbb2.jpg',1,'Foto bolada 1'),(2,3,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056034667-burger-king-oferta-5-reais-geek-publicitario.png',1,'Foto 1'),(4,3,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056275004-60680684-082b-4723-b86d-26469d4ecbb2.jpg',1,'Foto 1'),(5,4,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568056472479-burger-king-oferta-5-reais-geek-publicitario.png',1,'Foto 1'),(6,6,'C:/Users/18175942/Desktop/fotos/restaurante/produto/1568317893231-Desktop-500x540px-02.png',1,'FOTO BOA');
 /*!40000 ALTER TABLE `tbl_foto_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +295,7 @@ CREATE TABLE `tbl_produto` (
   PRIMARY KEY (`id_produto`),
   KEY `fk_produto_restaurante_idx` (`id_restaurante`),
   CONSTRAINT `fk_produto_restaurante` FOREIGN KEY (`id_restaurante`) REFERENCES `tbl_restaurante` (`id_restaurante`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +304,7 @@ CREATE TABLE `tbl_produto` (
 
 LOCK TABLES `tbl_produto` WRITE;
 /*!40000 ALTER TABLE `tbl_produto` DISABLE KEYS */;
-INSERT INTO `tbl_produto` VALUES (3,'Produto 1',100,0,1,'BUrguer com duas carnes',0,1),(4,'Produto 2',100,0,1,'BUrguer com duas carnes',0,NULL);
+INSERT INTO `tbl_produto` VALUES (3,'Produto 1',100,0,1,'BUrguer com duas carnes',0,1),(4,'Produto 2',100,0,1,'BUrguer com duas carnes',0,NULL),(5,'Produto 1',100,0,1,'BUrguer com duas carnes',0,NULL),(6,'Produto 1',100,0,1,'BUrguer com duas carnes',0,NULL);
 /*!40000 ALTER TABLE `tbl_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,10 +351,6 @@ UNLOCK TABLES;
 --
 -- Dumping events for database 'db_godinner'
 --
-
---
--- Dumping routines for database 'db_godinner'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -363,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-12 13:19:47
+-- Dump completed on 2019-09-12 16:55:29

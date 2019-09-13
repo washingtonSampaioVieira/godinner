@@ -25,42 +25,35 @@ import godinner.app.repository.RestauranteRepository;
 @RequestMapping("/produto")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProdutoResource {
-	
+
 	@Autowired
 	ProdutoRepository produtoRepository;
-	
-	
-	
-	
+
 	@GetMapping("/todos")
-	public List<Produto> getProduto(){
+	public List<Produto> getProduto() {
 		return produtoRepository.findAll();
 	}
-	
-	
+
 	@GetMapping("/{id}")
-	public Produto getProdutoPorId(@PathVariable int id){
+	public Produto getProdutoPorId(@PathVariable int id) {
 		return produtoRepository.getProdutosById(id);
 	}
-	
+
 	@GetMapping("/exibicao/{id}")
-	public List<ProdutoExibicao> getProdutoExibicao(@PathVariable int id){
-		
+	public List<ProdutoExibicao> getProdutoExibicao(@PathVariable int id) {
+
 		return produtoRepository.getProdutoExibicao();
 	}
-	
+
 	@GetMapping("/todos/{id}")
-	public List<Produto> getProdutoPorRestaurante(@PathVariable int id){
+	public List<Produto> getProdutoPorRestaurante(@PathVariable int id) {
 		return produtoRepository.getProdutosByIdRestaurante(id);
 	}
-	
+
 	@PostMapping("/novo")
 	public Produto setRestaurante(@Validated @RequestBody Produto p) {
 		p = produtoRepository.save(p);
 		return p;
 	}
-	
-	
-	
-	
+
 }
