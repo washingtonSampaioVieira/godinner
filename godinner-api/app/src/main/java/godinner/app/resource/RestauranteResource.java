@@ -107,7 +107,8 @@ public class RestauranteResource {
 
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
-		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
+		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?")) {
+			
 			return restauranteRepository.validarEmailUnico(email) == 0 ? true : false;
 		} else {
 			return false;

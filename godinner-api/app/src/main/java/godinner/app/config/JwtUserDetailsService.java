@@ -2,7 +2,6 @@ package godinner.app.config;
 
 import java.util.ArrayList;
 
-import org.hibernate.secure.spi.GrantedPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
