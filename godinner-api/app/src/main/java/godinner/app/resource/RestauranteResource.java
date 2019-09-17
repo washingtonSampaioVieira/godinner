@@ -149,7 +149,6 @@ public class RestauranteResource {
 					.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getUf());
 
 			List<RestauranteExibicao> e = castListRestauranteExibicao(r);
-			System.out.println("aaaaaaaaaaaaa");
 			e = setDadosExibicao(e, c);
 			return e;
 		}else {
@@ -246,8 +245,6 @@ public class RestauranteResource {
 
 	@GetMapping("/este")
 	public Restaurante getRestauranteByToken(@RequestHeader String token) {
-		
-
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;
