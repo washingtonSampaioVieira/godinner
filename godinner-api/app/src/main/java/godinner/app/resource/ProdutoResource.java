@@ -49,6 +49,11 @@ public class ProdutoResource {
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id) {
 		return produtoRepository.getProdutosByIdRestaurante(id);
 	}
+	
+	@GetMapping("/promocao/todos/{id}")
+	public List<Produto> getProdutosPromocao(@PathVariable int id) {
+		return produtoRepository.getProdutosByIdRestaurante(id);
+	}
 
 	@PostMapping("/novo")
 	public Produto setRestaurante(@Validated @RequestBody Produto p) {
