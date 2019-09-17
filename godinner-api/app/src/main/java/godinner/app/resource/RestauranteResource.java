@@ -108,7 +108,7 @@ public class RestauranteResource {
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
 		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?")) {
-			
+
 			return restauranteRepository.validarEmailUnico(email) == 0 ? true : false;
 		} else {
 			return false;
@@ -138,24 +138,34 @@ public class RestauranteResource {
 
 		return es;
 	}
+	
+	
 
+	@GetMapping("/todos/destaque/{id}")
+	public List<RestauranteExibicao> getRestaurantesExibicaoDestaque(@PathVariable int id) {
+		Consumidor c = consumidorRepository.getPorId(id);
+
+		List<Restaurante> r = restauranteRepository
+				.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getUf());
+
+		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
+		e = setDadosExibicao(e, c);
+		return e;
+
+	}
+	
 	@GetMapping("/todos/exibicao/{id}")
-	public List<?> getRestaurantesExibicao(@PathVariable int id) {
+	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id) {
 
 		Consumidor c = consumidorRepository.getPorId(id);
-		System.out.println(c.getEndereco().getId());
-		if(c != null) {
-			List<Restaurante> r = restauranteRepository
-					.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getUf());
 
-			List<RestauranteExibicao> e = castListRestauranteExibicao(r);
-			e = setDadosExibicao(e, c);
-			return e;
-		}else {
-			return null;
-		}
-		
-		
+		List<Restaurante> r = restauranteRepository
+				.getRestauranteExibicao(c.getEndereco().getCidade().getCidade());
+
+		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
+		e = setDadosExibicao(e, c);
+		return e;
+
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
@@ -167,10 +177,13 @@ public class RestauranteResource {
 			origin = enderecoOCmpleto(restaurantes.get(i).getEndereco());
 
 			ArrayList<String> dados = buscarDistanciaTempoGoogle(
-						restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
+					restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
 
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
 			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));
+			
+			
+			
 			restaurantes.get(i).setNota(5.0);
 
 		}
@@ -216,22 +229,20 @@ public class RestauranteResource {
 				dados = dados + linha;
 				linha = bufferedReader.readLine();
 			}
-			System.out.println(dados +  " ---------");
-			
+			System.out.println(dados + " ---------");
+
 			JsonObject json = new JsonParser().parse(dados).getAsJsonObject();
 			JsonObject primeiraFicha = json.get("routes").getAsJsonArray().get(0).getAsJsonObject();
 			JsonObject distancia = primeiraFicha.get("legs").getAsJsonArray().get(0).getAsJsonObject();
-			
+
 			JsonArray legs = primeiraFicha.get("legs").getAsJsonArray();
 			JsonObject legsJson = new JsonParser().parse(legs.get(0).toString()).getAsJsonObject();
-			
-			
+
 			JsonObject durationText = legsJson.get("duration").getAsJsonObject();
 			JsonObject distanceText = legsJson.get("distance").getAsJsonObject();
 
 			retorno.set(0, distanceText.get("text").toString());
 			retorno.set(1, durationText.get("text").toString());
-			
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

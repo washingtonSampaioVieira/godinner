@@ -37,7 +37,7 @@ public class Produto {
 	String descricao;
 
 	@Column(name = "desconto")
-	String desconto;
+	Integer desconto;
 
 	@Column(name = "vendidos")
 	Integer vendidos;
@@ -107,10 +107,10 @@ public class Produto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getDesconto() {
+	public Integer getDesconto() {
 		return desconto;
 	}
-	public void setDesconto(String desconto) {
+	public void setDesconto(Integer desconto) {
 		this.desconto = desconto;
 	}
 
