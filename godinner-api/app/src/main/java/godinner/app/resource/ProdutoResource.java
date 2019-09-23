@@ -46,21 +46,7 @@ public class ProdutoResource {
 
 	@GetMapping("/exibicao/{id}")
 	public List<?> getProdutoExibicao(@PathVariable int id) {		
-		
-//		List<Produto> produtos = produtoRepository.getProdutoExibicao();
-//		List<FotoProduto> fotos = fotoProdutoRepository.findAll();
-		
-//		if(produtos.get(1).getId() == fotos.get(1).getProduto().getId()) {
-//			if(fotos.get(1).getIndexFoto() == 1) {
-//				produtoEx
-//			}
-//		}
-		return produtoRepository.getProdutoExibicao();
-		
-		
-		
-		
-		
+		return produtoRepository.getProdutoExibicao(id);
 	}
 	
 	
@@ -75,7 +61,7 @@ public class ProdutoResource {
 	
 	@GetMapping("/promocao/todos/{id}")
 	public List<Produto> getProdutosPromocao(@PathVariable int id) {
-		return produtoRepository.getProdutosByIdRestaurante(id);
+		return produtoRepository.getProdutoPromocao(id);
 	}
 
 	@PostMapping("/novo")
