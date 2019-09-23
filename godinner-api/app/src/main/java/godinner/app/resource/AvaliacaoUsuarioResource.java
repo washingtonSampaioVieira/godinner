@@ -24,4 +24,7 @@ public class AvaliacaoUsuarioResource {
 		return avaliacaoUsuarioRepository.findAll();
 	}
 	
+	
+	
+	
 }

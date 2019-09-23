@@ -18,8 +18,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	
 //	SELECT p.nome, (SELECT fp.foto FROM tbl_foto_produto AS fp WHERE fp.id_produto = p.id_produto AND fp.index_foto = '1' LIMIT 1) AS foto FROM tbl_produto AS p;
 //	@Query(value = "SELECT p.nome, (SELECT fp.foto FROM FotoProduto fp WHERE fp.produto.id = p.id AND fp.indexFoto = '1' limit 1) AS foto FROM Produto p", nativeQuery = true)
-	@Query(value = "SELECT p.*, (SELECT fp.foto FROM tbl_foto_produto AS fp WHERE fp.id_produto = p.id_produto AND fp.index_foto = '1' LIMIT 1) AS foto FROM tbl_produto AS p limit 10;", nativeQuery = true)
-	List<ProdutoExibicao> getProdutoExibicao();
+	@Query(value = "SELECT p.*, (SELECT fp.foto FROM tbl_foto_produto AS fp WHERE fp.id_produto = p.id_produto AND fp.index_foto = '1' LIMIT 1) AS fotoProduto FROM tbl_produto AS p limit 10;", nativeQuery = true, countName="aa")
+	List<Produto> getProdutoExibicao();
 
 	
 

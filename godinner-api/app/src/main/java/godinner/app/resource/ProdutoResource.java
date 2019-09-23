@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import godinner.app.model.FotoProduto;
 import godinner.app.model.Produto;
 import godinner.app.model.ProdutoExibicao;
 import godinner.app.model.Restaurante;
+import godinner.app.repository.FotoProdutoRepository;
 import godinner.app.repository.ProdutoRepository;
 import godinner.app.repository.RestauranteRepository;
 
@@ -28,6 +30,9 @@ public class ProdutoResource {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
+	
+	@Autowired
+	FotoProdutoRepository fotoProdutoRepository;
 
 	@GetMapping("/todos")
 	public List<Produto> getProduto() {
@@ -40,10 +45,28 @@ public class ProdutoResource {
 	}
 
 	@GetMapping("/exibicao/{id}")
-	public List<ProdutoExibicao> getProdutoExibicao(@PathVariable int id) {
-
+	public List<?> getProdutoExibicao(@PathVariable int id) {		
+		
+//		List<Produto> produtos = produtoRepository.getProdutoExibicao();
+//		List<FotoProduto> fotos = fotoProdutoRepository.findAll();
+		
+//		if(produtos.get(1).getId() == fotos.get(1).getProduto().getId()) {
+//			if(fotos.get(1).getIndexFoto() == 1) {
+//				produtoEx
+//			}
+//		}
 		return produtoRepository.getProdutoExibicao();
+		
+		
+		
+		
+		
 	}
+	
+	
+	
+	
+	
 
 	@GetMapping("/todos/{id}")
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id) {

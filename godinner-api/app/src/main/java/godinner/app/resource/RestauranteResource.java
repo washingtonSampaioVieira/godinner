@@ -174,14 +174,22 @@ public class RestauranteResource {
 		String origin = "";
 		for (int i = 0; i < restaurantes.size(); i++) {
 //			Rua Eulália, 387 - Jardim Julieta, Itapevi - SP
-			origin = enderecoOCmpleto(restaurantes.get(i).getEndereco());
+//			origin = enderecoOCmpleto(restaurantes.get(i).getEndereco());
 
-			ArrayList<String> dados = buscarDistanciaTempoGoogle(
-					restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
-
+			
+			// DATA: nao descomentar esta linha 
+			// Atenção
+			
+			// ativar linha durante a produção 
+//			ArrayList<String> dados = buscarDistanciaTempoGoogle(restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
+			
+			
+			ArrayList<String> dados = new ArrayList();
+			dados.add("5 km");
+			dados.add( "20 m");
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
 			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));
-			
+			restaurantes.get(i).setValorEntrega(5.50);
 			
 			
 			restaurantes.get(i).setNota(5.0);
