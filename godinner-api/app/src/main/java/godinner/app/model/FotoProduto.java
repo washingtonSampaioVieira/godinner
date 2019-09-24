@@ -26,7 +26,7 @@ public class FotoProduto {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
-	@JsonIgnoreProperties({ "restaurante", "nome", "descricao", "preco", "vendidos" })
+	@JsonIgnoreProperties({ "restaurante", "nome", "descricao", "preco", "vendidos", "foto" })
 	Produto produto;
 
 	@JsonIgnore
