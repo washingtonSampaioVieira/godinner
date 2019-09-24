@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,12 +45,22 @@ public class ProdutoResource {
 		return produtoRepository.getProdutosById(id);
 	}
 
+	@GetMapping("/exibicao/todos/{id}")
+	public List<?> getProdutosExibicao(@PathVariable int id) {		
+		return produtoRepository.getTodosProdutosExibicao(id);
+	}
+	
 	@GetMapping("/exibicao/{id}")
-	public List<?> getProdutoExibicao(@PathVariable int id) {		
+	public List<?> getProdutosExibicaoADM(@PathVariable int id) {		
 		return produtoRepository.getProdutoExibicao(id);
 	}
 	
-	
+	@PutMapping("/atualiza")
+	public Produto setProdutoAtualizado(@Validated @RequestBody Produto produto) {
+		produto.setStatus("1");
+		produtoRepository.save(produto);
+		return produto = produtoRepository.getProdutosById(produto.getId());
+	}
 	
 	
 	
@@ -66,6 +77,8 @@ public class ProdutoResource {
 
 	@PostMapping("/novo")
 	public Produto setRestaurante(@Validated @RequestBody Produto p) {
+		p.setStatus("1");
+		p.setVendidos(0);
 		p = produtoRepository.save(p);
 		return p;
 	}

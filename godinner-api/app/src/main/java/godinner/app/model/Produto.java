@@ -54,17 +54,17 @@ public class Produto {
 
 	@Column(name = "vendidos")
 	Integer vendidos;
+	
+	@Column(name = "status")
+	String status;
 
 	@NotNull
 	@ManyToOne
-
 	@JoinColumn(name = "id_restaurante")
 	@JsonIgnoreProperties({ "endereco", "telefone", "razaoSocial", "email", "foto", "cnpj", "senha" })
 	Restaurante restaurante;
 
-	@JsonIgnore
-	@Column(name = "status")
-	String status;
+	
 
 	@JsonIgnoreProperties({ "produto" })
 	@OneToMany(mappedBy = "produto")
