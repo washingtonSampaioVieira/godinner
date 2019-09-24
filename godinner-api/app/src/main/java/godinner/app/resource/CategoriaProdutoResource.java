@@ -30,12 +30,12 @@ public class CategoriaProdutoResource {
 	@Autowired
 	CategoriaProdutoRepository categoriaProdutoResource;
 	
-	@GetMapping("/todos")
+	@GetMapping
 	public List<CategoriaProduto> getCategoriasProduto() {
 		return categoriaProdutoRepository.findAll();
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping
 	public List<CategoriaProduto> setCategoriaProduto(@Validated @RequestBody CategoriaProduto cp) {
 		cp.setCategoria(categoriaProdutoRepository.getById(cp.getCategoria().getId()));
 		cp.setProduto(produtoRepository.getProdutosById(cp.getProduto().getId()));

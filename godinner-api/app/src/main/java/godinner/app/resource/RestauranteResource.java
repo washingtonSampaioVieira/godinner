@@ -68,12 +68,12 @@ public class RestauranteResource {
 	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
 
-	@GetMapping("/todos")
+	@GetMapping
 	public List<Restaurante> getRestaurantes() {
 		return restauranteRepository.findAll();
 	}
 
-	@PostMapping("/novo")
+	@PostMapping
 	public Restaurante setRestaurante(@Validated @RequestBody Restaurante restaurante) {
 		Endereco endereco = restaurante.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
@@ -141,7 +141,7 @@ public class RestauranteResource {
 	
 	
 
-	@GetMapping("/todos/destaque/{id}")
+	@GetMapping("/destaque/{id}")
 	public List<RestauranteExibicao> getRestaurantesExibicaoDestaque(@PathVariable int id) {
 		Consumidor c = consumidorRepository.getPorId(id);
 
@@ -154,7 +154,7 @@ public class RestauranteResource {
 
 	}
 	
-	@GetMapping("/todos/exibicao/{id}")
+	@GetMapping("/exibicao/{id}")
 	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id) {
 
 		Consumidor c = consumidorRepository.getPorId(id);

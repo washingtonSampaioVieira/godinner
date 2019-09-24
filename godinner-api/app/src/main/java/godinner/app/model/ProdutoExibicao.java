@@ -2,21 +2,20 @@ package godinner.app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+public class ProdutoExibicao {
 
-public class ProdutoExibicao{
-	
 	Integer id;
 	String nome;
 	Integer preco;
 	String descricao;
 	String desconto;
-	
+
 	Integer vendidos;
 	@JsonIgnore
 	Restaurante restaurante;
 	String status;
 	String foto;
-	
+
 	public String getFoto() {
 		return foto;
 	}
@@ -87,8 +86,6 @@ public class ProdutoExibicao{
 
 	public void setStatus(String status) {
 		this.status = status;
-	}	
-	
-			
-			
+	}
+
 }
