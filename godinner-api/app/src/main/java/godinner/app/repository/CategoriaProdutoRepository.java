@@ -1,5 +1,7 @@
 package godinner.app.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -10,5 +12,9 @@ public interface CategoriaProdutoRepository extends JpaRepository<CategoriaProdu
 
 	@Query("SELECT c FROM Categoria c where c.id =?1")
 	Categoria getById(Integer id);
+	
+	// select de todos as categorias cadastradas em um produto
+	@Query(value = "SELECT c FROM CategoriaProduto c where c.produto.restaurante.id = ?1")
+	List<CategoriaProduto> todosDoRestaurante(int id);
 
 }

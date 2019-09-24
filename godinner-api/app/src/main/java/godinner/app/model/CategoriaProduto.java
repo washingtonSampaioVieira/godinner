@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tbl_categoria_produto")
 public class CategoriaProduto {
@@ -21,6 +23,7 @@ public class CategoriaProduto {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
+	@JsonIgnoreProperties({"foto", "restaurante", "preco", "desconto", "vendidos"})
 	Produto produto;
 
 	@NotNull

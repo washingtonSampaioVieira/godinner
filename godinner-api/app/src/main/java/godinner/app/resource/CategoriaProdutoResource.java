@@ -36,11 +36,12 @@ public class CategoriaProdutoResource {
 	}
 	
 	@PostMapping("/novo")
-	public CategoriaProduto setCategoriaProduto(@Validated @RequestBody CategoriaProduto cp) {
+	public List<CategoriaProduto> setCategoriaProduto(@Validated @RequestBody CategoriaProduto cp) {
 		cp.setCategoria(categoriaProdutoRepository.getById(cp.getCategoria().getId()));
 		cp.setProduto(produtoRepository.getProdutosById(cp.getProduto().getId()));
 		cp = categoriaProdutoRepository.save(cp);
-		return cp;
+		
+		return categoriaProdutoRepository.todosDoRestaurante(cp.getProduto().getRestaurante().getId());
 	}
 
 }

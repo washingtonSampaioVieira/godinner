@@ -59,7 +59,7 @@ public class Produto {
 	@ManyToOne
 
 	@JoinColumn(name = "id_restaurante")
-	@JsonIgnoreProperties({ "endereco", "telefone", "razaoSocial", "email", "foto", "cnpj" })
+	@JsonIgnoreProperties({ "endereco", "telefone", "razaoSocial", "email", "foto", "cnpj", "senha" })
 	Restaurante restaurante;
 
 	@JsonIgnore
