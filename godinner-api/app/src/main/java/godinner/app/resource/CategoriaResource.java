@@ -21,13 +21,13 @@ public class CategoriaResource {
 	@Autowired
 	CategoriaRepository categoriaRepository;
 	
-	@GetMapping("/todos")
+	@GetMapping
 	public List<Categoria> getCategorias(){
 		
 		return categoriaRepository.buscar10Aleatorios();
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping
 	public Categoria setCategoria(@RequestBody Categoria c) {
 		Categoria categoriaSalva  = categoriaRepository.save(c);
 		return categoriaSalva;

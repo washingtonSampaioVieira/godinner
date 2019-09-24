@@ -42,7 +42,7 @@ public class ConsumidorResource {
 	}
 	
 	
-	@PostMapping("/novo")
+	@PostMapping
 	public Consumidor setConsumidor (@Validated @RequestBody Consumidor consumidor) {
 		Endereco endereco = consumidor.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
