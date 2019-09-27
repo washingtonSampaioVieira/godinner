@@ -36,7 +36,6 @@ public class Restaurante {
 	
 	
 	@JsonProperty("senha")
-	
 	@Size(max = 255, min = 6)
 	@Column(name = "senha")
 	@NotNull

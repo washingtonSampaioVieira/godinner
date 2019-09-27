@@ -46,10 +46,10 @@ public class ProdutoResource {
 		return produtoRepository.getProdutosById(id);
 	}
 
-	@GetMapping("/exibicao/{id}")
-	public List<?> getProdutosExibicao(@PathVariable int id) {		
-		return produtoRepository.getTodosProdutosExibicao(id);
-	}
+//	@GetMapping("/exibicao/{id}")
+//	public List<?> getProdutosExibicao(@PathVariable int id) {		
+//		return produtoRepository.getTodosProdutosExibicao(id);
+//	}
 	
 	@GetMapping("/exibicao/{id}")
 	public List<?> getProdutosExibicaoADM(@PathVariable int id) {		
@@ -96,7 +96,7 @@ public class ProdutoResource {
 	
 	
 
-	@GetMapping("/{id}")
+	@GetMapping("/restaurante/{id}")
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id) {
 		return produtoRepository.getProdutosByIdRestaurante(id);
 	}

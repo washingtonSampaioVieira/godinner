@@ -52,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/cidade/**",
 						"/estado/**",
 						"/login/**",
-						"/categoria/todas/**").permitAll().
+						"/categoria/todas/**",
+						"/consumidor/novo/**").permitAll().
 				// Todas as requisições serão autenticadas
 				anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to

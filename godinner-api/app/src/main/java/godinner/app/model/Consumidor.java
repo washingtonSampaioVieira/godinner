@@ -34,7 +34,6 @@ public class Consumidor {
 
 	@NotNull
 	@Size(min = 6, max = 255)
-	@JsonIgnore
 	String senha;
 
 	@NotNull
