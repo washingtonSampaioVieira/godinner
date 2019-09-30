@@ -1,34 +1,21 @@
 package godinner.app.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.NotFound;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+public class ProdutoExibicao {
 
-public class ProdutoExibicao{
-	
 	Integer id;
 	String nome;
 	Integer preco;
 	String descricao;
 	String desconto;
+
 	Integer vendidos;
+	@JsonIgnore
 	Restaurante restaurante;
 	String status;
-	
-	private String foto;
-	
+	String foto;
+
 	public String getFoto() {
 		return foto;
 	}
@@ -99,8 +86,6 @@ public class ProdutoExibicao{
 
 	public void setStatus(String status) {
 		this.status = status;
-	}	
-	
-			
-			
+	}
+
 }

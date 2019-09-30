@@ -35,7 +35,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 			+"        INNER JOIN" 
 			+"    tbl_estado AS es ON es.id_estado = c.id_estado" 
 			+" WHERE" 
-			+"		es.uf = ?1 limit 1", nativeQuery = true)
-	public List<Restaurante> getRestauranteExibicao(String uf);
+			+"		c.cidade = ?1 limit 10", nativeQuery = true)
+	public List<Restaurante> getRestauranteExibicao(String cidade);
 
 }

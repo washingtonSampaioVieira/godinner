@@ -27,7 +27,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.config.JwtUserDetailsService;
 import godinner.app.helper.ValidaCadastro;
@@ -62,12 +68,12 @@ public class RestauranteResource {
 	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
 
-	@GetMapping("/todos")
+	@GetMapping
 	public List<Restaurante> getRestaurantes() {
 		return restauranteRepository.findAll();
 	}
 
-	@PostMapping("/novo")
+	@PostMapping
 	public Restaurante setRestaurante(@Validated @RequestBody Restaurante restaurante) {
 		Endereco endereco = restaurante.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
@@ -101,7 +107,8 @@ public class RestauranteResource {
 
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
-		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
+		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?")) {
+
 			return restauranteRepository.validarEmailUnico(email) == 0 ? true : false;
 		} else {
 			return false;
@@ -131,20 +138,34 @@ public class RestauranteResource {
 
 		return es;
 	}
+	
+	
 
-	@GetMapping("/todos/exibicao/{id}")
-	public List<?> getRestaurantesExibicao(@PathVariable int id) {
-
+	@GetMapping("/destaque/{id}")
+	public List<RestauranteExibicao> getRestaurantesExibicaoDestaque(@PathVariable int id) {
 		Consumidor c = consumidorRepository.getPorId(id);
-		System.out.println(c.getEndereco().getId());
+
 		List<Restaurante> r = restauranteRepository
 				.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getUf());
 
 		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
-		System.out.println("aaaaaaaaaaaaa");
 		e = setDadosExibicao(e, c);
-
 		return e;
+
+	}
+	
+	@GetMapping("/exibicao/{id}")
+	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id) {
+
+		Consumidor c = consumidorRepository.getPorId(id);
+
+		List<Restaurante> r = restauranteRepository
+				.getRestauranteExibicao(c.getEndereco().getCidade().getCidade());
+
+		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
+		e = setDadosExibicao(e, c);
+		return e;
+
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
@@ -153,13 +174,24 @@ public class RestauranteResource {
 		String origin = "";
 		for (int i = 0; i < restaurantes.size(); i++) {
 //			Rua Eulália, 387 - Jardim Julieta, Itapevi - SP
-			origin = enderecoOCmpleto(restaurantes.get(i).getEndereco());
+//			origin = enderecoOCmpleto(restaurantes.get(i).getEndereco());
 
-			ArrayList<String> dados = buscarDistanciaTempoGoogle(
-					restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
-
-			restaurantes.get(i).setTempoEntrega("10mins");
-			restaurantes.get(i).setDistancia("2km");
+			
+			// DATA: nao descomentar esta linha 
+			// Atenção
+			
+			// ativar linha durante a produção 
+//			ArrayList<String> dados = buscarDistanciaTempoGoogle(restaurantes.get(i).getEndereco().getCep().replace("-", ""), destino);
+			
+			
+			ArrayList<String> dados = new ArrayList();
+			dados.add("5 km");
+			dados.add( "20 m");
+			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
+			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));
+			restaurantes.get(i).setValorEntrega(5.50);
+			
+			
 			restaurantes.get(i).setNota(5.0);
 
 		}
@@ -181,6 +213,8 @@ public class RestauranteResource {
 				+ "&destination=" + destino + "&key=AIzaSyCVVT9Dl4bQDouAtP_PBniF2qtY8hL9CHE";
 
 		ArrayList<String> retorno = new ArrayList<String>();
+		retorno.add("10 mins");
+		retorno.add("2 Km");
 
 		try {
 			url = new URL(urlString);
@@ -203,15 +237,20 @@ public class RestauranteResource {
 				dados = dados + linha;
 				linha = bufferedReader.readLine();
 			}
-			System.out.println(dados);
-//			JSONObject jsonObject = new JSONObject(dados);
-//			JSONObject
+			System.out.println(dados + " ---------");
 
-//			System.out.println( jsonObject.get("routes"));
-//		     cidade = new Cidade();
-//		     cidade.setCodCidade(jsonObject.getInt("codCidade"));
-//		     cidade.setNomeCidade(jsonObject.getString("nomeCidade"));
-//		     listCidades.add(cidade
+			JsonObject json = new JsonParser().parse(dados).getAsJsonObject();
+			JsonObject primeiraFicha = json.get("routes").getAsJsonArray().get(0).getAsJsonObject();
+			JsonObject distancia = primeiraFicha.get("legs").getAsJsonArray().get(0).getAsJsonObject();
+
+			JsonArray legs = primeiraFicha.get("legs").getAsJsonArray();
+			JsonObject legsJson = new JsonParser().parse(legs.get(0).toString()).getAsJsonObject();
+
+			JsonObject durationText = legsJson.get("duration").getAsJsonObject();
+			JsonObject distanceText = legsJson.get("distance").getAsJsonObject();
+
+			retorno.set(0, distanceText.get("text").toString());
+			retorno.set(1, durationText.get("text").toString());
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -225,8 +264,6 @@ public class RestauranteResource {
 
 	@GetMapping("/este")
 	public Restaurante getRestauranteByToken(@RequestHeader String token) {
-		System.out.println(token);
-//		String a = t.getUsernameFromToken(token);
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;

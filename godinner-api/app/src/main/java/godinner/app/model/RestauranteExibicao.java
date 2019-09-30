@@ -30,8 +30,14 @@ public class RestauranteExibicao extends Restaurante {
 	@JsonIgnore
 	Endereco endereco;
 	String foto;
+	Double valorEntrega;
 	
-	
+	public Double getValorEntrega() {
+		return valorEntrega;
+	}
+	public void setValorEntrega(Double valorIntrega) {
+		this.valorEntrega = valorIntrega;
+	}	
 
 	public Integer getId() {
 		return id;

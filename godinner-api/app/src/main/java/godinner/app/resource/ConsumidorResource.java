@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
@@ -31,6 +33,8 @@ public class ConsumidorResource {
 	EnderecoRepository enderecoRepository;
 	@Autowired
 	CidadeRepository cidadeRepository;
+	@Autowired
+	JwtTokenUtill jwtTokenUtil;
 	
 	@GetMapping("/todos")
 	public List<Consumidor> getConsumidor(){
@@ -38,7 +42,7 @@ public class ConsumidorResource {
 	}
 	
 	
-	@PostMapping("/novo")
+	@PostMapping
 	public Consumidor setConsumidor (@Validated @RequestBody Consumidor consumidor) {
 		Endereco endereco = consumidor.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
@@ -78,6 +82,14 @@ public class ConsumidorResource {
 			return false;
 		}
 		
+	}
+	@GetMapping("/este")
+	public Consumidor getRestauranteByToken(@RequestHeader String token) {
+		
+
+		String email = jwtTokenUtil.getUsernameFromToken(token);
+		Consumidor consumidorLogado = consumidorRepository.getConsumidorByEmail(email);
+		return consumidorLogado;
 	}
 	
 }

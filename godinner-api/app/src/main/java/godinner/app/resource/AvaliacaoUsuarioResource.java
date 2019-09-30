@@ -19,9 +19,12 @@ public class AvaliacaoUsuarioResource {
 	@Autowired
 	AvaliacaoUsuarioRepository avaliacaoUsuarioRepository;
 	
-	@GetMapping("/todas")
+	@GetMapping
 	public List<AvaliacaoUsuario> getAvaliacoesUsuario(){
 		return avaliacaoUsuarioRepository.findAll();
 	}
+	
+	
+	
 	
 }

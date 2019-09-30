@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +21,16 @@ public class CategoriaResource {
 	@Autowired
 	CategoriaRepository categoriaRepository;
 	
-	@GetMapping("/todos")
+	@GetMapping
 	public List<Categoria> getCategorias(){
-		return categoriaRepository.findAll();
+		
+		return categoriaRepository.buscar10Aleatorios();
+	}
+	
+	@PostMapping
+	public Categoria setCategoria(@RequestBody Categoria c) {
+		Categoria categoriaSalva  = categoriaRepository.save(c);
+		return categoriaSalva;
 	}
 
 }

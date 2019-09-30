@@ -29,7 +29,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-		final String requestTokenHeader = request.getHeader("token");
+		final String requestTokenHeader = request.getHeader("token") == null ? request.getParameter("token") : request.getHeader("token");
 		String username = null;
 		String jwtToken = null;
 
