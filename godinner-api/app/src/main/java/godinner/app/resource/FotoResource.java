@@ -23,6 +23,7 @@ import godinner.app.storage.Disco;
 
 @RestController
 @RequestMapping("/foto")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FotoResource {
 	
 	@Autowired

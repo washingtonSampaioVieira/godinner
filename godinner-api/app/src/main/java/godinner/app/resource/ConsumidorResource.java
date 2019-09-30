@@ -25,6 +25,7 @@ import godinner.app.repository.EnderecoRepository;
 
 @RestController
 @RequestMapping("/consumidor")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ConsumidorResource {
 	@Autowired
 	ConsumidorRepository consumidorRepository;

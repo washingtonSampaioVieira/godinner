@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import godinner.app.model.Cidade;
 import godinner.app.repository.CidadeRepository;
 
-
-
-
 @RestController
 @RequestMapping("/cidade")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CidadeResource {
 	
 	@Autowired

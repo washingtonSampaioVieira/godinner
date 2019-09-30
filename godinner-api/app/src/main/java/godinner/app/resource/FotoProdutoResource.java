@@ -15,6 +15,7 @@ import godinner.app.repository.FotoProdutoRepository;
 
 @RestController
 @RequestMapping("/fotoproduto")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FotoProdutoResource {
 	
 	@Autowired
@@ -25,7 +26,7 @@ public class FotoProdutoResource {
 		return fotoProdutoRepository.findAll();
 	}
 	
-	@GetMapping("/todos/{id}")
+	@GetMapping("/{id}")
 	public List<FotoProduto> getFotoProdtosIdProduto(@PathVariable int id){
 		List<FotoProduto> fotosProd = fotoProdutoRepository.findByIdProduto(id);
 		return fotosProd;

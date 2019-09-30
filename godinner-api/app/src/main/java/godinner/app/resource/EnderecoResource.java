@@ -27,6 +27,7 @@ import javassist.expr.NewArray;
 
 @RestController
 @RequestMapping("/endereco")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EnderecoResource {
 	@Autowired EnderecoRepository enderecoRepository;
 	@Autowired CidadeRepository cidadeRepository;

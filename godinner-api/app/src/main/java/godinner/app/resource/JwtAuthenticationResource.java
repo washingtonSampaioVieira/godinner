@@ -19,6 +19,7 @@ import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.RestauranteRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class JwtAuthenticationResource {
 	@Autowired
 	private AuthenticationManager authenticationManager;

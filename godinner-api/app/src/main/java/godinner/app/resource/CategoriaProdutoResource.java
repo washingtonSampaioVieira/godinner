@@ -18,6 +18,7 @@ import godinner.app.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/categoriaproduto")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategoriaProdutoResource {
 	
 	@Autowired

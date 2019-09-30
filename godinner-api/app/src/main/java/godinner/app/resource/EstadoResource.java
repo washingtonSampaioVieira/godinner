@@ -13,6 +13,7 @@ import godinner.app.repository.EstadoRepository;
 
 @RestController
 @RequestMapping("/estado")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EstadoResource {
 	@Autowired
 	EstadoRepository estadoRepository;
