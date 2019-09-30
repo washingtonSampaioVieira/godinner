@@ -26,7 +26,6 @@ import godinner.app.repository.EnderecoRepository;
 import javassist.expr.NewArray;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/endereco")
 public class EnderecoResource {
 	@Autowired EnderecoRepository enderecoRepository;

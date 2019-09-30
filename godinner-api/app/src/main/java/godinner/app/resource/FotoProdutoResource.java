@@ -14,7 +14,6 @@ import godinner.app.model.FotoProduto;
 import godinner.app.repository.FotoProdutoRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/fotoproduto")
 public class FotoProdutoResource {
 	

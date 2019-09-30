@@ -47,13 +47,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/endereco/cep/**", 
 						"/restaurante/valida/**", 
-						"/restaurante/novo/**", 
+						"/restaurante", 
 						"/foto/**",
 						"/cidade/**",
 						"/estado/**",
 						"/login/**",
-						"/categoria/todas/**",
-						"/consumidor/novo/**").permitAll().
+						"/categoria",
+						"/consumidor").permitAll().
 				// Todas as requisições serão autenticadas
 				anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to

@@ -19,7 +19,6 @@ import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.RestauranteRepository;
 
 @RestController
-@CrossOrigin
 public class JwtAuthenticationResource {
 	@Autowired
 	private AuthenticationManager authenticationManager;

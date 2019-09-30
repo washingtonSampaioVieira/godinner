@@ -52,7 +52,6 @@ import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjec
 
 @RestController
 @RequestMapping("/restaurante")
-@CrossOrigin(origins = "http://localhost:3000")
 public class RestauranteResource {
 
 	@Autowired
