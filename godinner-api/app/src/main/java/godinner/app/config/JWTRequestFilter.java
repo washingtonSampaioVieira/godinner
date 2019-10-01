@@ -33,10 +33,11 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 		final String requestTokenHeader = request.getHeader("token") == null ? request.getParameter("token") : request.getHeader("token");
 		String username = null;
 		String jwtToken = null;
+		
 		response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PATCH");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN, ");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, token, Content-Type, Authorization, credential, X-XSRF-TOKEN, ");
 
 		if (requestTokenHeader != null) {
 			jwtToken = requestTokenHeader;
