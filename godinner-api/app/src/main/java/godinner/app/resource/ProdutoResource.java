@@ -2,6 +2,7 @@ package godinner.app.resource;
 
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
 import javax.websocket.server.PathParam;
 
 import org.hibernate.validator.cfg.context.ReturnValueTarget;
@@ -28,6 +29,7 @@ import godinner.app.repository.RestauranteRepository;
 @RestController
 @RequestMapping("/produto")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class ProdutoResource {
 
 	@Autowired

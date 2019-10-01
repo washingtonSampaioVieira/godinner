@@ -2,6 +2,8 @@ package godinner.app.resource;
 
 import java.util.Optional;
 
+import javax.annotation.processing.SupportedOptions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,7 @@ import godinner.app.storage.Disco;
 @RestController
 @RequestMapping("/foto")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class FotoResource {
 	
 	@Autowired

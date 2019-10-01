@@ -2,6 +2,8 @@ package godinner.app.resource;
 
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +28,7 @@ import godinner.app.repository.EnderecoRepository;
 @RestController
 @RequestMapping("/consumidor")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class ConsumidorResource {
 	@Autowired
 	ConsumidorRepository consumidorRepository;

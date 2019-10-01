@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
+
+import org.hibernate.annotations.OptimisticLocking;
 import org.hibernate.mapping.Array;
 import org.json.JSONObject;
 import org.json.JSONString;
@@ -53,6 +56,7 @@ import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjec
 @RestController
 @RequestMapping("/restaurante")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class RestauranteResource {
 
 	@Autowired
