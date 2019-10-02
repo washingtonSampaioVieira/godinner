@@ -12,8 +12,8 @@ import godinner.app.model.AvaliacaoUsuario;
 import godinner.app.repository.AvaliacaoUsuarioRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/avaliacao")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AvaliacaoUsuarioResource {
 	
 	@Autowired

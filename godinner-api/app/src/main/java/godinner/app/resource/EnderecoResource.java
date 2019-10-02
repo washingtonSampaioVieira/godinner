@@ -10,6 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+
+import javax.annotation.processing.SupportedOptions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +29,9 @@ import godinner.app.repository.EnderecoRepository;
 import javassist.expr.NewArray;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/endereco")
+@CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class EnderecoResource {
 	@Autowired EnderecoRepository enderecoRepository;
 	@Autowired CidadeRepository cidadeRepository;

@@ -1,5 +1,7 @@
 package godinner.app.resource;
 
+import javax.annotation.processing.SupportedOptions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +21,8 @@ import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.RestauranteRepository;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class JwtAuthenticationResource {
 	@Autowired
 	private AuthenticationManager authenticationManager;

@@ -2,6 +2,8 @@ package godinner.app.resource;
 
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,8 +16,9 @@ import godinner.app.model.FotoProduto;
 import godinner.app.repository.FotoProdutoRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/fotoproduto")
+@CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class FotoProdutoResource {
 	
 	@Autowired
@@ -26,7 +29,7 @@ public class FotoProdutoResource {
 		return fotoProdutoRepository.findAll();
 	}
 	
-	@GetMapping("/todos/{id}")
+	@GetMapping("/{id}")
 	public List<FotoProduto> getFotoProdtosIdProduto(@PathVariable int id){
 		List<FotoProduto> fotosProd = fotoProdutoRepository.findByIdProduto(id);
 		return fotosProd;

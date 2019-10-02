@@ -2,6 +2,7 @@ package godinner.app.resource;
 
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
 import javax.websocket.server.PathParam;
 
 import org.hibernate.validator.cfg.context.ReturnValueTarget;
@@ -28,6 +29,7 @@ import godinner.app.repository.RestauranteRepository;
 @RestController
 @RequestMapping("/produto")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class ProdutoResource {
 
 	@Autowired
@@ -46,10 +48,10 @@ public class ProdutoResource {
 		return produtoRepository.getProdutosById(id);
 	}
 
-	@GetMapping("/exibicao/{id}")
-	public List<?> getProdutosExibicao(@PathVariable int id) {		
-		return produtoRepository.getTodosProdutosExibicao(id);
-	}
+//	@GetMapping("/exibicao/{id}")
+//	public List<?> getProdutosExibicao(@PathVariable int id) {		
+//		return produtoRepository.getTodosProdutosExibicao(id);
+//	}
 	
 	@GetMapping("/exibicao/{id}")
 	public List<?> getProdutosExibicaoADM(@PathVariable int id) {		
@@ -96,7 +98,7 @@ public class ProdutoResource {
 	
 	
 
-	@GetMapping("/{id}")
+	@GetMapping("/restaurante/{id}")
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id) {
 		return produtoRepository.getProdutosByIdRestaurante(id);
 	}

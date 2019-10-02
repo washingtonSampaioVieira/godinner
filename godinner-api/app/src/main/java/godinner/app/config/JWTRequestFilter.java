@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import godinner.app.repository.ConsumidorRepository;
@@ -32,6 +33,11 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 		final String requestTokenHeader = request.getHeader("token") == null ? request.getParameter("token") : request.getHeader("token");
 		String username = null;
 		String jwtToken = null;
+		
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PATCH");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, token, Content-Type, Authorization, credential, X-XSRF-TOKEN, ");
 
 		if (requestTokenHeader != null) {
 			jwtToken = requestTokenHeader;
@@ -45,9 +51,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 				System.out.println("O token JWT expirou");
 			}
 		} else {
-			logger.warn("O Token JWT não começa com a String do Portador");
+			//o cara nao tem token
 		}
-// Once we get the token validate it.
+
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			
 			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);

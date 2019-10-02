@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
+
+import org.hibernate.annotations.OptimisticLocking;
 import org.hibernate.mapping.Array;
 import org.json.JSONObject;
 import org.json.JSONString;
@@ -53,6 +56,7 @@ import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjec
 @RestController
 @RequestMapping("/restaurante")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = {"eventBusIndex", "verbose"})
 public class RestauranteResource {
 
 	@Autowired
@@ -139,14 +143,12 @@ public class RestauranteResource {
 		return es;
 	}
 	
-	
-
 	@GetMapping("/destaque/{id}")
 	public List<RestauranteExibicao> getRestaurantesExibicaoDestaque(@PathVariable int id) {
 		Consumidor c = consumidorRepository.getPorId(id);
 
 		List<Restaurante> r = restauranteRepository
-				.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getUf());
+				.getRestauranteExibicao(c.getEndereco().getCidade().getCidade());
 
 		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
 		e = setDadosExibicao(e, c);
@@ -156,7 +158,6 @@ public class RestauranteResource {
 	
 	@GetMapping("/exibicao/{id}")
 	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id) {
-
 		Consumidor c = consumidorRepository.getPorId(id);
 
 		List<Restaurante> r = restauranteRepository
@@ -264,6 +265,7 @@ public class RestauranteResource {
 
 	@GetMapping("/este")
 	public Restaurante getRestauranteByToken(@RequestHeader String token) {
+		
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;
