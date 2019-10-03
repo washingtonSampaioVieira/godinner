@@ -13,35 +13,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.model.CategoriaProduto;
 import godinner.app.repository.CategoriaProdutoRepository;
-import godinner.app.repository.CategoriaRepository;
 import godinner.app.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/categoriaproduto")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CategoriaProdutoResource {
-	
+
 	@Autowired
-	CategoriaProdutoRepository categoriaProdutoRepository;
-	
+	private CategoriaProdutoRepository categoriaProdutoRepository;
+
 	@Autowired
-	ProdutoRepository produtoRepository;
-	
-	@Autowired
-	CategoriaProdutoRepository categoriaProdutoResource;
-	
+	private ProdutoRepository produtoRepository;
+
 	@GetMapping
 	public List<CategoriaProduto> getCategoriasProduto() {
 		return categoriaProdutoRepository.findAll();
 	}
-	
+
 	@PostMapping
 	public List<CategoriaProduto> setCategoriaProduto(@Validated @RequestBody CategoriaProduto cp) {
 		cp.setCategoria(categoriaProdutoRepository.getById(cp.getCategoria().getId()));
 		cp.setProduto(produtoRepository.getProdutosById(cp.getProduto().getId()));
 		cp = categoriaProdutoRepository.save(cp);
-		
+
 		return categoriaProdutoRepository.todosDoRestaurante(cp.getProduto().getRestaurante().getId());
 	}
-
 }

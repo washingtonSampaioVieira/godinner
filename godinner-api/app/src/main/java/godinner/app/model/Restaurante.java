@@ -8,14 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import godinner.app.model.Endereco;
@@ -27,38 +22,36 @@ public class Restaurante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_restaurante")
-	Integer id;
+	private Integer id;
 
 	@Size(max = 100, min = 8)
 	@Column(name = "email", unique = true)
 	@NotNull
-	String email;
-	
-	
+	private String email;
+
 	@JsonProperty("senha")
 	@Size(max = 255, min = 6)
 	@Column(name = "senha")
 	@NotNull
-	String senha;
+	private String senha;
 
 	@Size(max = 50, min = 2)
 	@Column(name = "razao_social")
 	@NotNull
-	String razaoSocial;
+	private String razaoSocial;
 
 	@Size(max = 18, min = 13)
 	@Column(name = "cnpj", unique = true)
 	@NotNull
-	String cnpj;
+	private String cnpj;
 
 	@Column(name = "telefone")
-	String telefone;
+	private String telefone;
 
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
-	Endereco endereco;
-
-	String foto;
+	private Endereco endereco;
+	private String foto;
 
 	public Integer getId() {
 		return id;
@@ -129,5 +122,4 @@ public class Restaurante {
 		return "Restaurante [id=" + id + ", email=" + email + ", senha=" + senha + ", razaoSocial=" + razaoSocial
 				+ ", cnpj=" + cnpj + ", telefone=" + telefone + ", endereco=" + endereco + ", foto=" + foto + "]";
 	}
-
 }

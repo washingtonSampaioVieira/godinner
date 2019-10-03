@@ -6,14 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tbl_consumidor")
@@ -21,38 +17,36 @@ public class Consumidor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_consumidor")
-	Integer id;
+	private Integer id;
 
 	@Column(name = "nome")
 	@NotNull
 	@Size(min = 3, max = 45)
-	String nome;
+	private String nome;
 
 	@NotNull
 	@Size(min = 10, max = 100)
-	String email;
+	private String email;
 
 	@NotNull
 	@Size(min = 6, max = 255)
-	String senha;
+	private String senha;
 
 	@NotNull
 	@Size(min = 13, max = 14)
-	String cpf;
+	private String cpf;
 
 	@Size(max = 13)
-	String telefone;
+	private String telefone;
 
 	@Column(name = "foto_perfil")
 	@Size(max = 255)
-	String fotoPerfil;
+	private String fotoPerfil;
 
 	@JoinColumn(name = "id_endereco")
 	@OneToOne
 	@NotNull
 	Endereco endereco;
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -123,7 +117,4 @@ public class Consumidor {
 		return "Consumidor [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
 				+ ", telefone=" + telefone + ", fotoPerfil=" + fotoPerfil + ", endereco=" + endereco + "]";
 	}
-
-	
-
 }

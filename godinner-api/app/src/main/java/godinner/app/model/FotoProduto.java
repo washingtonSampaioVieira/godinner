@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,20 +19,20 @@ public class FotoProduto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_foto_produto")
-	Integer id;
-	String foto;
+	private Integer id;
+	private String foto;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
 	@JsonIgnoreProperties({ "restaurante", "nome", "descricao", "preco", "vendidos", "foto" })
-	Produto produto;
+	private Produto produto;
 
 	@JsonIgnore
 	@Column(name = "index_foto")
-	int indexFoto;
+	private int indexFoto;
 
-	String legenda;
+	private String legenda;
 
 	public Integer getId() {
 		return id;
@@ -80,5 +79,4 @@ public class FotoProduto {
 		return "FotoProduto [id=" + id + ", foto=" + foto + ", produto=" + produto + ", indexFoto=" + indexFoto
 				+ ", legenda=" + legenda + "]";
 	}
-
 }

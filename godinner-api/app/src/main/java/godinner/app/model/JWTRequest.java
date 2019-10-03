@@ -7,7 +7,6 @@ public class JWTRequest implements Serializable {
 	private String email;
 	private String password;
 
-//need default constructor for JSON Parsing
 	public JWTRequest() {
 	}
 

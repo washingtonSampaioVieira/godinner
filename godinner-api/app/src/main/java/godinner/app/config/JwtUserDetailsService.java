@@ -38,7 +38,6 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 			return u;
 		}
-		throw new UsernameNotFoundException("User not found with username: " + email);
-
+		throw new UsernameNotFoundException("Usuário não encontrado com o email: " + email);
 	}
 }

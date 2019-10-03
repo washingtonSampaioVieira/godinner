@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.processing.SupportedOptions;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +17,19 @@ import godinner.app.repository.FotoProdutoRepository;
 @RestController
 @RequestMapping("/fotoproduto")
 @CrossOrigin(origins = "http://localhost:3000")
-@SupportedOptions(value = {"eventBusIndex", "verbose"})
+@SupportedOptions(value = { "eventBusIndex", "verbose" })
 public class FotoProdutoResource {
-	
+
 	@Autowired
-	FotoProdutoRepository fotoProdutoRepository;
-	
+	private FotoProdutoRepository fotoProdutoRepository;
+
 	@GetMapping("/todos")
-	public List<FotoProduto> getFotoProdutos(){
+	public List<FotoProduto> getFotoProdutos() {
 		return fotoProdutoRepository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
-	public List<FotoProduto> getFotoProdtosIdProduto(@PathVariable int id){
+	public List<FotoProduto> getFotoProdtosIdProduto(@PathVariable int id) {
 		List<FotoProduto> fotosProd = fotoProdutoRepository.findByIdProduto(id);
 		return fotosProd;
 	}

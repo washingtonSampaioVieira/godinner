@@ -60,10 +60,10 @@ public class ValidaCadastro {
 		int n6 = randomiza(n);
 		int n7 = randomiza(n);
 		int n8 = randomiza(n);
-		int n9 = 0; //randomiza(n);
-		int n10 = 0; //randomiza(n);
-		int n11 = 0; //randomiza(n);
-		int n12 = 1; //randomiza(n);
+		int n9 = 0;
+		int n10 = 0;
+		int n11 = 0;
+		int n12 = 1; 
 		int d1 = n12 * 2 + n11 * 3 + n10 * 4 + n9 * 5 + n8 * 6 + n7 * 7 + n6 * 8 + n5 * 9 + n4 * 2 + n3 * 3 + n2 * 4 + n1 * 5;
 
 		d1 = 11 - (mod(d1, 11));
@@ -88,13 +88,11 @@ public class ValidaCadastro {
 		return retorno;
 	}
 
-
 	public String rg(boolean comPontos) {
-		String  nDigResult;
 		String numerosContatenados;
 		String numeroGerado;
 		Random numeroAleatorio = new Random();
-		//numeros gerados
+		
 		int n1 = numeroAleatorio.nextInt(10);
 		int n2 = numeroAleatorio.nextInt(10);
 		int n3 = numeroAleatorio.nextInt(10);
@@ -105,7 +103,6 @@ public class ValidaCadastro {
 		int n8 = numeroAleatorio.nextInt(10);
 		int n9 = numeroAleatorio.nextInt(10);
 
-		//Conctenando os numeros
 		numerosContatenados = String.valueOf(n1) + String.valueOf(n2) + String.valueOf(n3)  + String.valueOf(n4) +
 				String.valueOf(n5) + String.valueOf(n6) + String.valueOf(n7) +String.valueOf(n8)  +
 				String.valueOf(n9);
@@ -118,10 +115,6 @@ public class ValidaCadastro {
 
 		return numeroGerado;
 	}
-
-
-	
-
 
 	public boolean isCPF(String CPF) {
 		
@@ -183,7 +176,6 @@ public class ValidaCadastro {
 		
 		CNPJ = removeCaracteresEspeciais(CNPJ);
 		
-		// considera-se erro CNPJ's formados por uma sequencia de numeros iguais
 		if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") || CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") || CNPJ.equals("44444444444444") || CNPJ.equals("55555555555555") || CNPJ.equals("66666666666666") || CNPJ.equals("77777777777777") || CNPJ.equals("88888888888888") || CNPJ.equals("99999999999999") || (CNPJ.length() != 14))
 			return (false);
 

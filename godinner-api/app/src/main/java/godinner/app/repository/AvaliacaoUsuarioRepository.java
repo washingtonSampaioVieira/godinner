@@ -6,5 +6,4 @@ import godinner.app.model.AvaliacaoUsuario;
 
 public interface AvaliacaoUsuarioRepository   extends JpaRepository<AvaliacaoUsuario, Long>{
 	
-
 }

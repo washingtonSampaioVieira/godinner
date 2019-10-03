@@ -10,26 +10,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_nivel_usuario")
 public class NivelUsuario {
-	
+
 	@Id
 	@Column(name = "id_nivel_usuario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id; 
-	
-	@Column(name = "nome")
-	String nome;
-	
-	@Column(name = "nivel")
-	Integer nivel;
+	private Integer id;
 
-	String descricao;
-	
+	@Column(name = "nome")
+	private String nome;
+
+	@Column(name = "nivel")
+	private Integer nivel;
+
+	private String descricao;
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -58,9 +60,4 @@ public class NivelUsuario {
 	public String toString() {
 		return "NivelUsuario [id=" + id + ", nome=" + nome + ", nivel=" + nivel + "]";
 	}
-	
-	
-	
-	
-
 }

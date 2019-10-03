@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -18,14 +17,14 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
-	Integer id;
+	private Integer id;
 
 	@NotNull
-	String nome;
-	String foto;
-	String descricao;
+	private String nome;
+	private String foto;
+	private String descricao;
 	@JsonIgnore
-	String status;
+	private String status;
 
 	public Integer getId() {
 		return id;
@@ -72,5 +71,4 @@ public class Categoria {
 		return "Categoria [id=" + id + ", nome=" + nome + ", foto=" + foto + ", descricao=" + descricao + ", status="
 				+ status + "]";
 	}
-
 }

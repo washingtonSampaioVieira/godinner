@@ -20,10 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	
 	@Autowired
 	private UserDetailsService jwtUserDetailsService;
+	
 	@Autowired
 	private JWTRequestFilter jwtRequestFilter;
 
@@ -46,23 +49,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-				.antMatchers("/endereco/cep/**", 
-						"/restaurante/valida/**", 
-						"/restaurante", 
-						"/foto/**",
-						"/cidade/**",
-						"/estado/**",
-						"/login/**",
-						"/categoria",
-						"/consumidor").permitAll().
-				// Todas as requisições serão autenticadas
-				anyRequest().authenticated().and().
-				// make sure we use stateless session; session won't be used to
-				// store user's state.
-				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		// Add a filter to validate the tokens with every request
+			.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+			.antMatchers("/endereco/cep/**", 
+					"/restaurante/valida/**", 
+					"/restaurante", 
+					"/foto/**",
+					"/cidade/**",
+					"/estado/**",
+					"/login/**",
+					"/categoria",
+					"/consumidor").permitAll().
+			anyRequest().authenticated().and().
+			exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }

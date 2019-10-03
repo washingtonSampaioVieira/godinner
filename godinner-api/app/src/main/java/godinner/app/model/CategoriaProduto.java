@@ -6,30 +6,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "tbl_categoria_produto")
 public class CategoriaProduto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria_produto")
-	Integer id;
+	private Integer id;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
-	@JsonIgnoreProperties({"foto", "restaurante", "preco", "desconto", "vendidos"})
-	Produto produto;
+	@JsonIgnoreProperties({ "foto", "restaurante", "preco", "desconto", "vendidos" })
+	private Produto produto;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
-	Categoria categoria;
+	private Categoria categoria;
 
 	public Integer getId() {
 		return id;
@@ -59,6 +59,4 @@ public class CategoriaProduto {
 	public String toString() {
 		return "CategoriaProduto [id=" + id + ", produto=" + produto + ", categoria=" + categoria + "]";
 	}
-	
-	
 }
