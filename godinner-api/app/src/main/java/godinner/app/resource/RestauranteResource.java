@@ -154,11 +154,8 @@ public class RestauranteResource {
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
-
-		String destino = c.getEndereco().getCep().replace("-", "");
 		for (int i = 0; i < restaurantes.size(); i++) {
-
-			ArrayList<String> dados = new ArrayList();
+			ArrayList<String> dados = new ArrayList<>();
 			dados.add("5 km");
 			dados.add("20 m");
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
@@ -179,8 +176,6 @@ public class RestauranteResource {
 	}
 
 	private ArrayList<String> buscarDistanciaTempoGoogle(String origin, String destino) {
-
-		// https://viacep.com.br/ws/06653430/json/
 		URL url;
 		String urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + ""
 				+ "&destination=" + destino + "&key=AIzaSyCVVT9Dl4bQDouAtP_PBniF2qtY8hL9CHE";
@@ -210,11 +205,10 @@ public class RestauranteResource {
 				dados = dados + linha;
 				linha = bufferedReader.readLine();
 			}
-			System.out.println(dados + " ---------");
 
 			JsonObject json = new JsonParser().parse(dados).getAsJsonObject();
 			JsonObject primeiraFicha = json.get("routes").getAsJsonArray().get(0).getAsJsonObject();
-			JsonObject distancia = primeiraFicha.get("legs").getAsJsonArray().get(0).getAsJsonObject();
+//			JsonObject distancia = primeiraFicha.get("legs").getAsJsonArray().get(0).getAsJsonObject();
 
 			JsonArray legs = primeiraFicha.get("legs").getAsJsonArray();
 			JsonObject legsJson = new JsonParser().parse(legs.get(0).toString()).getAsJsonObject();
@@ -242,5 +236,4 @@ public class RestauranteResource {
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;
 	}
-
 }
