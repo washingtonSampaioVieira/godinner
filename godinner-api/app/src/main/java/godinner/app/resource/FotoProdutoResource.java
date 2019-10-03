@@ -1,6 +1,8 @@
 package godinner.app.resource;
 
+import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.processing.SupportedOptions;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import godinner.app.model.FotoProduto;
 import godinner.app.repository.FotoProdutoRepository;
@@ -24,8 +27,6 @@ public class FotoProdutoResource {
 	@Autowired
 	private FotoProdutoRepository fotoProdutoRepository;
 	
-	@Autowired
-	private FotoResource fotoResource;
 
 	@GetMapping("/todos")
 	public List<FotoProduto> getFotoProdutos() {
@@ -40,8 +41,21 @@ public class FotoProdutoResource {
 	
 	@DeleteMapping("/{id}")
 	public void deleteFotoProduto(@PathVariable Long id){
-		fotoProdutoRepository.deleteById(id);
+		Optional<FotoProduto> fotoProduto = fotoProdutoRepository.findById(id);
 		
-		
+		File foto = new File("/etc/home/");
+		if(foto.exists()){
+			if(foto.delete()){
+				fotoProdutoRepository.deleteById(id);
+			}
+		}
 	}
 }
+
+
+
+
+
+
+
+
