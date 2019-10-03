@@ -25,6 +25,7 @@ public class CategoriaResource {
 	public List<Categoria> getCategorias() {
 		return categoriaRepository.buscar10Aleatorios();
 	}
+	
 
 	@PostMapping
 	public Categoria setCategoria(@RequestBody Categoria c) {

@@ -69,7 +69,7 @@ public class ProdutoResource {
 		return null;
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public boolean deletarProduto(@PathVariable int id) {
 		Produto p = produtoRepository.getProdutosById(id);
 		if (p != null) {
