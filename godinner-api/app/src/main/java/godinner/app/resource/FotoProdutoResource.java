@@ -6,6 +6,7 @@ import javax.annotation.processing.SupportedOptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,9 @@ public class FotoProdutoResource {
 
 	@Autowired
 	private FotoProdutoRepository fotoProdutoRepository;
+	
+	@Autowired
+	private FotoResource fotoResource;
 
 	@GetMapping("/todos")
 	public List<FotoProduto> getFotoProdutos() {
@@ -32,5 +36,12 @@ public class FotoProdutoResource {
 	public List<FotoProduto> getFotoProdtosIdProduto(@PathVariable int id) {
 		List<FotoProduto> fotosProd = fotoProdutoRepository.findByIdProduto(id);
 		return fotosProd;
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteFotoProduto(@PathVariable Long id){
+		fotoProdutoRepository.deleteById(id);
+		
+		
 	}
 }

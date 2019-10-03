@@ -37,6 +37,11 @@ public class ProdutoResource {
 	public Produto getProdutoPorId(@PathVariable int id) {
 		return produtoRepository.getProdutosById(id);
 	}
+	
+	@GetMapping("/desativados/{idRestaurante}")
+	public List<Produto> getProdutosDesativados(@PathVariable int idRestaurante){
+		return produtoRepository.getProdutosDesativados(idRestaurante);
+	}
 
 	@GetMapping("/exibicao/{id}")
 	public List<?> getProdutosExibicaoADM(@PathVariable int id) {
