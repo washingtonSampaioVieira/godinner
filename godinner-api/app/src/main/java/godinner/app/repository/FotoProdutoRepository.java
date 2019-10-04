@@ -11,4 +11,6 @@ public interface FotoProdutoRepository extends JpaRepository<FotoProduto, Long> 
 
 	@Query("SELECT fp FROM FotoProduto fp WHERE fp.produto.id = ?1")
 	List<FotoProduto> findByIdProduto(int id);
+	@Query("SELECT fp FROM FotoProduto fp WHERE fp.id = ?1")
+	FotoProduto getFotoProdutoPorId(int id);
 }
