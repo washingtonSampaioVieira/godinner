@@ -1,5 +1,6 @@
 package godinner.app.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,6 +34,7 @@ public class Disco {
 		local = (String) (data.getData() + "-" + arquivo.getOriginalFilename());
 
 		Path arquivoPath = diretorioPath.resolve(local);
+		
 		try {
 
 			Files.createDirectories(diretorioPath);
@@ -44,5 +46,10 @@ public class Disco {
 
 		}
 		return caminhoCompleto;
+	}
+
+	public boolean deleteFoto(String foto) {
+		File f = new File(this.raiz +"/" + this.diretorioFotos + foto ); 
+		return f.delete();
 	}
 }
