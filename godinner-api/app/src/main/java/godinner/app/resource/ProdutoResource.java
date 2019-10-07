@@ -2,8 +2,11 @@ package godinner.app.resource;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.annotation.processing.SupportedOptions;
+import javax.transaction.Transactional;
 
+import org.hibernate.engine.transaction.internal.TransactionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,9 +40,9 @@ public class ProdutoResource {
 	public Produto getProdutoPorId(@PathVariable int id) {
 		return produtoRepository.getProdutosById(id);
 	}
-	
+
 	@GetMapping("/desativados/{idRestaurante}")
-	public List<Produto> getProdutosDesativados(@PathVariable int idRestaurante){
+	public List<Produto> getProdutosDesativados(@PathVariable int idRestaurante) {
 		return produtoRepository.getProdutosDesativados(idRestaurante);
 	}
 
@@ -54,24 +57,34 @@ public class ProdutoResource {
 		return produto = produtoRepository.getProdutosById(produto.getId());
 	}
 
-	@PutMapping("/desativa/{id}")
-	public Produto desativarProduto(@PathVariable int id) {
-		Produto produtoDesativado = produtoRepository.getProdutosById(id);
-		if (produtoDesativado != null) {
-			produtoDesativado.setStatus("0");
-			return produtoRepository.save(produtoDesativado);
-		}
-		return null;
-	}
-
-	@PutMapping("/ativa/{id}")
-	public Produto ativaProduto(@PathVariable int id) {
-		Produto produtoDesativado = produtoRepository.getProdutosById(id);
-		if (produtoDesativado != null) {
-			produtoDesativado.setStatus("1");
-			return produtoRepository.save(produtoDesativado);
-		}
-		return null;
+	@PutMapping("/status/{id}")
+	public Produto setProdutoAtualizado(@PathVariable int id) {
+		Produto p = produtoRepository.getProdutosById(id);
+		
+		Integer status = Integer.parseInt(p.getStatus());
+		
+		switch (status) {
+		
+			case 1:
+			
+				p.setStatus("0");
+				
+				produtoRepository.save(p);
+				 
+		        return p;
+		
+		case 0:
+				
+				p.setStatus("1");
+				
+				produtoRepository.save(p);
+				 
+		        return p;
+			
+		default:
+				return null;
+		}	
+		
 	}
 
 	@DeleteMapping("/{id}")
