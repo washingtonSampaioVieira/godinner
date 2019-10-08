@@ -53,18 +53,13 @@ public class CategoriaProdutoResource {
 	}
 	
 	@DeleteMapping("/{id}")
-	public boolean deleteCategoriaProduto(@PathVariable int id){
-		
+	public void deleteCategoriaProduto(@PathVariable int id, HttpServletResponse response) throws IOException {
 		CategoriaProduto categoriaProduto = categoriaProdutoRepository.getIdCategoriaProduto(id);
-		
 		if(categoriaProduto != null) {
 			categoriaProdutoRepository.delete(categoriaProduto);
-			
-			return true;
+			return;
 		}
-		
-		return false;
-		
-
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST, "categoria produto null");
+		return;
 	}
 }

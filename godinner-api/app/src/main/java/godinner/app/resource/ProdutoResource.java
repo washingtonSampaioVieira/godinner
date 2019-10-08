@@ -1,9 +1,11 @@
 package godinner.app.resource;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.annotation.processing.SupportedOptions;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.hibernate.engine.transaction.internal.TransactionImpl;
@@ -58,33 +60,24 @@ public class ProdutoResource {
 	}
 
 	@PutMapping("/status/{id}")
-	public Produto setProdutoAtualizado(@PathVariable int id) {
+	public Produto setProdutoAtualizado(@PathVariable int id, HttpServletResponse response) throws IOException {
 		Produto p = produtoRepository.getProdutosById(id);
-		
 		Integer status = Integer.parseInt(p.getStatus());
-		
 		switch (status) {
-		
 			case 1:
-			
 				p.setStatus("0");
-				
 				produtoRepository.save(p);
-				 
-		        return p;
-		
-		case 0:
-				
+				break;
+		        
+			case 0:
 				p.setStatus("1");
-				
 				produtoRepository.save(p);
-				 
-		        return p;
-			
-		default:
-				return null;
+		        break;
+			default:
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "categoria produto null");
+				break;
 		}	
-		
+		return p;
 	}
 
 	@DeleteMapping("/{id}")
