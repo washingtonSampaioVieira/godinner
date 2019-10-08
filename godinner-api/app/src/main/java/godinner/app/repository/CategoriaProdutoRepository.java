@@ -16,4 +16,7 @@ public interface CategoriaProdutoRepository extends JpaRepository<CategoriaProdu
 	// select de todos as categorias cadastradas em um produto
 	@Query(value = "SELECT c FROM CategoriaProduto c where c.produto.id = ?1")
 	List<CategoriaProduto> todosDoRestaurante(int id);
+	
+	@Query("SELECT c FROM CategoriaProduto c where c.id =?1")
+	CategoriaProduto getIdCategoriaProduto(int id);
 }
