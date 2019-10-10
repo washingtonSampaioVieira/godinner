@@ -35,6 +35,7 @@ public class FuncionarioResource {
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 	
+	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
 
 	@GetMapping
