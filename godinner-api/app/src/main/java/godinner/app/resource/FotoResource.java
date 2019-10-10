@@ -1,6 +1,6 @@
 package godinner.app.resource;
 
-import java.util.Optional;
+import javax.annotation.processing.SupportedOptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,76 +20,71 @@ import godinner.app.repository.ProdutoRepository;
 import godinner.app.repository.RestauranteRepository;
 import godinner.app.storage.Disco;
 
-
 @RestController
 @RequestMapping("/foto")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = { "eventBusIndex", "verbose" })
 public class FotoResource {
-	
+
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
 	@Autowired
 	private Disco disco;
-	
+
 	@Autowired
 	private ConsumidorRepository consumidorRepository;
-	
+
 	@Autowired
 	private RestauranteRepository restauranteRepository;
-	
+
 	@Autowired
 	private FotoProdutoRepository fotoProdutoRepository;
-	
+
 	@PostMapping("/restaurante")
-	public Restaurante uploadRestaurante(@RequestParam MultipartFile foto, @RequestParam int id){
+	public Restaurante uploadRestaurante(@RequestParam MultipartFile foto, @RequestParam int id) {
 		Restaurante r = null;
 		String localFoto = disco.salvarFoto(foto, "restaurante");
-		if(localFoto != null) {
-		  r = restauranteRepository.getPorId(id);
-		  r.setFoto(localFoto);
-		  restauranteRepository.save(r);
+		if (localFoto != null) {
+			r = restauranteRepository.getPorId(id);
+			r.setFoto(localFoto);
+			restauranteRepository.save(r);
 		}
 		return r;
 	}
-	
+
 	@PostMapping("/consumidor")
-	public Consumidor uploadConsumidor(@RequestParam MultipartFile foto, @RequestParam int id){
+	public Consumidor uploadConsumidor(@RequestParam MultipartFile foto, @RequestParam int id) {
 		Consumidor c = null;
-		
+
 		String localFoto = disco.salvarFoto(foto, "consumidor");
-		if(localFoto != null) {
+		if (localFoto != null) {
 			c = consumidorRepository.getPorId(id);
 			c.setFotoPerfil(localFoto);
 			consumidorRepository.save(c);
 		}
 		return c;
 	}
-	
-	
+
 	@PostMapping("/produto")
-	public FotoProduto uploadProduto(@RequestParam MultipartFile foto, @RequestParam int id, @RequestParam int index, @RequestParam String legenda){
-		
+	public FotoProduto uploadProduto(@RequestParam MultipartFile foto, @RequestParam int id, @RequestParam int index,
+			@RequestParam String legenda) {
+
 		Produto p = null;
 		FotoProduto fp = new FotoProduto();
 		System.out.println(foto.getOriginalFilename());
-		
+
 		String localFoto = disco.salvarFoto(foto, "restaurante/produto");
-		if(localFoto != null) {
-			p  = produtoRepository.getProdutosById(id);
+		if (localFoto != null) {
+			p = produtoRepository.getProdutosById(id);
 			fp.setFoto(localFoto);
 			fp.setIndexFoto(index);
 			fp.setProduto(p);
 			fp.setLegenda(legenda);
 			fp = fotoProdutoRepository.save(fp);
-			
-			
+
 		}
-		
+
 		return fp;
 	}
-	
-	
-	
-	
 }

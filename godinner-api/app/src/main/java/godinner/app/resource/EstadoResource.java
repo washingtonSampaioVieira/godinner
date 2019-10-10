@@ -15,12 +15,12 @@ import godinner.app.repository.EstadoRepository;
 @RequestMapping("/estado")
 @CrossOrigin(origins = "http://localhost:3000")
 public class EstadoResource {
-	@Autowired
-	EstadoRepository estadoRepository;
 	
+	@Autowired
+	private EstadoRepository estadoRepository;
+
 	@GetMapping
-	public List<Estado> getEstado(){
+	public List<Estado> getEstado() {
 		return estadoRepository.findAll();
 	}
-	
 }

@@ -1,10 +1,14 @@
 package godinner.app.resource;
 
+import java.io.IOException;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
+import javax.annotation.Resource;
+import javax.annotation.processing.SupportedOptions;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
-import org.hibernate.validator.cfg.context.ReturnValueTarget;
+import org.hibernate.engine.transaction.internal.TransactionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,24 +21,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import godinner.app.model.FotoProduto;
 import godinner.app.model.Produto;
-import godinner.app.model.ProdutoExibicao;
-import godinner.app.model.Restaurante;
-import godinner.app.repository.FotoProdutoRepository;
 import godinner.app.repository.ProdutoRepository;
-import godinner.app.repository.RestauranteRepository;
 
 @RestController
 @RequestMapping("/produto")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = { "eventBusIndex", "verbose" })
 public class ProdutoResource {
 
 	@Autowired
-	ProdutoRepository produtoRepository;
-	
-	@Autowired
-	FotoProdutoRepository fotoProdutoRepository;
+	private ProdutoRepository produtoRepository;
 
 	@GetMapping
 	public List<Produto> getProduto() {
@@ -46,61 +43,58 @@ public class ProdutoResource {
 		return produtoRepository.getProdutosById(id);
 	}
 
-	@GetMapping("/exibicao/{id}")
-	public List<?> getProdutosExibicao(@PathVariable int id) {		
-		return produtoRepository.getTodosProdutosExibicao(id);
+	@GetMapping("/desativados/{idRestaurante}")
+	public List<Produto> getProdutosDesativados(@PathVariable int idRestaurante) {
+		return produtoRepository.getProdutosDesativados(idRestaurante);
 	}
-	
+
 	@GetMapping("/exibicao/{id}")
-	public List<?> getProdutosExibicaoADM(@PathVariable int id) {		
+	public List<?> getProdutosExibicaoADM(@PathVariable int id) {
 		return produtoRepository.getProdutoExibicao(id);
 	}
-	
+
 	@PutMapping
 	public Produto setProdutoAtualizado(@Validated @RequestBody Produto produto) {
 		produtoRepository.save(produto);
 		return produto = produtoRepository.getProdutosById(produto.getId());
 	}
-	
-	@PutMapping("/desativa/{id}")
-	public Produto desativarProduto(@PathVariable int id) {
-		Produto produtoDesativado = produtoRepository.getProdutosById(id);
-		if(produtoDesativado != null) {
-			produtoDesativado.setStatus("0");
-			return produtoRepository.save(produtoDesativado);
-		}
-		return null;
+
+	@PutMapping("/status/{id}")
+	public Produto setProdutoAtualizado(@PathVariable int id, HttpServletResponse response) throws IOException {
+		Produto p = produtoRepository.getProdutosById(id);
+		Integer status = Integer.parseInt(p.getStatus());
+		switch (status) {
+			case 1:
+				p.setStatus("0");
+				produtoRepository.save(p);
+				break;
+		        
+			case 0:
+				p.setStatus("1");
+				produtoRepository.save(p);
+		        break;
+			default:
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "categoria produto null");
+				break;
+		}	
+		return p;
 	}
-	
-	@PutMapping("/ativa/{id}")
-	public Produto ativaProduto(@PathVariable int id) {
-		Produto produtoDesativado = produtoRepository.getProdutosById(id);
-		if(produtoDesativado != null) {
-			produtoDesativado.setStatus("1");
-			return produtoRepository.save(produtoDesativado);
-		}
-		return null;
-	}
-	
-	@DeleteMapping
+
+	@DeleteMapping("/{id}")
 	public boolean deletarProduto(@PathVariable int id) {
 		Produto p = produtoRepository.getProdutosById(id);
-		if(p != null) {
+		if (p != null) {
 			produtoRepository.delete(p);
 			return true;
 		}
 		return false;
 	}
-	
-	
-	
-	
 
-	@GetMapping("/{id}")
+	@GetMapping("/restaurante/{id}")
 	public List<Produto> getProdutoPorRestaurante(@PathVariable int id) {
 		return produtoRepository.getProdutosByIdRestaurante(id);
 	}
-	
+
 	@GetMapping("/promocao/{id}")
 	public List<Produto> getProdutosPromocao(@PathVariable int id) {
 		return produtoRepository.getProdutoPromocao(id);
@@ -113,5 +107,4 @@ public class ProdutoResource {
 		p = produtoRepository.save(p);
 		return p;
 	}
-
 }

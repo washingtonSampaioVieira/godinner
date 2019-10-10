@@ -12,25 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 import godinner.app.model.Cidade;
 import godinner.app.repository.CidadeRepository;
 
-
-
-
 @RestController
 @RequestMapping("/cidade")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CidadeResource {
-	
+
 	@Autowired
-	CidadeRepository cidadeRepository;
+	private CidadeRepository cidadeRepository;
 
 	@GetMapping
 	public List<Cidade> getCidades() {
 		return cidadeRepository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public List<Cidade> getCidadesPorEstados(@PathVariable int id) {
-		
-		return cidadeRepository.getCidadesPorEstados(id);		
+
+		return cidadeRepository.getCidadesPorEstados(id);
 	}
 }

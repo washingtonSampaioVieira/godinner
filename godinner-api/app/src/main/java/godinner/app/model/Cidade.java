@@ -8,29 +8,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 
 @Entity
 @Table(name = "tbl_cidade")
 public class Cidade {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cidade")
-	Integer id;
-	
+	private Integer id;
+
 	@Column(name = "cidade")
-	String cidade;
-	
+	private String cidade;
+
 	@ManyToOne
 	@JoinColumn(name = "id_estado")
-    Estado estado;
+	private Estado estado;
 
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -42,11 +40,11 @@ public class Cidade {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	
+
 	public Estado getEstado() {
 		return estado;
 	}
-	
+
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
@@ -55,7 +53,4 @@ public class Cidade {
 	public String toString() {
 		return "Cidade [id=" + id + ", cidade=" + cidade + ", estado=" + estado + "]";
 	}
-	
-	
-	
 }

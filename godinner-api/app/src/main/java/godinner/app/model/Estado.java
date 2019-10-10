@@ -10,15 +10,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_estado")
 public class Estado {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_estado")
 	private Integer id;
-	
+
 	@Column(name = "estado")
 	private String estado;
-	
+
 	@Column(name = "uf")
 	private String uf;
 
@@ -50,5 +50,4 @@ public class Estado {
 	public String toString() {
 		return "Estado [id=" + id + ", estado=" + estado + ", uf=" + uf + "]";
 	}
-
 }

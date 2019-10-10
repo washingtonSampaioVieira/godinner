@@ -17,19 +17,19 @@ import godinner.app.repository.CategoriaRepository;
 @RequestMapping("/categoria")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CategoriaResource {
-	
+
 	@Autowired
-	CategoriaRepository categoriaRepository;
-	
+	private CategoriaRepository categoriaRepository;
+
 	@GetMapping
-	public List<Categoria> getCategorias(){
-		
+	public List<Categoria> getCategorias() {
 		return categoriaRepository.buscar10Aleatorios();
 	}
 	
+
 	@PostMapping
 	public Categoria setCategoria(@RequestBody Categoria c) {
-		Categoria categoriaSalva  = categoriaRepository.save(c);
+		Categoria categoriaSalva = categoriaRepository.save(c);
 		return categoriaSalva;
 	}
 

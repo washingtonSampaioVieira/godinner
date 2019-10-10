@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import godinner.app.model.Restaurante;
-import godinner.app.model.RestauranteExibicao;
 
 public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 
@@ -37,5 +36,4 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 			+" WHERE" 
 			+"		c.cidade = ?1 limit 10", nativeQuery = true)
 	public List<Restaurante> getRestauranteExibicao(String cidade);
-
 }

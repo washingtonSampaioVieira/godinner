@@ -1,6 +1,7 @@
 package godinner.app.model;
 
 public class EnderecoViaCep {
+	
 	public String cep;
 	public String logradouro;
 	public String complemento;

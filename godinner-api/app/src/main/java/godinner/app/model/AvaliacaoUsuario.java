@@ -67,5 +67,4 @@ public class AvaliacaoUsuario {
 		return "AvaliacaoUsuario [id=" + id + ", restaurante=" + restaurante + ", consumidor=" + consumidor
 				+ ", comentario=" + comentario + "]";
 	}
-
 }

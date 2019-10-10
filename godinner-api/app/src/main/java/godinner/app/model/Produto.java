@@ -12,21 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.Nullable;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import net.bytebuddy.implementation.bind.annotation.Default;
-import net.bytebuddy.implementation.bind.annotation.Empty;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 @Entity
 @Table(name = "tbl_produto")
@@ -34,41 +22,39 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
-	Integer id;
+	private Integer id;
 
 	@NotNull
 	@Size(min = 3, max = 20)
 	@Column(name = "nome")
-	String nome;
+	private String nome;
 
 	@NotNull
 	@Column(name = "preco")
-	Integer preco;
+	private Integer preco;
 
 	@Column(name = "descricao")
 	@Size(max = 40)
-	String descricao;
+	private String descricao;
 
 	@Column(name = "desconto")
-	Integer desconto;
+	private Integer desconto;
 
 	@Column(name = "vendidos")
-	Integer vendidos;
-	
+	private Integer vendidos;
+
 	@Column(name = "status")
-	String status;
+	private String status;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante")
 	@JsonIgnoreProperties({ "endereco", "telefone", "razaoSocial", "email", "foto", "cnpj", "senha" })
-	Restaurante restaurante;
-
-	
+	private Restaurante restaurante;
 
 	@JsonIgnoreProperties({ "produto" })
 	@OneToMany(mappedBy = "produto")
-	List<FotoProduto> foto;
+	private List<FotoProduto> foto;
 
 	public List<FotoProduto> getFoto() {
 		return foto;
@@ -147,5 +133,4 @@ public class Produto {
 		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", descricao=" + descricao + ", vendidos="
 				+ vendidos + ", restaurante=" + restaurante.getId();
 	}
-
 }

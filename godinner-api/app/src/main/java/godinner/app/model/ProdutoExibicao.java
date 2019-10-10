@@ -4,17 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ProdutoExibicao {
 
-	Integer id;
-	String nome;
-	Integer preco;
-	String descricao;
-	String desconto;
+	private Integer id;
+	private String nome;
+	private Integer preco;
+	private String descricao;
+	private String desconto;
+	private Integer vendidos;
 
-	Integer vendidos;
 	@JsonIgnore
-	Restaurante restaurante;
-	String status;
-	String foto;
+	private Restaurante restaurante;
+	private String status;
+	private String foto;
 
 	public String getFoto() {
 		return foto;
@@ -87,5 +87,4 @@ public class ProdutoExibicao {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 }

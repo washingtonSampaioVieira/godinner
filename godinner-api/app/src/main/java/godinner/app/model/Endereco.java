@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,45 +14,45 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "tbl_endereco")
 public class Endereco {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_endereco")
-	Integer id;
-	
-	@Size(max = 15 , min = 8)
+	private Integer id;
+
+	@Size(max = 15, min = 8)
 	@Column(name = "cep")
-    @NotNull
-	String cep;
-	
-	@Size(max = 6 , min = 1)
+	@NotNull
+	private String cep;
+
+	@Size(max = 6, min = 1)
 	@Column(name = "numero")
-    @NotNull
-	String numero;
-	
-	@Size(max = 70 , min = 3)
+	@NotNull
+	private String numero;
+
+	@Size(max = 70, min = 3)
 	@Column(name = "logradouro")
-    @NotNull
-	String logradouro;
-	
-	@Size(max = 30 , min = 3)
+	@NotNull
+	private String logradouro;
+
+	@Size(max = 30, min = 3)
 	@Column(name = "bairro")
-    @NotNull
-	String bairro;
-	
-	@Size(max = 15 )
+	@NotNull
+	private String bairro;
+
+	@Size(max = 15)
 	@Column(name = "complemento")
-    @NotNull
-	String complemento;
-	
+	@NotNull
+	private String complemento;
+
 	@Size(max = 50)
 	@Column(name = "referencia")
-	String referencia;
-	
+	private String referencia;
+
 	@ManyToOne
 	@JoinColumn(name = "id_cidade")
-    @NotNull
-    Cidade cidade;
+	@NotNull
+	private Cidade cidade;
 
 	public Integer getId() {
 		return id;
@@ -125,7 +123,4 @@ public class Endereco {
 		return "Endereco [id=" + id + ", cep=" + cep + ", numero=" + numero + ", logradouro=" + logradouro + ", bairro="
 				+ bairro + ", complemento=" + complemento + ", referencia=" + referencia + ", cidade=" + cidade + "]";
 	}
-	
-	
-	
 }

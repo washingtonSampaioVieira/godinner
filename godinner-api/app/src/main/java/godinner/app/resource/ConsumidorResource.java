@@ -2,6 +2,8 @@ package godinner.app.resource;
 
 import java.util.List;
 
+import javax.annotation.processing.SupportedOptions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +20,6 @@ import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
-import godinner.app.model.Restaurante;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
@@ -26,70 +27,71 @@ import godinner.app.repository.EnderecoRepository;
 @RestController
 @RequestMapping("/consumidor")
 @CrossOrigin(origins = "http://localhost:3000")
+@SupportedOptions(value = { "eventBusIndex", "verbose" })
 public class ConsumidorResource {
-	@Autowired
-	ConsumidorRepository consumidorRepository;
-	@Autowired
-	EnderecoRepository enderecoRepository;
-	@Autowired
-	CidadeRepository cidadeRepository;
-	@Autowired
-	JwtTokenUtill jwtTokenUtil;
 	
+	@Autowired
+	private ConsumidorRepository consumidorRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	@Autowired
+	
+	private JwtTokenUtill jwtTokenUtil;
+
 	@GetMapping("/todos")
-	public List<Consumidor> getConsumidor(){
+	public List<Consumidor> getConsumidor() {
 		return consumidorRepository.findAll();
 	}
-	
-	
+
 	@PostMapping
-	public Consumidor setConsumidor (@Validated @RequestBody Consumidor consumidor) {
+	public Consumidor setConsumidor(@Validated @RequestBody Consumidor consumidor) {
 		Endereco endereco = consumidor.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
-		
+
 		Cidade c = cidadeRepository.getCidade(enderecoSalvo.getCidade().getId());
 
 		enderecoSalvo.setCidade(c);
 		consumidor.setEndereco(enderecoSalvo);
-		
-		Consumidor consumidorSalvo = consumidorRepository.save(consumidor);	
-		
+
+		Consumidor consumidorSalvo = consumidorRepository.save(consumidor);
+
 		return consumidorSalvo;
 	}
-	
+
 	@GetMapping("/valida/cpf/{cpf}")
 	public boolean validarCpf(@PathVariable String cpf) {
-		if(cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")){
+		if (cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")) {
 			ValidaCadastro validaCadastro = new ValidaCadastro();
-			if(validaCadastro.isCPF(cpf)) {;
-				return consumidorRepository.validarCpfUnico(cpf) == 0? true: false;
-			}else {
+			if (validaCadastro.isCPF(cpf)) {
+				;
+				return consumidorRepository.validarCpfUnico(cpf) == 0 ? true : false;
+			} else {
 				return false;
 			}
-			
-		}else {
+
+		} else {
 			return false;
 		}
-		
-		
 	}
-	
+
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
-		if(email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
-			return consumidorRepository.validarEmailUnico(email) == 0? true: false;
-		}else {
+		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
+			return consumidorRepository.validarEmailUnico(email) == 0 ? true : false;
+		} else {
 			return false;
 		}
-		
 	}
+
 	@GetMapping("/este")
 	public Consumidor getRestauranteByToken(@RequestHeader String token) {
-		
 
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Consumidor consumidorLogado = consumidorRepository.getConsumidorByEmail(email);
 		return consumidorLogado;
 	}
-	
 }
