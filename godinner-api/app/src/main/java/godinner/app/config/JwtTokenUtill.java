@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import godinner.app.model.Consumidor;
+import godinner.app.model.Funcionario;
 import godinner.app.model.Restaurante;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -56,6 +57,12 @@ public class JwtTokenUtill implements Serializable {
 		Map<String, Object> claims = new HashMap<>();
 		
 		return doGenerateToken(claims, restaurante.getEmail(), restaurante.getId());
+	}
+	
+	public String generateTokenFuncionario(Funcionario funcionario) {
+		Map<String, Object> claims = new HashMap<>();
+		
+		return doGenerateToken(claims, funcionario.getEmail(), funcionario.getId());
 	}
 
 	private String doGenerateToken(Map<String, Object> claims, String subject, int id) {

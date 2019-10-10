@@ -58,7 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/estado/**",
 					"/login/**",
 					"/categoria",
-					"/consumidor").permitAll().
+					"/consumidor",
+					"/funcinario/**").permitAll().
 			anyRequest().authenticated().and().
 			exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

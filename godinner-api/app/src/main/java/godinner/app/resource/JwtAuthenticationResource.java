@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.model.Consumidor;
+import godinner.app.model.Funcionario;
 import godinner.app.model.JWTRequest;
 import godinner.app.model.JWTResponse;
 import godinner.app.model.Restaurante;
 import godinner.app.repository.ConsumidorRepository;
+import godinner.app.repository.FuncionarioRepository;
 import godinner.app.repository.RestauranteRepository;
 
 @RestController
@@ -35,6 +37,9 @@ public class JwtAuthenticationResource {
 
 	@Autowired
 	private RestauranteRepository restauranteRepository;
+	
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
 
 	@PostMapping("/login/consumidor")
 	public ResponseEntity<?> createAuthenticationTokenConsumidor(@RequestBody JWTRequest authenticationRequest)
@@ -64,6 +69,23 @@ public class JwtAuthenticationResource {
 		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
 	}
 
+	
+	
+	@PostMapping("/login/funcionario")
+	public ResponseEntity<?> createAuthenticationTokenFuncinario(@RequestBody JWTRequest authenticationRequest)
+			throws Exception {
+		final Funcionario funcionario = funcionarioRepository
+				.getFuncionarioByEmailAndPass(authenticationRequest.getEmail(), authenticationRequest.getPassword());
+
+		if (funcionario != null) {
+			final String token = jwtTokenUtil.generateTokenFuncionario(funcionario);
+			return ResponseEntity.ok(new JWTResponse(token));
+		}
+
+		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
+	}
+	
+	
 	private void authenticate(String username, String password) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -73,4 +95,5 @@ public class JwtAuthenticationResource {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 	}
+
 }
