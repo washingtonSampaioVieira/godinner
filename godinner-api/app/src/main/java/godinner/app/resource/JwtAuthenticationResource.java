@@ -71,7 +71,7 @@ public class JwtAuthenticationResource {
 
 	
 	
-	@PostMapping("/login/funcionario")
+	@PostMapping("/login/funcionarios")
 	public ResponseEntity<?> createAuthenticationTokenFuncinario(@RequestBody JWTRequest authenticationRequest)
 			throws Exception {
 		final Funcionario funcionario = funcionarioRepository

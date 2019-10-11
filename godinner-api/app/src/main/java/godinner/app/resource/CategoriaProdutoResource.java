@@ -58,14 +58,6 @@ public class CategoriaProdutoResource {
 		return categoriaProdutoRepository.todosDoRestaurante(idProduto);
 	}
 	
-	
-	@GetMapping("/categorias/{idRestaurante}")
-	public List<Categoria> getRestaurantesExibicao(@PathVariable int idRestaurante) {
-		List<Categoria> categorias = categoriaProdutoRepository.getCategoriaRestaurante(idRestaurante);
-		
-		return categorias ;
-	}
-	
 	@DeleteMapping("/{id}")
 	public void deleteCategoriaProduto(@PathVariable int id, HttpServletResponse response) throws IOException {
 		CategoriaProduto categoriaProduto = categoriaProdutoRepository.getIdCategoriaProduto(id);
@@ -77,7 +69,14 @@ public class CategoriaProdutoResource {
 		return;
 	}
 	
-	@GetMapping("/produtos/{idRestaurante}/{idCategoria}")
+	@GetMapping("/categorias/{idRestaurante}")
+	public List<Categoria> getRestaurantesExibicao(@PathVariable int idRestaurante) {
+		List<Categoria> categorias = categoriaProdutoRepository.getCategoriaRestaurante(idRestaurante);
+		
+		return categorias ;
+	}
+	
+	@GetMapping("/restaurantes/{idRestaurante}/categorias/{idCategoria}")
 	public List<Produto> getProdutosPorCategoria(@PathVariable int idRestaurante, @PathVariable int idCategoria ) {
 		return categoriaProdutoRepository.getProdutosPorCategeoria(idRestaurante, idCategoria);
 	}
