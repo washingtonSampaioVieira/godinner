@@ -27,7 +27,7 @@ import godinner.app.repository.EnderecoRepository;
 import godinner.app.repository.FuncionarioRepository;
 
 @RestController
-@RequestMapping("/funcionario")
+@RequestMapping("/funcionarios")
 @CrossOrigin(origins = "http://localhost:3000")
 @SupportedOptions(value = { "eventBusIndex", "verbose" })
 public class FuncionarioResource {
