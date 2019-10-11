@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import godinner.app.model.Categoria;
 import godinner.app.model.CategoriaProduto;
+import godinner.app.model.Produto;
 
 public interface CategoriaProdutoRepository extends JpaRepository<CategoriaProduto, Long>{
 
@@ -30,5 +31,14 @@ public interface CategoriaProdutoRepository extends JpaRepository<CategoriaProdu
 			+ " ON r.id = p.restaurante.id"			
 			+ " WHERE r.id = ?1 GROUP BY c.id")
 	List<Categoria> getCategoriaRestaurante(int idRestaurante);
+	
+	@Query(value = "SELECT DISTINCT p FROM Produto AS p "
+			+ " INNER JOIN CategoriaProduto AS cp"
+			+ " ON p.id = cp.produto.id"
+			+ " INNER JOIN Restaurante AS r "
+			+ " ON r.id = p.restaurante.id"
+			+ " WHERE r.id = ?1"
+			+ " AND cp.categoria.id = 1")
+	List<Produto> getProdutosPorCategeoria(int idRestaurante);
 	
 }
