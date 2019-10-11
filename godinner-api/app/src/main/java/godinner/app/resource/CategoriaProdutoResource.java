@@ -77,8 +77,8 @@ public class CategoriaProdutoResource {
 		return;
 	}
 	
-	@GetMapping("/produtos/{idRestaurante}")
-	public List<Produto> getProdutosPorCategoria(@PathVariable int idRestaurante) {
-		return categoriaProdutoRepository.getProdutosPorCategeoria(idRestaurante);
+	@GetMapping("/produtos/{idRestaurante}/{idCategoria}")
+	public List<Produto> getProdutosPorCategoria(@PathVariable int idRestaurante, @PathVariable int idCategoria ) {
+		return categoriaProdutoRepository.getProdutosPorCategeoria(idRestaurante, idCategoria);
 	}
 }
