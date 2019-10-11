@@ -21,6 +21,7 @@ import godinner.app.model.Categoria;
 import godinner.app.model.CategoriaProduto;
 import godinner.app.model.Consumidor;
 import godinner.app.model.FotoProduto;
+import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
 import godinner.app.repository.CategoriaProdutoRepository;
@@ -74,5 +75,10 @@ public class CategoriaProdutoResource {
 		}
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST, "categoria produto null");
 		return;
+	}
+	
+	@GetMapping("/produtos/{idRestaurante}/{idCategoria}")
+	public List<Produto> getProdutosPorCategoria(@PathVariable int idRestaurante, @PathVariable int idCategoria ) {
+		return categoriaProdutoRepository.getProdutosPorCategeoria(idRestaurante, idCategoria);
 	}
 }

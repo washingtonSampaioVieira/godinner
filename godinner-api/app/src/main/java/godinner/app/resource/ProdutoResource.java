@@ -108,4 +108,5 @@ public class ProdutoResource {
 		p = produtoRepository.save(p);
 		return p;
 	}
+	
 }
