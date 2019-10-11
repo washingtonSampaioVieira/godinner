@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import godinner.app.model.Categoria;
 import godinner.app.model.Produto;
 import godinner.app.repository.ProdutoRepository;
 

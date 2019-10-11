@@ -19,4 +19,16 @@ public interface CategoriaProdutoRepository extends JpaRepository<CategoriaProdu
 	
 	@Query("SELECT c FROM CategoriaProduto c where c.id =?1")
 	CategoriaProduto getIdCategoriaProduto(int id);
+	
+	//SELECIONA TODAS AS CATEGORIAS QUE O REATURANTE TEM PRODUTOS CADASTRADOS
+	@Query("SELECT c FROM Categoria c"
+			+ " INNER JOIN CategoriaProduto cp"
+			+ " ON cp.categoria.id = c.id"
+			+ " INNER JOIN Produto p"
+			+ " ON p.id = cp.produto.id"
+			+ " INNER JOIN Restaurante r"
+			+ " ON r.id = p.restaurante.id"			
+			+ " WHERE r.id = ?1 GROUP BY c.id")
+	List<Categoria> getCategoriaRestaurante(int idRestaurante);
+	
 }

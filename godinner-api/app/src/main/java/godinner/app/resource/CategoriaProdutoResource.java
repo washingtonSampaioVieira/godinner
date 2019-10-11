@@ -1,6 +1,7 @@
 package godinner.app.resource;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import godinner.app.model.Categoria;
 import godinner.app.model.CategoriaProduto;
+import godinner.app.model.Consumidor;
 import godinner.app.model.FotoProduto;
+import godinner.app.model.Restaurante;
+import godinner.app.model.RestauranteExibicao;
 import godinner.app.repository.CategoriaProdutoRepository;
 import godinner.app.repository.ProdutoRepository;
 import godinner.app.storage.Disco;
@@ -50,6 +55,14 @@ public class CategoriaProdutoResource {
 	@GetMapping("/{idProduto}")
 	public List<CategoriaProduto> getCategoriaProduto(@PathVariable int idProduto){
 		return categoriaProdutoRepository.todosDoRestaurante(idProduto);
+	}
+	
+	
+	@GetMapping("/categorias/{idRestaurante}")
+	public List<Categoria> getRestaurantesExibicao(@PathVariable int idRestaurante) {
+		List<Categoria> categorias = categoriaProdutoRepository.getCategoriaRestaurante(idRestaurante);
+		
+		return categorias ;
 	}
 	
 	@DeleteMapping("/{id}")
