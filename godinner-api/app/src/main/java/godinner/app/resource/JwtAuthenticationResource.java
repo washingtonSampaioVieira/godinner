@@ -82,7 +82,7 @@ public class JwtAuthenticationResource {
 			return ResponseEntity.ok(new JWTResponse(token));
 		}
 
-		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
+		return ResponseEntity.ok(false);
 	}
 	
 	
