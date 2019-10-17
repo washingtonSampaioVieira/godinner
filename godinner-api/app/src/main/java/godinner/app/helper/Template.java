@@ -37,24 +37,69 @@ public class Template {
 	
     public static void WriteToFile(String fileContent, String fileName) throws IOException {
     	
-        String projectPath = "C:\\Users\\18175241";
-        String tempFile = projectPath + File.separator+fileName;
-        File file = new File(tempFile);
-        // if file does exists, then delete and create a new file
-        if (file.exists()) {
-            try {
-                File newFileName = new File(projectPath + File.separator+ "backup_"+fileName);
-                file.renameTo(newFileName);
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        //write to file with OutputStreamWriter
-        OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
-        Writer writer=new OutputStreamWriter(outputStream);
-        writer.write(fileContent);
-        writer.close();
+    	
+    	
+    	 String projectPath = "C:\\Users\\18175241\\pages\\" + fileName;
+    	 
+    	 File f = new File(projectPath);
+         
+         // create
+         boolean pasta = f.mkdir();
+    	 
+    	 // pasta = projectPath + fileName;
+    	 
+    	 if (pasta) { 
+    		 
+    		 String tempFile = projectPath + File.separator+fileName;
+             File file = new File(tempFile);
+          
+             //write to file with OutputStreamWriter
+             OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
+             Writer writer=new OutputStreamWriter(outputStream);
+             writer.write(fileContent);
+             writer.close();
+    		  
+           
+             System.out.println("Directory is created"); 
+         } 
+         else { 
+             // display that the directory cannot be created 
+             // as the function returned false 
+             System.out.println("Directory cannot be created"); 
+         } 
+    	 
+    	 
+        
+    	
+    	 
+ 
+    	
+    	// create an abstract pathname (File object) 
+        /*File file = new File("C:\\Users\\18175241\\pages\\" + fileName); 
+  
+        // check if the directory can be created 
+        // using the abstract path name 
+        if (file.mkdir()) { 
+        	
+        	
+        	 String projectPath = System.getProperty("user.dir");
+             String tempFile = projectPath + File.separator+fileName;
+             File f = new File(tempFile);
+  
+            
+            System.out.println("Directory is created"); 
+        } 
+        else { 
+            // display that the directory cannot be created 
+            // as the function returned false 
+            System.out.println("Directory cannot be created"); 
+        } 
+    	
+       // String projectPath = "C:\\Users\\18175241";
+       // String tempFile = projectPath + File.separator+fileName;
+        //File file = new File(tempFile);
+        // if file does exists, then delete and create a new file*/
+        
 
     }
 
