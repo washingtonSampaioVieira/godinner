@@ -29,6 +29,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import godinner.app.config.JwtTokenUtill;
+import godinner.app.helper.Template;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
@@ -79,6 +80,15 @@ public class RestauranteResource {
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
 		
 		System.out.println(restaurante.getRazaoSocial());
+		
+		Template template = new Template();
+		
+		try {
+			template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return restauranteSalvo;
 	}
