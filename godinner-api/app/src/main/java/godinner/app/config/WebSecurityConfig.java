@@ -59,7 +59,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/login/**",
 					"/categoria",
 					"/consumidor",
-					"/funcinario/**").permitAll().
+					"/funcinario/**",
+					"/categoriaproduto/categorias/{idRestaurante}",
+					"/categoriaproduto/restaurantes/{idRestaurante}/categorias/{idCategoria}").permitAll().
 			anyRequest().authenticated().and().
 			exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

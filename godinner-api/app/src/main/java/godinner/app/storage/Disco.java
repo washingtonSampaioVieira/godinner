@@ -1,7 +1,11 @@
 package godinner.app.storage;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +53,71 @@ public class Disco {
 	}
 
 	public boolean deleteFoto(String foto) {
-		File f = new File(this.raiz +"/" + this.diretorioFotos + foto ); 
+		File f = new File(raiz +"/" + this.diretorioFotos + foto ); 
 		return f.delete();
 	}
+	
+	
+	
+	
+	public void escreverArquivo(String arquivo, String dominio) throws IOException {
+		
+    	
+	String  caminhoPasta = "C:\\Users\\18175241\\pages\\" + dominio + "\\public_html";
+
+   	 File pasta = new File(caminhoPasta);
+   	 
+   	 //CRIA A PASTA
+      Boolean pastaRestaurante = pasta.mkdirs();
+        
+    
+   	 //VERIFICA SE A PASTA EXISTE    	 
+   	 if (pastaRestaurante) { 
+   		 
+   		  //ESCREVE NO ARQUIVO
+   		 String tempFile = caminhoPasta +"/index.html";
+            File file = new File(tempFile);
+         
+          
+            OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
+            Writer writer=new OutputStreamWriter(outputStream);
+            writer.write(arquivo);
+            writer.close();
+   		  
+            System.out.println("Pasta criada"); 
+          
+           
+           
+        } 
+        else { 
+           
+            System.out.println("Pasta já existe"); 
+            
+            
+        } 
+		
+		
+   	 
+
+   }
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
