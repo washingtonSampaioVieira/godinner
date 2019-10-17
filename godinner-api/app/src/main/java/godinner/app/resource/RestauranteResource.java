@@ -77,6 +77,8 @@ public class RestauranteResource {
 		restaurante.setEndereco(enderecoSalvo);
 
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
+		
+		System.out.println(restaurante.getRazaoSocial());
 
 		return restauranteSalvo;
 	}

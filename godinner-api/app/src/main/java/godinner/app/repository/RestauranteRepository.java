@@ -23,6 +23,10 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 
 	@Query("SELECT r FROM Restaurante r WHERE r.email = ?1 and r.senha = ?2")
 	public Restaurante getRestauranteByEmailAndPass(String email, String senha);
+	
+	@Query("SELECT r.id from Restaurante r WHERE r.id >= LAST_INSERT_ID()")
+	public String getRestaurante();
+
 
 	@Query(value = "SELECT *"
 			+ "FROM" 
