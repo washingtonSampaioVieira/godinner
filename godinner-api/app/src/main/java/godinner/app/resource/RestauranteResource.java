@@ -248,4 +248,12 @@ public class RestauranteResource {
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;
 	}
+	
+	@GetMapping("/{id}")
+	public Restaurante getRestaurante(@PathVariable int id) {
+		
+		Restaurante restaurante = restauranteRepository.getPorId(id);
+		
+		return restaurante;
+	}
 }
