@@ -36,18 +36,6 @@ public class Funcionario {
 	@NotNull
 	@Size(min = 6, max = 255)
 	private String senha;
-
-	@NotNull
-	@Size(min = 13, max = 14)
-	private String cpf;
-
-	@Size(max = 13)
-	private String telefone;
-
-	@Column(name = "foto_perfil")
-	@Size(max = 255)
-	private String fotoPerfil;
-
 	
 	public Integer getId() {
 		return id;
@@ -73,25 +61,10 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getFotoPerfil() {
-		return fotoPerfil;
-	}
-
-	public void setFotoPerfil(String fotoPerfil) {
-		this.fotoPerfil = fotoPerfil;
-	}
 
 	@Override
 	public String toString() {
 		return "Restaurante [id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome
-				+ ", cpf=" + cpf + ", telefone=" + telefone + ", fotoPerfil=" + fotoPerfil + "]";
+				+ "]";
 	}
 }
