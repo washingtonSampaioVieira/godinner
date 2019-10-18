@@ -83,13 +83,9 @@ public class RestauranteResource {
 		Template template = new Template();
 		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 		
-		
-<<<<<<< HEAD
-		
 		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 		
-=======
->>>>>>> ad20a94a4d02f1f1b49dcc460f9cb1f2d3934491
+
 		return restauranteSalvo;
 	}
 
