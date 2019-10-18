@@ -1,6 +1,7 @@
 package godinner.app.storage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,12 +16,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import godinner.app.helper.Date;
+import net.bytebuddy.asm.Advice.This;
 
 @Component
 public class Disco {
 
-	@Value("${contato.disco.raiz}")
-	private String raiz;
+	private String teste = "batatinha";
+	
+	private String raiz = "C:\\Users\\18175241";
 
 	@Value("${contato.disco.diretorio-fotos}")
 	private String diretorioFotos;
@@ -33,6 +36,8 @@ public class Disco {
 		String local = null;
 		String caminhoCompleto = null;
 		Path diretorioPath = Paths.get(this.raiz, diretorio);
+		
+		System.out.println("---------------->" + this.raiz);
 
 		Date data = new Date();
 		local = (String) (data.getData() + "-" + arquivo.getOriginalFilename());
@@ -60,10 +65,14 @@ public class Disco {
 	
 	
 	
-	public void escreverArquivo(String arquivo, String dominio) throws IOException {
+	public void escreverArquivo(String arquivo, String dominio) {
 		
     	
-	String  caminhoPasta = "C:\\Users\\18175241\\pages\\" + dominio + "\\public_html";
+	//String  caminhoPasta = "C:\\Users\\18175241\\pages\\" + dominio + "\\public_html";
+	String  caminhoPasta = this.raiz + "\\pages\\" + dominio + "\\public_html";
+	
+	System.out.println(this.raiz);
+
 
    	 File pasta = new File(caminhoPasta);
    	 
@@ -76,13 +85,23 @@ public class Disco {
    		 
    		  //ESCREVE NO ARQUIVO
    		 String tempFile = caminhoPasta +"/index.html";
-            File file = new File(tempFile);
+          File file = new File(tempFile);
          
           
-            OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
-            Writer writer=new OutputStreamWriter(outputStream);
-            writer.write(arquivo);
-            writer.close();
+            OutputStream outputStream;
+			try {
+				outputStream = new FileOutputStream(file.getAbsoluteFile()); 
+				Writer writer=new OutputStreamWriter(outputStream);
+				writer.write(arquivo);
+				writer.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+           
    		  
             System.out.println("Pasta criada"); 
           

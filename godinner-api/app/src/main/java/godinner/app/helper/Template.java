@@ -12,7 +12,7 @@ import godinner.app.storage.Disco;
 public class Template {
 	
 	
-	public void criarHost(String dominio, int id) throws IOException {
+	public void criarHost(String dominio, int id)  {
 		String index = criarArquivo(id);
 		Disco disco = new Disco();
 		disco.escreverArquivo(index, dominio);
