@@ -22,7 +22,7 @@ import net.bytebuddy.asm.Advice.This;
 @Component
 public class Disco {
 
-	private String raiz = "C:\\Users\\18175241";
+	private String raiz = "/var/www";
 
 	@Value("${contato.disco.diretorio-fotos}")
 	private String diretorioFotos;
@@ -36,8 +36,7 @@ public class Disco {
 		String caminhoCompleto = null;
 		Path diretorioPath = Paths.get(this.raiz, diretorio);
 
-		System.out.println("---------------->" + this.raiz);
-
+		
 		Date data = new Date();
 		local = (String) (data.getData() + "-" + arquivo.getOriginalFilename());
 
@@ -63,9 +62,7 @@ public class Disco {
 
 	public void escreverArquivo(String arquivo, String dominio) {
 		
-    	
-	//String  caminhoPasta = "C:\\Users\\18175241\\pages\\" + dominio + "\\public_html";
-	String  caminhoPasta = this.raiz + "\\pages\\" + dominio + "\\public_html";
+	String  caminhoPasta = this.raiz + "/pages/" + dominio + "/public_html";
 	
 	System.out.println(this.raiz);
 

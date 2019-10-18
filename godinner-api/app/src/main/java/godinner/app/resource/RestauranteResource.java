@@ -252,8 +252,6 @@ public class RestauranteResource {
 		
 		Restaurante restaurante = restauranteRepository.getPorId(id);
 		
-		
-		
 		Date data = new Date(); 
 		
 		String dataString = data.formataDataString(restaurante.getCriacao());
