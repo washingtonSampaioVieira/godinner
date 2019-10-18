@@ -14,6 +14,7 @@ import java.util.List;
 import javax.annotation.processing.SupportedOptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,13 +80,16 @@ public class RestauranteResource {
 
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
 		
-		System.out.println(restaurante.getRazaoSocial());
-		
 		Template template = new Template();
+		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 		
+		
+<<<<<<< HEAD
 		
 		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 		
+=======
+>>>>>>> ad20a94a4d02f1f1b49dcc460f9cb1f2d3934491
 		return restauranteSalvo;
 	}
 
