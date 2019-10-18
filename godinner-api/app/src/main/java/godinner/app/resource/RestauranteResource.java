@@ -83,7 +83,9 @@ public class RestauranteResource {
 		Template template = new Template();
 		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 		
+		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 		
+
 		return restauranteSalvo;
 	}
 
@@ -247,6 +249,18 @@ public class RestauranteResource {
 	public Restaurante getRestaurante(@PathVariable int id) {
 		
 		Restaurante restaurante = restauranteRepository.getPorId(id);
+		
+		return restaurante;
+	}
+	
+	@GetMapping("/templates/{id}")
+	public Restaurante getRestauranteTemplate(@PathVariable int id) {
+		
+		Restaurante restaurante = restauranteRepository.getPorId(id);
+		
+		restaurante.setEmail(null);
+		restaurante.setSenha(null);
+		restaurante.setCnpj(null);
 		
 		return restaurante;
 	}

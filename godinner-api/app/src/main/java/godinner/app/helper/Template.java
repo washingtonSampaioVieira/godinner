@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 import godinner.app.storage.Disco;
 
 public class Template {
+	
+	
+	public void criarHost(String dominio, int id)  {
 
-	public void criarHost(String dominio, int id) {
 		String index = criarArquivo(id);
 		Disco disco = new Disco();
 		disco.escreverArquivo(index, dominio);
