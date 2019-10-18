@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import godinner.app.helper.Date;
 import godinner.app.model.Endereco;
 
 @Entity
@@ -47,6 +48,17 @@ public class Restaurante {
 
 	@Column(name = "telefone")
 	private String telefone;
+	
+	@Column(name = "criacao")
+	private String criacao;
+
+	public String getCriacao() {
+		return criacao;
+	}
+
+	public void setCriacao(String criacao) {
+		this.criacao = criacao;
+	}
 
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
@@ -120,6 +132,7 @@ public class Restaurante {
 	@Override
 	public String toString() {
 		return "Restaurante [id=" + id + ", email=" + email + ", senha=" + senha + ", razaoSocial=" + razaoSocial
-				+ ", cnpj=" + cnpj + ", telefone=" + telefone + ", endereco=" + endereco + ", foto=" + foto + "]";
+				+ ", cnpj=" + cnpj + ", telefone=" + telefone + ", endereco=" + endereco + ", foto=" + foto
+				+ ", criacao=" + criacao + "]";
 	}
 }

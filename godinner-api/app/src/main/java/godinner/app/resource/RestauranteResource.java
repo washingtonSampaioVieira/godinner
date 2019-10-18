@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import godinner.app.config.JwtTokenUtill;
+import godinner.app.helper.Date;
 import godinner.app.helper.Template;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
@@ -41,6 +42,7 @@ import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
 import godinner.app.repository.RestauranteRepository;
+import godinner.app.storage.Disco;
 
 @RestController
 @RequestMapping("/restaurante")
@@ -250,6 +252,16 @@ public class RestauranteResource {
 		
 		Restaurante restaurante = restauranteRepository.getPorId(id);
 		
+		
+		
+		Date data = new Date(); 
+		
+		String dataString = data.formataDataString(restaurante.getCriacao());
+		
+		restaurante.setCriacao(dataString);
+		
+		System.out.println(restaurante);
+		
 		return restaurante;
 	}
 	
@@ -258,9 +270,10 @@ public class RestauranteResource {
 		
 		Restaurante restaurante = restauranteRepository.getPorId(id);
 		
-		restaurante.setEmail(null);
-		restaurante.setSenha(null);
-		restaurante.setCnpj(null);
+		
+		//restaurante.setEmail(null);
+		//restaurante.setSenha(null);
+		//restaurante.setCnpj(null);
 		
 		return restaurante;
 	}
