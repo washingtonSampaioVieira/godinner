@@ -28,7 +28,7 @@ public class TemplateRestaurante {
 	private String sobre;
 	private String slogan;
 	
-	@NotNull
+	
 	@OneToOne
 	@JoinColumn(name = "id_restaurante")
 	private Restaurante restaurante;
