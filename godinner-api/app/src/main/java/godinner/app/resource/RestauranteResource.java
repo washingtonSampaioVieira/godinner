@@ -254,9 +254,8 @@ public class RestauranteResource {
 		
 		Date data = new Date(); 
 		
-		String dataString = data.formataDataString(restaurante.getCriacao());
 		
-		restaurante.setCriacao(dataString);
+		
 		
 		System.out.println(restaurante);
 		

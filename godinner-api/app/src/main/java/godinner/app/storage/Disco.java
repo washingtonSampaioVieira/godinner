@@ -22,7 +22,7 @@ import net.bytebuddy.asm.Advice.This;
 @Component
 public class Disco {
 
-	private String raiz = "/var/www";
+	private String raiz = "/var/www/";
 
 	@Value("${contato.disco.diretorio-fotos}")
 	private String diretorioFotos;
@@ -46,7 +46,7 @@ public class Disco {
 
 			Files.createDirectories(diretorioPath);
 			arquivo.transferTo(arquivoPath.toFile());
-			caminhoCompleto = (raiz + "/" + diretorio + "/" + local);
+			caminhoCompleto = (diretorio + "/" + local);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
