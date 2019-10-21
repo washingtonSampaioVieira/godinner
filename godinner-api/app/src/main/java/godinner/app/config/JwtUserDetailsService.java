@@ -24,7 +24,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	RestauranteRepository restauranteRepository;
-	
+
 	@Autowired
 	FuncionarioRepository funcionarioRepository;
 
@@ -34,7 +34,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		Consumidor c = consumidorRepository.getConsumidorByEmail(email);
 		Restaurante r = restauranteRepository.getRestauranteByEmail(email);
 		Funcionario f = funcionarioRepository.getFuncionarioByEmail(email);
-		
+
 		if (c != null) {
 			User u = new User(c.getEmail(), c.getId().toString(), new ArrayList<>());
 
@@ -43,15 +43,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 			User u = new User(r.getEmail(), r.getId().toString(), new ArrayList<>());
 
 			return u;
-			
+
 		} else if (f != null) {
 			User u = new User(f.getEmail(), f.getId().toString(), new ArrayList<>());
 
 			return u;
 		}
-		
-		
-		
+
 		throw new UsernameNotFoundException("Usuário não encontrado com o email: " + email);
 	}
 }

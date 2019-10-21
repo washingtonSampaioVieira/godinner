@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -30,7 +31,7 @@ public class Restaurante {
 	@NotNull
 	private String email;
 
-	@JsonProperty("senha")
+	
 	@Size(max = 255, min = 6)
 	@Column(name = "senha")
 	@NotNull
@@ -51,6 +52,7 @@ public class Restaurante {
 
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
+	@OneToMany
 	private Endereco endereco;
 	private String foto;
 

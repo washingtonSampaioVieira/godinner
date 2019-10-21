@@ -36,13 +36,21 @@ public class Funcionario {
 	@NotNull
 	@Size(min = 6, max = 255)
 	private String senha;
-	
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -61,10 +69,13 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Restaurante [id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome
+		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", getId()="
+				+ getId() + ", getNome()=" + getNome() + ", getEmail()=" + getEmail() + ", getSenha()=" + getSenha()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
 	}
+	
+	
 }
