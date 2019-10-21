@@ -1,16 +1,30 @@
 package godinner.app.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@Table(name= "tbl_informacoes_template")
 public class TemplateRestaurante {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_informacoes_template")
 	private Integer id;
+	
+	@Column(name = "foto_principal")
 	private String foto;
+	
 	private String sobre;
 	private String slogan;
 	

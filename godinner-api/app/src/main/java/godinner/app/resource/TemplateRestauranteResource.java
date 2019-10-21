@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.Template;
 import godinner.app.model.Restaurante;
+import godinner.app.model.TemplateRestaurante;
 import godinner.app.repository.TemplateRestauranteRepository;
 
 @RestController
@@ -20,12 +22,14 @@ import godinner.app.repository.TemplateRestauranteRepository;
 public class TemplateRestauranteResource {
 	
 	@Autowired
-	private TemplateRestauranteRepository templateRepository;
+	private TemplateRestauranteRepository templateRestauranteRepository;
 	
+	@Autowired
+	private JwtTokenUtill jwtTokenUtil;	
 	
 	@GetMapping
-	public List<Template> getTemplates() {
-		return templateRepository.findAll();
+	public List<TemplateRestaurante> getTemplates() {
+		return templateRestauranteRepository.findAll();
 	}
 
 }
