@@ -274,4 +274,5 @@ public class RestauranteResource {
 		
 		return restaurante;
 	}
+	
 }

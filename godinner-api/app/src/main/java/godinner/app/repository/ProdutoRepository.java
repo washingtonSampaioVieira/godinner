@@ -30,4 +30,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	
 	@Query(value = "SELECT 	p.* FROM tbl_produto AS p WHERE p.id_restaurante = ?1 AND p.status = 1 ORDER BY RAND() LIMIT 6", nativeQuery=true)
 	List<Produto> getProdutosTemplate(int idRestaurante);
+	
+	@Query(value = "select p.*, sum(pp.quantidade) as quantidade From tbl_produto as p Join tbl_produto_pedido as pp ON pp.id_produto = p.id_produto WHERE p.id_restaurante = ?1 group by pp.id_produto order by quantidade desc", nativeQuery=true)
+	List<Produto> getProdutosQuantidade(int idRestaurante);
+	
 }
