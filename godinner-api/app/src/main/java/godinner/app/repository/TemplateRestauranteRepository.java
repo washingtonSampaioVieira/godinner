@@ -12,5 +12,8 @@ public interface TemplateRestauranteRepository extends JpaRepository<TemplateRes
 	@Query("SELECT t FROM TemplateRestaurante t WHERE t.restaurante.id = ?1")
 	TemplateRestaurante getTemplate(int idRestaurante);
 	
+	@Query("SELECT t FROM TemplateRestaurante t WHERE t.id = ?1")
+	TemplateRestaurante getTemplateById(int id);
+	
 
 }
