@@ -53,7 +53,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 			
 			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
 			
-			jwtTokenUtil.validateToken(jwtToken, userDetails);
 			
 			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
 				

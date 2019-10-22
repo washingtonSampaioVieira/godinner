@@ -57,6 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/cidade/**",
 					"/estado/**",
 					"/login/**",
+					"/pedidos",
+					"/produtospedido",
 					"/categoria",
 					"/consumidor",
 					"/funcinario/**",

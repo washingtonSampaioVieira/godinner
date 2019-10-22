@@ -11,7 +11,7 @@ import godinner.app.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
 	@Query("SELECT p FROM Produto p WHERE p.id = ?1")
-	Produto getProdutosById(int id);
+	Produto getProdutoById(int id);
 	
 	@Query("SELECT p FROM Produto p WHERE p.restaurante.id = ?1 AND p.status = 1 ORDER BY p.id DESC")
 	List<Produto> getProdutosByIdRestaurante(int id);

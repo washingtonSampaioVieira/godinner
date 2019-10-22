@@ -130,7 +130,10 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", descricao=" + descricao + ", vendidos="
-				+ vendidos + ", restaurante=" + restaurante.getId();
+		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", descricao=" + descricao + ", desconto="
+				+ desconto + ", vendidos=" + vendidos + ", status=" + status + ", restaurante=" + restaurante
+				+ ", foto=" + foto + "]";
 	}
+
+	
 }

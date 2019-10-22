@@ -28,12 +28,12 @@ public class Disco {
 	private String diretorioFotos;
 
 	public String salvarFoto(MultipartFile foto, String pasta) {
-		return this.salvar(this.diretorioFotos + "/" + pasta, foto);
+		String arquivo = this.salvar(this.diretorioFotos + "/" + pasta, foto);
+		return "/"+ pasta +"/"+ arquivo;
 	}
 
 	public String salvar(String diretorio, MultipartFile arquivo) {
 		String local = null;
-		String caminhoCompleto = null;
 		Path diretorioPath = Paths.get(this.raiz, diretorio);
 
 		
@@ -46,13 +46,10 @@ public class Disco {
 
 			Files.createDirectories(diretorioPath);
 			arquivo.transferTo(arquivoPath.toFile());
-			caminhoCompleto = (diretorio + "/" + local);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		}
-		return caminhoCompleto;
+		return arquivoPath.getFileName().toString();
 	}
 
 	public boolean deleteFoto(String foto) {
