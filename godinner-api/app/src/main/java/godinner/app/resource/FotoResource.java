@@ -76,7 +76,7 @@ public class FotoResource {
 
 		String localFoto = disco.salvarFoto(foto, "restaurante/produto");
 		if (localFoto != null) {
-			p = produtoRepository.getProdutosById(id);
+			p = produtoRepository.getProdutoById(id);
 			fp.setFoto(localFoto);
 			fp.setIndexFoto(index);
 			fp.setProduto(p);

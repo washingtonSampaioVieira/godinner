@@ -1,5 +1,6 @@
 package godinner.app.resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import godinner.app.model.Pedido;
 import godinner.app.model.ProdutoPedido;
 import godinner.app.repository.PedidoRepository;
 import godinner.app.repository.ProdutoPedidoRepository;
+import godinner.app.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -24,6 +26,9 @@ public class PedidoResource {
 
 	@Autowired
 	ProdutoPedidoRepository produtoPedidoRepository;
+	
+	@Autowired
+	ProdutoRepository produtoRepository;
 
 	@GetMapping
 	public List<Pedido> getPedidos() {
@@ -31,27 +36,29 @@ public class PedidoResource {
 	}
 
 	@PostMapping
-	public Pedido setPedido(@RequestBody Pedido pedido){
+	public Pedido setPedido(@RequestBody Pedido pedido) {
+		
 		
 		Pedido pedidoSalvo = pedidoRepository.save(pedido);
-		Integer id = pedidoSalvo.getId();
-		System.out.println(pedido.toString());
-		List<ProdutoPedido> p = null ;
+		int id = pedidoSalvo.getId();
+		List<ProdutoPedido> p = new ArrayList<>();
 		
-//		for (int i = 0; i < pedido.getProdutos().size(); i++) {
-//			p.add(pedido.getProdutos().get(i));
-//			p.get(i).getPedido().setId(id);			
-//		}
+		int total = pedido.getProdutos().size();
+		for (int i = 0; i < total; i++) {
+			ProdutoPedido pd = pedido.getProdutos().get(i);
+			pd.setPedido(pedidoSalvo);
+			p.add(pd);
+		}
+		
+		List<ProdutoPedido> produtoPedidosSalvos = produtoPedidoRepository.saveAll(p);
+		produtoPedidosSalvos = produtoPedidoRepository.getProdutosPedido(id);
+		pedidoSalvo.setProdutos(produtoPedidosSalvos);
+		
+//		enviarNotificacaoRestaurante(id);
+		
+		
+		return pedidoSalvo;
 
-		
-		
-		
-		
-		return pedidoRepository.getPedidoById(id);
-		
-		
-		
-		
 	}
 
 }

@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -44,14 +46,18 @@ public class Pedido {
 	@Column(name = "comissao_paga")
 	Boolean comissaoPaga;
 	
+	
 	@JsonProperty("produtos")
 	@OneToMany(mappedBy = "pedido")
 	private List<ProdutoPedido> produtos;
 
+	
+
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", restaurante=" + restaurante + ", valorEntrega=" + valorEntrega + ", valorTotal="
-				+ valorTotal + ", dataDoPedido=" + dataDoPedido + ", comissaoPaga=" + comissaoPaga + "]";
+				+ valorTotal + ", dataDoPedido=" + dataDoPedido + ", comissaoPaga=" + comissaoPaga + ", produtos="
+				+ produtos + "]";
 	}
 
 	public List<ProdutoPedido> getProdutos() {

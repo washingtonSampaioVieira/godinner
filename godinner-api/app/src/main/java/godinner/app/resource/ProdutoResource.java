@@ -41,7 +41,7 @@ public class ProdutoResource {
 
 	@GetMapping("/{id}")
 	public Produto getProdutoPorId(@PathVariable int id) {
-		return produtoRepository.getProdutosById(id);
+		return produtoRepository.getProdutoById(id);
 	}
 
 	@GetMapping("/desativados/{idRestaurante}")
@@ -57,12 +57,12 @@ public class ProdutoResource {
 	@PutMapping
 	public Produto setProdutoAtualizado(@Validated @RequestBody Produto produto) {
 		produtoRepository.save(produto);
-		return produto = produtoRepository.getProdutosById(produto.getId());
+		return produto = produtoRepository.getProdutoById(produto.getId());
 	}
 
 	@PutMapping("/status/{id}")
 	public Produto setProdutoAtualizado(@PathVariable int id, HttpServletResponse response) throws IOException {
-		Produto p = produtoRepository.getProdutosById(id);
+		Produto p = produtoRepository.getProdutoById(id);
 		Integer status = Integer.parseInt(p.getStatus());
 		switch (status) {
 			case 1:
@@ -83,7 +83,7 @@ public class ProdutoResource {
 
 	@DeleteMapping("/{id}")
 	public boolean deletarProduto(@PathVariable int id) {
-		Produto p = produtoRepository.getProdutosById(id);
+		Produto p = produtoRepository.getProdutoById(id);
 		if (p != null) {
 			produtoRepository.delete(p);
 			return true;
