@@ -28,6 +28,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	@Query(value = "SELECT p FROM Produto p WHERE p.status = 0 AND p.restaurante.id = ?1")
 	List<Produto> getProdutosDesativados(int idRestaurante);
 	
-	/*@Query("SELECT 	p FROM Produto as p WHERE p.restaurante.id = ?1 AND p.status = 1 ORDER BY p.id random()")
-	List<Produto> getProdutosTemplate(int idRestaurante);*/
+	@Query(value = "SELECT 	p.* FROM tbl_produto AS p WHERE p.id_restaurante = ?1 AND p.status = 1 ORDER BY RAND() LIMIT 6", nativeQuery=true)
+	List<Produto> getProdutosTemplate(int idRestaurante);
 }

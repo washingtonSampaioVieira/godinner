@@ -109,9 +109,9 @@ public class ProdutoResource {
 		return p;
 	}
 	
-	/*@GetMapping("/templates/{idRestaurante}")
+	@GetMapping("/templates/{idRestaurante}")
 	public List<Produto> getProdutosTemplate(@PathVariable int idRestaurante) {
 		return produtoRepository.getProdutosTemplate(idRestaurante);
-	}*/
+	}
 	
 }
