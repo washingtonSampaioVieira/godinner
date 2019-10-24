@@ -67,8 +67,8 @@ public class ConsumidorResource {
 		if (cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")) {
 			ValidaCadastro validaCadastro = new ValidaCadastro();
 			if (validaCadastro.isCPF(cpf)) {
-				;
-				return consumidorRepository.validarCpfUnico(cpf) == 0 ? true : false;
+				boolean resultado = (consumidorRepository.validarCpfUnico(cpf) == 0 ? true : false);
+				return resultado;
 			} else {
 				return false;
 			}
@@ -80,8 +80,10 @@ public class ConsumidorResource {
 
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
-		if (email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$")) {
-			return consumidorRepository.validarEmailUnico(email) == 0 ? true : false;
+		if (email.matches("^[a-z0-9.]+@[a-z0-9]+.[a-z]+\\.([a-z]+)?$")) {
+			boolean resultado = (consumidorRepository.validarEmailUnico(email) == 0 ? true : false);
+			
+			return resultado;
 		} else {
 			return false;
 		}

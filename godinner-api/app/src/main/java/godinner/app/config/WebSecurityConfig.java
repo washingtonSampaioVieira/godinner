@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/produtospedido",
 					"/categoria",
 					"/consumidor",
+					"/consumidor/valida/**",
 					"/funcinario/**",
 					"/categoriaproduto/categorias/{idRestaurante}",
 					"/categoriaproduto/restaurantes/{idRestaurante}/categorias/{idCategoria}",

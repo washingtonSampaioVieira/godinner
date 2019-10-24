@@ -7,7 +7,7 @@ import godinner.app.model.Consumidor;
 
 public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
 
-	@Query("SELECT COUNT(c.id) FROM Consumidor c WHERE c.email = ?1")
+	@Query(value = "SELECT COUNT(c.id_consumidor) FROM tbl_consumidor as c WHERE c.email = ?1", nativeQuery = true)
 	public int validarEmailUnico(String email);
 
 	@Query("SELECT COUNT(c.id) FROM Consumidor c WHERE c.cpf = ?1 ")
@@ -22,6 +22,6 @@ public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
 	@Query("SELECT c FROM Consumidor c WHERE c.email = ?1 and c.senha = ?2")
 	public Consumidor getConsumidorByEmailAndPass(String email, String password);
 
-	@Query(value = "select * from  tbl_consumidor where id_consumidor = ?1 and id_endereco = ?2;", nativeQuery = true)
+	@Query(value = "select * from  tbl_consumidor where id_consumidor = ?1 and id_endereco = ?2", nativeQuery = true)
 	public Consumidor getPorIdAndCidade(int idConsumidor, int idEndereco);
 }

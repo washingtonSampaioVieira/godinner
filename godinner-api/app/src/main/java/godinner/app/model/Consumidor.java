@@ -35,10 +35,10 @@ public class Consumidor {
 	private String senha;
 
 	@NotNull
-	@Size(min = 13, max = 14)
+	@Size(min = 13, max = 15)
 	private String cpf;
 
-	@Size(max = 13)
+	@Size(max = 15)
 	private String telefone;
 
 	@Column(name = "foto_perfil")
