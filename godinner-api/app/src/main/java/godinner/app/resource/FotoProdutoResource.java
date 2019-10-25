@@ -56,15 +56,9 @@ public class FotoProdutoResource {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "foto produto null");
 			return;
 		}
+		fotoProdutoRepository.delete(fotoProduto);
 		Disco disco = new Disco();
 		String localDaFoto = "/var/www/fotos.godinner.tk" + fotoProduto.getFoto();
-		System.out.println(localDaFoto);
-		disco.deleteFoto(localDaFoto);
-		System.out.println("Apagou aqui");
 		return;
-			
-		
-		
-
 	}
 }

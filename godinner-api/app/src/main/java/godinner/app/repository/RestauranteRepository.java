@@ -38,6 +38,21 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 			+"        INNER JOIN" 
 			+"    tbl_estado AS es ON es.id_estado = c.id_estado" 
 			+" WHERE" 
-			+"		c.cidade = ?1 limit 10", nativeQuery = true)
-	public List<Restaurante> getRestauranteExibicao(String cidade);
+			+"		es.estado = ?1 order by rand() limit 13", nativeQuery = true)
+	public List<Restaurante> getRestauranteExibicao(String estado);
+	
+	
+	@Query(value = "SELECT *"
+			+ "FROM" 
+			+"    tbl_restaurante AS r" 
+			+"        INNER JOIN" 
+			+"    tbl_endereco AS e ON e.id_endereco = r.id_endereco" 
+			+"        INNER JOIN" 
+			+"    tbl_cidade AS c ON c.id_cidade = e.id_cidade" 
+			+"        INNER JOIN" 
+			+"    tbl_estado AS es ON es.id_estado = c.id_estado" 
+			+" WHERE" 
+			+"		es.estado = ?1 order by rand() limit 8", nativeQuery = true)
+	public List<Restaurante> getRestauranteDestaque(String estado);
 }
+

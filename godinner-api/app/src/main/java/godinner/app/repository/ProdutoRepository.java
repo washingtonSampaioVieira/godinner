@@ -19,10 +19,10 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	@Query(value = "SELECT p FROM Produto p  WHERE p.desconto > 0 AND p.restaurante.id = ?1 and p.status = 1", nativeQuery = false)
 	List<Produto> getProdutoPromocao(int id);
 
-	@Query(value = "SELECT p.* FROM tbl_produto AS p where p.id_restaurante = ?1 limit 10;", nativeQuery = true)
+	@Query(value = "SELECT p.* FROM tbl_produto AS p where p.id_restaurante = ?1 and p.desconto = 0 limit 10;", nativeQuery = true)
 	List<Produto> getTodosProdutosExibicao(int id);
 
-	@Query(value = "SELECT p.* FROM tbl_produto AS p where p.id_restaurante = ?1 and p.status = 1 limit 10;", nativeQuery = true)
+	@Query(value = "SELECT p.* FROM tbl_produto AS p where p.id_restaurante = ?1 and p.status = 1 and p.desconto = 0 limit 10;", nativeQuery = true)
 	List<Produto> getProdutoExibicao(int id);
 	
 	@Query(value = "SELECT p FROM Produto p WHERE p.status = 0 AND p.restaurante.id = ?1")
