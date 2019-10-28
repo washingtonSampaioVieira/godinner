@@ -165,13 +165,16 @@ public class RestauranteResource {
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
-		String origin = c.getEndereco().getCep().replace("-", "");
+//		String origin = c.getEndereco().getCep().replace("-", "");
 		for (int i = 0; i < restaurantes.size(); i++) {
 			ArrayList<String> dados = new ArrayList<>();
 
-			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
+//			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
 
-			dados = this.buscarDistanciaTempoGoogle(origin, destino);
+//			dados = this.buscarDistanciaTempoGoogle(origin, destino);
+			
+			dados.add("9 Km");
+			dados.add("15 mins");
 
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
 			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));
@@ -182,12 +185,6 @@ public class RestauranteResource {
 		return restaurantes;
 	}
 
-	private String enderecoOCmpleto(Endereco e) {
-		String endereco;
-		endereco = e.getLogradouro() + ", " + e.getNumero().toString() + " - " + e.getCidade().getCidade() + " "
-				+ e.getCidade().getEstado().getEstado();
-		return endereco;
-	}
 
 	private ArrayList<String> buscarDistanciaTempoGoogle(String origin, String destino) {
 		URL url;
@@ -195,8 +192,8 @@ public class RestauranteResource {
 				+ "&destination=" + destino + "&key=AIzaSyCVVT9Dl4bQDouAtP_PBniF2qtY8hL9CHE";
 
 		ArrayList<String> retorno = new ArrayList<String>();
-		retorno.add("15 mins");
 		retorno.add("9 Km");
+		retorno.add("15 mins");
 
 		try {
 			url = new URL(urlString);

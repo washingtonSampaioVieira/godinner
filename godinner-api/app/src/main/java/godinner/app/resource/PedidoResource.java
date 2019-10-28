@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +24,8 @@ import godinner.app.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/pedidos")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost")
+@Controller
 public class PedidoResource {
 	@Autowired
 	PedidoRepository pedidoRepository;
@@ -54,11 +60,24 @@ public class PedidoResource {
 		produtoPedidosSalvos = produtoPedidoRepository.getProdutosPedido(id);
 		pedidoSalvo.setProdutos(produtoPedidosSalvos);
 		
-//		enviarNotificacaoRestaurante(id);
+		this.enviarNovoPedido(pedidoSalvo);
 		
 		
 		return pedidoSalvo;
 
+	}
+	
+
+	@MessageMapping("/register")
+	@SendTo("/topic/register")
+	public void register(SimpMessageHeaderAccessor headerAccessor) {
+		
+	}
+	
+	@SendTo("/topic/pedidos")
+	public Pedido enviarNovoPedido(@Payload Pedido pedido) {
+		System.out.println("ola");
+		return pedido;
 	}
 
 }

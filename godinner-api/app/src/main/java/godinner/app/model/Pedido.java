@@ -51,7 +51,19 @@ public class Pedido {
 	@OneToMany(mappedBy = "pedido")
 	private List<ProdutoPedido> produtos;
 
-	
+	private MessageType type;
+
+	public enum MessageType {
+		CHAT, LEAVE, JOIN
+	}
+
+	public MessageType getType() {
+		return type;
+	}
+	public void setType(MessageType type) {
+		this.type = type;
+	}
+
 
 	@Override
 	public String toString() {

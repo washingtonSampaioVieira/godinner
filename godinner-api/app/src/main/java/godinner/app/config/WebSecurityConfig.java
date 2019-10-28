@@ -65,6 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/funcinario/**",
 					"/categoriaproduto/categorias/{idRestaurante}",
 					"/categoriaproduto/restaurantes/{idRestaurante}/categorias/{idCategoria}",
+					"/pedidos/**",
+					"/wsfortest/**",
+					"/javatechie/**",
 					"/restaurante/templates/{id}").permitAll().
 			anyRequest().authenticated().and().
 			exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
