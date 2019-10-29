@@ -36,6 +36,7 @@ import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
+import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
 import godinner.app.repository.CidadeRepository;
@@ -276,6 +277,11 @@ public class RestauranteResource {
 	public Restaurante getRestauranteTemplate(@PathVariable int id) {
 		Restaurante restaurante = restauranteRepository.getPorId(id);
 		return restaurante;
+	}
+	
+	@GetMapping("/categoria/{id}")
+	public List<Restaurante> getRestaurantePorCategoria(@PathVariable int id) {
+		return restauranteRepository.getRestauranteFromCategoriaMaiorQue4(id);
 	}
 
 }

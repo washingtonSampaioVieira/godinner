@@ -15,6 +15,6 @@ public interface ProdutoPedidoRepository extends JpaRepository<ProdutoPedido, Lo
 			"        INNER JOIN " + 
 			"    tbl_produto AS p ON p.id_produto = pp.id_produto " + 
 			"WHERE " + 
-			"    pp.id_pedido = 57;", nativeQuery= true)
+			"    pp.id_pedido = ?1 ", nativeQuery= true)
 	public List<ProdutoPedido> getProdutosPedido(int id);
 }

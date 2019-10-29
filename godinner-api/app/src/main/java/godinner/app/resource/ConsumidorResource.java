@@ -29,17 +29,17 @@ import godinner.app.repository.EnderecoRepository;
 @CrossOrigin(origins = "http://localhost:3000")
 @SupportedOptions(value = { "eventBusIndex", "verbose" })
 public class ConsumidorResource {
-	
+
 	@Autowired
 	private ConsumidorRepository consumidorRepository;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
-	
+
 	@Autowired
 	private CidadeRepository cidadeRepository;
-	@Autowired
 	
+	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
 
 	@GetMapping("/todos")
@@ -82,7 +82,7 @@ public class ConsumidorResource {
 	public boolean validarEmail(@PathVariable String email) {
 		if (email.matches("^[a-z0-9.]+@[a-z0-9]+.[a-z]+\\.([a-z]+)?$")) {
 			boolean resultado = (consumidorRepository.validarEmailUnico(email) == 0 ? true : false);
-			
+
 			return resultado;
 		} else {
 			return false;

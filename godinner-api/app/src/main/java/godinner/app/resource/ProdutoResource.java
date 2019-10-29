@@ -39,6 +39,11 @@ public class ProdutoResource {
 		return produtoRepository.findAll();
 	}
 
+	@GetMapping("/categoria/{id}")
+	public List<Produto> getProdutosPorCategoria(@PathVariable int id) {
+		return produtoRepository.getProdutosByCategoria(id);
+	}
+
 	@GetMapping("/{id}")
 	public Produto getProdutoPorId(@PathVariable int id) {
 		return produtoRepository.getProdutoById(id);
@@ -65,19 +70,19 @@ public class ProdutoResource {
 		Produto p = produtoRepository.getProdutoById(id);
 		Integer status = Integer.parseInt(p.getStatus());
 		switch (status) {
-			case 1:
-				p.setStatus("0");
-				produtoRepository.save(p);
-				break;
-		        
-			case 0:
-				p.setStatus("1");
-				produtoRepository.save(p);
-		        break;
-			default:
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "categoria produto null");
-				break;
-		}	
+		case 1:
+			p.setStatus("0");
+			produtoRepository.save(p);
+			break;
+
+		case 0:
+			p.setStatus("1");
+			produtoRepository.save(p);
+			break;
+		default:
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "categoria produto null");
+			break;
+		}
 		return p;
 	}
 
@@ -108,15 +113,15 @@ public class ProdutoResource {
 		p = produtoRepository.save(p);
 		return p;
 	}
-	
+
 	@GetMapping("/templates/{idRestaurante}")
 	public List<Produto> getProdutosTemplate(@PathVariable int idRestaurante) {
 		return produtoRepository.getProdutosTemplate(idRestaurante);
 	}
-	
+
 	@GetMapping("/quantidade/{idRestaurante}")
 	public List<Produto> getProdutosQuantidade(@PathVariable int idRestaurante) {
 		return produtoRepository.getProdutosQuantidade(idRestaurante);
 	}
-	
+
 }

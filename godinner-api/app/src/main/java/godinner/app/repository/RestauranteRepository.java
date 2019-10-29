@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 
 public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
@@ -54,5 +55,8 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 			+" WHERE" 
 			+"		es.estado = ?1 order by rand() limit 8", nativeQuery = true)
 	public List<Restaurante> getRestauranteDestaque(String estado);
+	
+	@Query(value = "select * from tbl_restaurante as r where  (select count(*) from tbl_produto as p inner join tbl_categoria_produto as cp on cp.id_produto = p.id_produto where p.id_restaurante  = r.id_restaurante and cp.id_categoria = ?1 ) > 2 order by rand() ", nativeQuery = true)
+	List<Restaurante> getRestauranteFromCategoriaMaiorQue4(int id);
 }
 
