@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import ch.qos.logback.core.status.Status;
+
 @Entity
 @Table(name = "tbl_pedido")
 public class Pedido {
@@ -45,19 +47,38 @@ public class Pedido {
 
 	@Column(name = "comissao_paga")
 	Boolean comissaoPaga;
-	
-	
+
 	@JsonProperty("produtos")
 	@OneToMany(mappedBy = "pedido")
 	private List<ProdutoPedido> produtos;
+	
+	
+	@JsonIgnoreProperties({ "email", "senha", "cpf", "telefone"})
+	@ManyToOne
+	@JoinColumn(name = "id_consumidor")
+	private Consumidor consumidor;
 
+	@ManyToOne
+	@JoinColumn(name = "id_status_pedido")
+	private StatusPedido statusPedido;
+	
+	@Column(name = "descricao")
+	private String descricao;
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	
 
-	@Override
-	public String toString() {
-		return "Pedido [id=" + id + ", restaurante=" + restaurante + ", valorEntrega=" + valorEntrega + ", valorTotal="
-				+ valorTotal + ", dataDoPedido=" + dataDoPedido + ", comissaoPaga=" + comissaoPaga + ", produtos="
-				+ produtos + "]";
+	public StatusPedido getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(StatusPedido statusPedido) {
+		this.statusPedido = statusPedido;
 	}
 
 	public List<ProdutoPedido> getProdutos() {
@@ -115,5 +136,10 @@ public class Pedido {
 	public void setComissaoPaga(Boolean comissaoPaga) {
 		this.comissaoPaga = comissaoPaga;
 	}
-
+	public Consumidor getConsumidor() {
+		return consumidor;
+	}
+	public void setConsumidor(Consumidor consumidor) {
+		this.consumidor = consumidor;
+	}
 }

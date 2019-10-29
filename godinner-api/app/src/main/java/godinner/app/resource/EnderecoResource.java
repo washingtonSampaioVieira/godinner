@@ -52,6 +52,9 @@ public class EnderecoResource {
 			conexao.setRequestMethod("GET");
 			conexao.setDoInput(true);
 			conexao.connect();
+			if(conexao.getResponseCode() != 200) {
+				return endereco;
+			}
 
 			InputStream inputStream = conexao.getInputStream();
 			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

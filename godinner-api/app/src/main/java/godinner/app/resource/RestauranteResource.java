@@ -36,6 +36,7 @@ import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
+import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
 import godinner.app.repository.CidadeRepository;
@@ -81,12 +82,11 @@ public class RestauranteResource {
 		restaurante.setEndereco(enderecoSalvo);
 
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
-		
+
 		Template template = new Template();
 		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
-		
+
 		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
-		
 
 		return restauranteSalvo;
 	}
@@ -144,9 +144,10 @@ public class RestauranteResource {
 	@GetMapping("/destaque/{id}")
 	public List<RestauranteExibicao> getRestaurantesExibicaoDestaque(@PathVariable int id) {
 		Consumidor c = consumidorRepository.getPorId(id);
+		if (c == null)
+			return null;
 
-		List<Restaurante> r = restauranteRepository.getRestauranteExibicao(c.getEndereco().getCidade().getCidade());
-
+		List<Restaurante> r = restauranteRepository.getRestauranteDestaque(c.getEndereco().getCidade().getEstado().getEstado());
 		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
 		e = setDadosExibicao(e, c);
 		return e;
@@ -155,35 +156,36 @@ public class RestauranteResource {
 	@GetMapping("/exibicao/{id}")
 	public List<RestauranteExibicao> getRestaurantesExibicao(@PathVariable int id) {
 		Consumidor c = consumidorRepository.getPorId(id);
+		if (c == null)
+			return null;
 
-		List<Restaurante> r = restauranteRepository.getRestauranteExibicao(c.getEndereco().getCidade().getCidade());
-
+		List<Restaurante> r = restauranteRepository.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getEstado());
 		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
 		e = setDadosExibicao(e, c);
 		return e;
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
+//		String origin = c.getEndereco().getCep().replace("-", "");
 		for (int i = 0; i < restaurantes.size(); i++) {
 			ArrayList<String> dados = new ArrayList<>();
-			dados.add("5 km");
-			dados.add("20 m");
+
+//			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
+
+//			dados = this.buscarDistanciaTempoGoogle(origin, destino);
+			
+			dados.add("9 Km");
+			dados.add("15 mins");
+
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
 			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));
 			restaurantes.get(i).setValorEntrega(5.50);
-
 			restaurantes.get(i).setNota(5.0);
 
 		}
 		return restaurantes;
 	}
 
-	private String enderecoOCmpleto(Endereco e) {
-		String endereco;
-		endereco = e.getLogradouro() + ", " + e.getNumero().toString() + " - " + e.getCidade().getCidade() + " "
-				+ e.getCidade().getEstado().getEstado();
-		return endereco;
-	}
 
 	private ArrayList<String> buscarDistanciaTempoGoogle(String origin, String destino) {
 		URL url;
@@ -191,8 +193,8 @@ public class RestauranteResource {
 				+ "&destination=" + destino + "&key=AIzaSyCVVT9Dl4bQDouAtP_PBniF2qtY8hL9CHE";
 
 		ArrayList<String> retorno = new ArrayList<String>();
-		retorno.add("10 mins");
-		retorno.add("2 Km");
+		retorno.add("9 Km");
+		retorno.add("15 mins");
 
 		try {
 			url = new URL(urlString);
@@ -203,7 +205,12 @@ public class RestauranteResource {
 			conexao.setDoInput(true);
 			conexao.connect();
 
+			// Vendo o status da requisição
+			if (conexao.getResponseCode() != 200)
+				return retorno;
+
 			InputStream inputStream = conexao.getInputStream();
+			conexao.hashCode();
 			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -215,12 +222,24 @@ public class RestauranteResource {
 				dados = dados + linha;
 				linha = bufferedReader.readLine();
 			}
-
+			
+			//tratamento caso nao haja rota
+			JsonObject jsonStatus = new JsonParser().parse(dados).getAsJsonObject();
+			String status = jsonStatus.get("status").toString().replace("\"", "");
+			if(!status.equals("OK")) {
+				return retorno;
+			}
+				
+			
+			
+			
 			JsonObject json = new JsonParser().parse(dados).getAsJsonObject();
 			JsonObject primeiraFicha = json.get("routes").getAsJsonArray().get(0).getAsJsonObject();
-//			JsonObject distancia = primeiraFicha.get("legs").getAsJsonArray().get(0).getAsJsonObject();
 
 			JsonArray legs = primeiraFicha.get("legs").getAsJsonArray();
+			
+			
+			
 			JsonObject legsJson = new JsonParser().parse(legs.get(0).toString()).getAsJsonObject();
 
 			JsonObject durationText = legsJson.get("duration").getAsJsonObject();
@@ -246,33 +265,23 @@ public class RestauranteResource {
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;
 	}
-	
+
 	@GetMapping("/{id}")
 	public Restaurante getRestaurante(@PathVariable int id) {
-		
 		Restaurante restaurante = restauranteRepository.getPorId(id);
-		
-		Date data = new Date(); 
-		
-		
-		
-		
-		System.out.println(restaurante);
-		
+		Date data = new Date();
 		return restaurante;
 	}
-	
+
 	@GetMapping("/templates/{id}")
 	public Restaurante getRestauranteTemplate(@PathVariable int id) {
-		
 		Restaurante restaurante = restauranteRepository.getPorId(id);
-		
-		
-		//restaurante.setEmail(null);
-		//restaurante.setSenha(null);
-		//restaurante.setCnpj(null);
-		
 		return restaurante;
 	}
 	
+	@GetMapping("/categoria/{id}")
+	public List<Restaurante> getRestaurantePorCategoria(@PathVariable int id) {
+		return restauranteRepository.getRestauranteFromCategoriaMaiorQue4(id);
+	}
+
 }
