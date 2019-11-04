@@ -22,14 +22,14 @@ import net.bytebuddy.asm.Advice.This;
 @Component
 public class Disco {
 
-	private String raiz = "/var/www/";
-
+//	private String raiz = "/var/www/";
+	private String raiz = "C:\\Users\\18175942";
 	@Value("${contato.disco.diretorio-fotos}")
 	private String diretorioFotos;
 
 	public String salvarFoto(MultipartFile foto, String pasta) {
-		String arquivo = this.salvar(this.diretorioFotos + "/" + pasta, foto);
-		return "/"+ pasta +"/"+ arquivo;
+		String arquivo = this.salvar(this.diretorioFotos + "\\" + pasta, foto);
+		return "\\"+ pasta +"\\"+ arquivo;
 	}
 
 	public String salvar(String diretorio, MultipartFile arquivo) {

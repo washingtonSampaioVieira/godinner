@@ -83,11 +83,6 @@ public class RestauranteResource {
 
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
 
-		Template template = new Template();
-		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
-
-		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
-
 		return restauranteSalvo;
 	}
 
@@ -166,16 +161,16 @@ public class RestauranteResource {
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
-//		String origin = c.getEndereco().getCep().replace("-", "");
+		String origin = c.getEndereco().getCep().replace("-", "");
 		for (int i = 0; i < restaurantes.size(); i++) {
 			ArrayList<String> dados = new ArrayList<>();
 
-//			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
+			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
 
-//			dados = this.buscarDistanciaTempoGoogle(origin, destino);
+			dados = this.buscarDistanciaTempoGoogle(origin, destino);
 			
-			dados.add("9 Km");
-			dados.add("15 mins");
+//			dados.add("9 Km");
+//			dados.add("15 mins");
 
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
 			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));

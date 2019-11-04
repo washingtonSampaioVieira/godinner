@@ -20,6 +20,7 @@ import godinner.app.helper.Template;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.TemplateRestaurante;
+import godinner.app.repository.RestauranteRepository;
 import godinner.app.repository.TemplateRestauranteRepository;
 
 @RestController
@@ -31,7 +32,8 @@ public class TemplateRestauranteResource {
 	private TemplateRestauranteRepository templateRestauranteRepository;
 	
 	@Autowired
-	private JwtTokenUtill jwtTokenUtil;	
+	private RestauranteRepository restauranteRepository; 
+		
 	
 	@GetMapping
 	public List<TemplateRestaurante> getTemplates() {
@@ -40,8 +42,17 @@ public class TemplateRestauranteResource {
 	
 	@PostMapping
 	public TemplateRestaurante setTemplateRestaurante(@Validated @RequestBody TemplateRestaurante tr) {
-	
+
+		Restaurante restaurante = restauranteRepository.getPorId(tr.getRestaurante().getId());
+		tr.setRestaurante(restaurante);
+		Template template = new Template();
 		TemplateRestaurante templateRestaurante = templateRestauranteRepository.save(tr);
+		
+		Template templateHelper = new Template();
+		
+		String dominio = tr.getRestaurante().getRazaoSocial().toLowerCase().replaceAll("/[^a-z]/g", "");
+		System.out.println(dominio);
+		templateHelper.criarHost(dominio, tr.getRestaurante().getId());
 		
 		return templateRestaurante;
 	}
