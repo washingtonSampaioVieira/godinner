@@ -10,33 +10,29 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import godinner.app.helper.Date;
-import net.bytebuddy.asm.Advice.This;
 
 @Component
 public class Disco {
 
-//	private String raiz = "/var/www/";
-	private String raiz = "C:\\Users\\18175942";
+	private String raiz = "/var/www/";
+//	private String raiz = "C:\\Users/18175942";
 	@Value("${contato.disco.diretorio-fotos}")
 	private String diretorioFotos;
 
 	public String salvarFoto(MultipartFile foto, String pasta) {
-		String arquivo = this.salvar(this.diretorioFotos + "\\" + pasta, foto);
-		return "\\"+ pasta +"\\"+ arquivo;
+		String arquivo = this.salvar(this.diretorioFotos + "/" + pasta, foto);
+		return "/" + pasta + "/" + arquivo;
 	}
 
 	public String salvar(String diretorio, MultipartFile arquivo) {
 		String local = null;
 		Path diretorioPath = Paths.get(this.raiz, diretorio);
 
-		
 		Date data = new Date();
 		local = (String) (data.getData() + "-" + arquivo.getOriginalFilename());
 
@@ -58,30 +54,27 @@ public class Disco {
 	}
 
 	public void escreverArquivo(String arquivo, String dominio) {
-		
-	String  caminhoPasta = this.raiz + "/pages/" + dominio + "/public_html";
-	
-	System.out.println(this.raiz);
 
+		String caminhoPasta = this.raiz + "/pages/" + dominio + "/public_html";
 
-   	 File pasta = new File(caminhoPasta);
-   	 
-   	 //CRIA A PASTA
-      Boolean pastaRestaurante = pasta.mkdirs();
-        
-    
-   	 //VERIFICA SE A PASTA EXISTE    	 
-   	 if (pastaRestaurante) { 
-   		 
-   		  //ESCREVE NO ARQUIVO
-   		 String tempFile = caminhoPasta +"/index.html";
-          File file = new File(tempFile);
-         
-          
-            OutputStream outputStream;
+		System.out.println(caminhoPasta);
+
+		File pasta = new File(caminhoPasta);
+
+		// CRIA A PASTA
+		Boolean pastaRestaurante = pasta.mkdirs();
+
+		// VERIFICA SE A PASTA EXISTE
+		if (pastaRestaurante) {
+
+			// ESCREVE NO ARQUIVO
+			String tempFile = caminhoPasta + "/index.html";
+			File file = new File(tempFile);
+
+			OutputStream outputStream;
 			try {
-				outputStream = new FileOutputStream(file.getAbsoluteFile()); 
-				Writer writer=new OutputStreamWriter(outputStream);
+				outputStream = new FileOutputStream(file.getAbsoluteFile());
+				Writer writer = new OutputStreamWriter(outputStream);
 				writer.write(arquivo);
 				writer.close();
 			} catch (FileNotFoundException e) {
@@ -91,20 +84,15 @@ public class Disco {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-           
-   		  
-            System.out.println("Pasta criada"); 
-          
-           
-           
-        } 
-        else { 
-           
-            System.out.println("Pasta já existe"); 
-            
-            
-        }
-   	 
+
+			System.out.println("Pasta criada");
+
+		} else {
+
+			System.out.println("Pasta já existe");
+
+		}
+
 	}
-	
+
 }

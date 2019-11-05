@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.model.Consumidor;
@@ -25,6 +26,7 @@ import godinner.app.repository.RestauranteRepository;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @SupportedOptions(value = { "eventBusIndex", "verbose" })
+@RequestMapping("/login")
 public class JwtAuthenticationResource {
 	
 	@Autowired
@@ -41,7 +43,7 @@ public class JwtAuthenticationResource {
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 
-	@PostMapping("/login/consumidor")
+	@PostMapping("/consumidor")
 	public ResponseEntity<?> createAuthenticationTokenConsumidor(@RequestBody JWTRequest authenticationRequest)
 			throws Exception {
 		final Consumidor consumidor = consumidorRepository.getConsumidorByEmailAndPass(authenticationRequest.getEmail(),
@@ -55,7 +57,7 @@ public class JwtAuthenticationResource {
 		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
 	}
 
-	@PostMapping("/login/restaurante")
+	@PostMapping("/restaurante")
 	public ResponseEntity<?> createAuthenticationTokenRestaurante(@RequestBody JWTRequest authenticationRequest)
 			throws Exception {
 		final Restaurante restaurante = restauranteRepository
@@ -71,7 +73,7 @@ public class JwtAuthenticationResource {
 
 	
 	
-	@PostMapping("/login/funcionarios")
+	@PostMapping("/funcionarios")
 	public ResponseEntity<?> createAuthenticationTokenFuncinario(@RequestBody JWTRequest authenticationRequest)
 			throws Exception {
 		final Funcionario funcionario = funcionarioRepository
@@ -86,14 +88,19 @@ public class JwtAuthenticationResource {
 	}
 	
 	
-	private void authenticate(String username, String password) throws Exception {
-		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		} catch (DisabledException e) {
-			throw new Exception("USER_DISABLED", e);
-		} catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
+	@PostMapping("/redesocial")
+	public ResponseEntity<?> createAuthenticationTokenConsumidorViaRedeSocial(@RequestBody JWTRequest authenticationRequest)
+			throws Exception {
+		final Consumidor consumidor = consumidorRepository.getConsumidorLogadoPorRedeSocial(authenticationRequest.getEmail());  
+
+		if (consumidor!= null) {
+			final String token = jwtTokenUtil.generateTokenConsumidor(consumidor);
+			return ResponseEntity.ok(new JWTResponse(token));
 		}
+
+		return ResponseEntity.ok("{\"error\": \"Usuario não cadastrado\"}");
 	}
+	
+	
 
 }

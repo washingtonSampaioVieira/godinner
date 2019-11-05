@@ -61,6 +61,21 @@ public class ConsumidorResource {
 
 		return consumidorSalvo;
 	}
+	@PostMapping("/redesocial")
+	public Consumidor setConsumidorViaRedeSocial(@Validated @RequestBody Consumidor consumidor) {
+		consumidor.setSenha(null);
+		Endereco endereco = consumidor.getEndereco();
+		Endereco enderecoSalvo = enderecoRepository.save(endereco);
+
+		Cidade c = cidadeRepository.getCidade(enderecoSalvo.getCidade().getId());
+
+		enderecoSalvo.setCidade(c);
+		consumidor.setEndereco(enderecoSalvo);
+
+		Consumidor consumidorSalvo = consumidorRepository.save(consumidor);
+
+		return consumidorSalvo;
+	}
 
 	@GetMapping("/valida/cpf/{cpf}")
 	public boolean validarCpf(@PathVariable String cpf) {
