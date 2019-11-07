@@ -20,6 +20,7 @@ import godinner.app.helper.Template;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.TemplateRestaurante;
+import godinner.app.repository.ProdutoRepository;
 import godinner.app.repository.RestauranteRepository;
 import godinner.app.repository.TemplateRestauranteRepository;
 
@@ -34,6 +35,8 @@ public class TemplateRestauranteResource {
 	@Autowired
 	private RestauranteRepository restauranteRepository; 
 		
+	@Autowired
+	private ProdutoRepository produtoRepository;
 	
 	@GetMapping
 	public List<TemplateRestaurante> getTemplates() {
@@ -71,6 +74,12 @@ public class TemplateRestauranteResource {
 		templateRestauranteRepository.save(template);
 		return template = templateRestauranteRepository.getTemplateById(template.getId());
 	}
+	
+	@GetMapping("/maisvendidos/{id}")
+	public List<Produto> getProdutosMaisVendidos(@PathVariable int id){
+		return produtoRepository.getProdutosMaisVendidos(id);
+	}
+
 
 
 }

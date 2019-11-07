@@ -49,19 +49,19 @@ public class JwtTokenUtill implements Serializable {
 
 	public String generateTokenConsumidor(Consumidor consumidor) {
 		Map<String, Object> claims = new HashMap<>();
-		
+
 		return doGenerateToken(claims, consumidor.getEmail(), consumidor.getId());
 	}
-	
+
 	public String generateTokenRestaurante(Restaurante restaurante) {
 		Map<String, Object> claims = new HashMap<>();
-		
+
 		return doGenerateToken(claims, restaurante.getEmail(), restaurante.getId());
 	}
-	
+
 	public String generateTokenFuncionario(Funcionario funcionario) {
 		Map<String, Object> claims = new HashMap<>();
-		
+
 		return doGenerateToken(claims, funcionario.getEmail(), funcionario.getId());
 	}
 
@@ -70,10 +70,10 @@ public class JwtTokenUtill implements Serializable {
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000000))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
-	
+
 	public Boolean validateToken(String token, UserDetails userDetails) {
 		final String username = getUsernameFromToken(token);
-		
+
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
 }

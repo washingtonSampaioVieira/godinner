@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import godinner.app.helper.Criptografia;
 import godinner.app.model.Endereco;
 
 @Entity

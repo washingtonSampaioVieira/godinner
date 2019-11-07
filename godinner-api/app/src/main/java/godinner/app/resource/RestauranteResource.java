@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import godinner.app.config.JwtTokenUtill;
+import godinner.app.helper.AES;
 import godinner.app.helper.Date;
 import godinner.app.helper.Template;
 import godinner.app.helper.ValidaCadastro;
@@ -65,6 +66,9 @@ public class RestauranteResource {
 
 	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
+	
+	@Value("aes.secret.key")
+	private String secret;
 
 	@GetMapping
 	public List<Restaurante> getRestaurantes() {
@@ -255,7 +259,8 @@ public class RestauranteResource {
 
 	@GetMapping("/este")
 	public Restaurante getRestauranteByToken(@RequestHeader String token) {
-
+		AES aes = new AES(this.secret);
+		token = aes.decrypt(token);
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;

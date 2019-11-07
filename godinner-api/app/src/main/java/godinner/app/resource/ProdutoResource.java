@@ -38,7 +38,6 @@ public class ProdutoResource {
 	public List<Produto> getProduto() {
 		return produtoRepository.findAll();
 	}
-
 	
 	@GetMapping("/categoria/{id}")
 	public List<Produto> getProdutosPorCategoria(@PathVariable int id) {
@@ -58,6 +57,11 @@ public class ProdutoResource {
 	@GetMapping("/exibicao/{id}")
 	public List<?> getProdutosExibicaoADM(@PathVariable int id) {
 		return produtoRepository.getProdutoExibicao(id);
+	}
+	
+	@GetMapping("/exposicoes/{id}")
+	public List<?> getProdutosExposicoes(@PathVariable int id) {
+		return produtoRepository.getProdutoExposicao(id);
 	}
 
 	@PutMapping
@@ -125,9 +129,5 @@ public class ProdutoResource {
 		return produtoRepository.getProdutosQuantidade(idRestaurante);
 	}
 	
-	@GetMapping("/maisvendidos/{id}")
-	public List<Produto> getProdutosMaisVendidos(@PathVariable int id){
-		return produtoRepository.getProdutosMaisVendidos(id);
-	}
-
+	
 }
