@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Consumidor - Mobile</title>
+    </head>
+    <body>
+        <table id="table">
+            <tbody>
+                <tr>
+                    <textarea cols="30" rows="15" id="mensagens_recebidas" readonly style="resize: none;"></textarea>
+                </tr>
+                <tr>
+                    <th><input type="text" id="mensagem"></th>
+                    <th><button id="btn_enviar">Enviar</button></th>                    
+                </tr>
+            </tbody>
+        </table>
+        <button id="newchat">iniciar chat</button>
+
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script>
+            $(document).ready(function(){
+                const socket = io.connect("http://localhost:3005");
+                
+                const username = "Marlon";
+                let idConsumidor = 11;
+                let token = "in8CXWxBVDzX7qwnYJlTPmlIPHyhoDaUa9Jjvwa9ggnP/7nofS+Him0xWrfIEvCHWzgOG0SGqp/OzcA5DyRU1tvJutNoYvk+kmIula6pFIRhELYcR48TIDAivjzd8M9QjCl8Dvhh9qpxb1fmtehCWdZ4P0q75LiYrc4EkRr5wJJFOJI5mMqdxDTgLxLe1i7qkmY1o8g0TmQUApr3FCQXnxR46ChA4UOYFKiiSijMel0TafyxGJ9GHiBWD/rSf0g8";
+                let idConversa;
+                
+                $("#newchat").click(function(){
+                    $("#newchat").attr("disabled", true);
+                    
+                    $.ajax({
+                        url: "http://localhost:3005/suporte-usuario",
+                        method: "post",
+                        data: {idConsumidor: idConsumidor, token: token},
+                        async: true,
+                        success: function(data){
+                            console.log(data);
+                            idConversa = data.sala;
+                            joinChat();
+                        },
+                        error: function(data){
+                            if(data.status === 401) {
+                                console.log("Unauthorized");
+                            }
+                        }
+                    });
+
+                    function joinChat(){
+                        socket.emit('join', {room: idConversa, idConsumidor: idConsumidor, username: username, remetente: "C"});
+                        
+                        $("#btn_enviar").click(function() {
+                            const text = $("#mensagem").val();
+                            $("#mensagem").val("");
+                            socket.emit('message', {message: text});
+                        });
+
+                        socket.on('message', function(data) {
+                            $("#mensagens_recebidas").append(data.nome + ": " + data.message +"\n");
+                        });
+
+                        socket.on('userjoinedthechat', function(data) {
+                            $("#mensagens_recebidas").append(data);
+                        });
+                    }
+                });
+            });     
+
+        </script>
+    </body>
+</html>

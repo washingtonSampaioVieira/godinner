@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Godinner - WEB</title>
+    </head>
+    <body>
+        <table id="table">
+            <tbody>
+                <tr>
+                    <textarea cols="30" rows="15" id="mensagens_recebidas" readonly style="resize: none;"></textarea>
+                </tr>
+                <tr>
+                    <th><input type="text" id="mensagem"></th>
+                    <th><button id="btn_enviar">Enviar</button></th>                    
+                </tr>
+            </tbody>
+        </table>
+        <button id="newchat">iniciar chat</button>
+
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script>
+            $(document).ready(function(){
+                const socket = io.connect("http://localhost:3005");
+                // Colocar no banco o id deste batepapo
+                const username = "Sarah";
+                let idFuncionario = 2;
+                let idConversa = 104;
+                let token = "in8CXWxBVDzX7qwnYJlTPmlIPHyhoDaUa9Jjvwa9ggmxCDiS/RjpAaF4TO3L1scekCJrH3WEEqXIekJzjqK35bGjTXzaXfxPLFySZvEGCKL2sdhEgn2kXOldYbeYBkBW0unGbtTZP9ANCRBV06H5Swp8Opnec3SPiWKmqhbLpfA2lyJCuT2mxdU6e+RiUSJk6TG91bEHK7zSVVlfBMdJXVzk7Kboc6tRAKBHFFTcVL8Dm4Skx+StbKw910bY63qJ";
+
+                $("#newchat").click(function(){
+                    $("#newchat").attr("disabled", true);
+
+                    // $.ajax({
+                    //     url: "http://localhost:3005/suporte/usuario",
+                    //     method: "post",
+                    //     data: {idConsumidor: idConsumidor},
+                    //     async: true,
+                    //     success: function(data){
+                    //         console.log(data);
+                    //         idConversa = data.sala;
+                    //         joinChat();
+                    //     },
+                    //     error: function(data){
+                    //         console.log(data);
+                    //         alert("erro");
+                    //     }
+                    // });
+
+                    joinChat();
+                    
+                    function joinChat(){
+                        socket.emit('join', {room: idConversa, idFuncionario: idFuncionario, username: username, remetente: "F", token: token});
+                        
+                        $("#btn_enviar").click(function() {
+                            const text = $("#mensagem").val();
+                            $("#mensagem").val("");
+                            socket.emit('message', {message: text});
+                        });
+
+                        socket.on('message', function(data) {
+                            $("#mensagens_recebidas").append(data.nome + ": " + data.message +"\n");
+                        });
+
+                        socket.on('userjoinedthechat', function(data) {
+                            $("#mensagens_recebidas").append(data);
+                        });
+                    }
+                });
+            });     
+
+        </script>
+    </body>
+</html>
