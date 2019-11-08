@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.processing.SupportedOptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.config.JwtTokenUtill;
+import godinner.app.helper.AES;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
@@ -41,6 +43,9 @@ public class ConsumidorResource {
 	
 	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
+	
+	@Value("aes.secret.key")
+	private String secret;
 
 	@GetMapping("/todos")
 	public List<Consumidor> getConsumidor() {
@@ -49,6 +54,21 @@ public class ConsumidorResource {
 
 	@PostMapping
 	public Consumidor setConsumidor(@Validated @RequestBody Consumidor consumidor) {
+		Endereco endereco = consumidor.getEndereco();
+		Endereco enderecoSalvo = enderecoRepository.save(endereco);
+
+		Cidade c = cidadeRepository.getCidade(enderecoSalvo.getCidade().getId());
+
+		enderecoSalvo.setCidade(c);
+		consumidor.setEndereco(enderecoSalvo);
+
+		Consumidor consumidorSalvo = consumidorRepository.save(consumidor);
+
+		return consumidorSalvo;
+	}
+	@PostMapping("/redesocial")
+	public Consumidor setConsumidorViaRedeSocial(@Validated @RequestBody Consumidor consumidor) {
+		consumidor.setSenha(null);
 		Endereco endereco = consumidor.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
 
@@ -91,9 +111,22 @@ public class ConsumidorResource {
 
 	@GetMapping("/este")
 	public Consumidor getRestauranteByToken(@RequestHeader String token) {
-
+		AES aes = new AES(this.secret);
+		token = aes.decrypt(token);
+//		token = 
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Consumidor consumidorLogado = consumidorRepository.getConsumidorByEmail(email);
 		return consumidorLogado;
+	}
+	
+	@GetMapping("/teste")
+	public void teste() {
+		 final String secretKey = "ssshhhhhhhhhhh!!!!";
+	     
+		 	AES aes = new AES(this.secret);	
+		    String originalString = "howtodoinjava.com";
+		    String encryptedString = aes.encrypt(originalString) ;
+		    String decryptedString = aes.decrypt(encryptedString ) ;
+
 	}
 }

@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import godinner.app.config.JwtTokenUtill;
+import godinner.app.helper.AES;
 import godinner.app.helper.Date;
 import godinner.app.helper.Template;
 import godinner.app.helper.ValidaCadastro;
@@ -65,6 +66,9 @@ public class RestauranteResource {
 
 	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
+	
+	@Value("aes.secret.key")
+	private String secret;
 
 	@GetMapping
 	public List<Restaurante> getRestaurantes() {
@@ -82,11 +86,6 @@ public class RestauranteResource {
 		restaurante.setEndereco(enderecoSalvo);
 
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
-
-		Template template = new Template();
-		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
-
-		template.criarHost(restauranteSalvo.getRazaoSocial(), restauranteSalvo.getId());
 
 		return restauranteSalvo;
 	}
@@ -166,16 +165,16 @@ public class RestauranteResource {
 	}
 
 	private List<RestauranteExibicao> setDadosExibicao(List<RestauranteExibicao> restaurantes, Consumidor c) {
-//		String origin = c.getEndereco().getCep().replace("-", "");
+		String origin = c.getEndereco().getCep().replace("-", "");
 		for (int i = 0; i < restaurantes.size(); i++) {
 			ArrayList<String> dados = new ArrayList<>();
 
-//			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
+			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
 
-//			dados = this.buscarDistanciaTempoGoogle(origin, destino);
+			dados = this.buscarDistanciaTempoGoogle(origin, destino);
 			
-			dados.add("9 Km");
-			dados.add("15 mins");
+//			dados.add("9 Km");
+//			dados.add("15 mins");
 
 			restaurantes.get(i).setDistancia(dados.get(0).replace("\"", ""));
 			restaurantes.get(i).setTempoEntrega(dados.get(1).replace("\"", ""));
@@ -260,7 +259,8 @@ public class RestauranteResource {
 
 	@GetMapping("/este")
 	public Restaurante getRestauranteByToken(@RequestHeader String token) {
-
+		AES aes = new AES(this.secret);
+		token = aes.decrypt(token);
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;

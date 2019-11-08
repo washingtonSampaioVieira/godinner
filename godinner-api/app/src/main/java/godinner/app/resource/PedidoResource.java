@@ -93,14 +93,14 @@ public class PedidoResource {
 		return pedidoSalvo;
 	}
 
-	@GetMapping("/emabertos/{id}")
+	@GetMapping("/abertos/{id}")
 	public List<Pedido> getPedidosEmAberto(@PathVariable int id) {
 		List<Pedido> pedidos = pedidoRepository.getPedidosEmAbertoDoRestaurante(id);
 
 		return atualizarStatusPedidos(pedidos, 2);
 	}
 
-	@PutMapping("/pedidorecebido/{id}")
+	@PutMapping("/recebido/{id}")
 	public void setPedidoRecebido(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
 		Pedido pedido = pedidoRepository.getPedidoById(id);
 
@@ -173,12 +173,12 @@ public class PedidoResource {
 		return;
 	}
 
-	@GetMapping("/emproducaos/{id}")
+	@GetMapping("/producoes/{id}")
 	public List<Pedido> getPedidosEmProducao(@PathVariable int id) {
 		return pedidoRepository.getPedidosEmProducaoPorRestaurante(id);
 	}
 
-	@GetMapping("/ememtregas/{id}")
+	@GetMapping("/entregas/{id}")
 	public List<Pedido> getPedidosEmEntrega(@PathVariable int id) {
 		return pedidoRepository.getPedidosEmEntregaPorRestaurante(id);
 	}

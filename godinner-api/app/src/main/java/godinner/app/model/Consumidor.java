@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import godinner.app.helper.Criptografia;
+
 @Entity
 @Table(name = "tbl_consumidor")
 public class Consumidor {
@@ -30,6 +32,7 @@ public class Consumidor {
 	@Size(min = 10, max = 100)
 	private String email;
 
+	
 	@NotNull
 	@Size(min = 6, max = 255)
 	private String senha;
@@ -79,7 +82,8 @@ public class Consumidor {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		
+		this.senha = senha;;
 	}
 
 	public String getCpf() {
