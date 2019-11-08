@@ -24,4 +24,7 @@ public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
 
 	@Query(value = "select * from  tbl_consumidor where id_consumidor = ?1 and id_endereco = ?2", nativeQuery = true)
 	public Consumidor getPorIdAndCidade(int idConsumidor, int idEndereco);
+	
+	@Query(value = "SELECT * FROM tbl_consumidor where senha IS NULL and email = ?1 ", nativeQuery=true)
+	public Consumidor getConsumidorLogadoPorRedeSocial(String email);
 }
