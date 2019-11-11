@@ -27,4 +27,7 @@ public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
 	
 	@Query(value = "SELECT * FROM tbl_consumidor where senha IS NULL and email = ?1 ", nativeQuery=true)
 	public Consumidor getConsumidorLogadoPorRedeSocial(String email);
+	
+	@Query(value= "SELECT count(*) as Total from tbl_consumidor", nativeQuery=true)
+	public int getTotalConsumidor();
 }
