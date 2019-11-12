@@ -22,7 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
         <script>
             $(document).ready(function(){
-                const socket = io.connect("http://localhost:3005");
+                const socket = io.connect("http://godinner.tk:3005");
                 
                 const username = "Marlon";
                 let idConsumidor = 11;
@@ -33,7 +33,7 @@
                     $("#newchat").attr("disabled", true);
                     
                     $.ajax({
-                        url: "http://localhost:3005/suporte-usuario",
+                        url: "http://godinner.tk:3005/suporte-usuario",
                         method: "post",
                         data: {idConsumidor: idConsumidor, token: token},
                         async: true,
