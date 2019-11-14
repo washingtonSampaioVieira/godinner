@@ -40,6 +40,7 @@ import godinner.app.model.Endereco;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
+import godinner.app.model.RetornoFloat;
 import godinner.app.model.RetornoInt;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
@@ -293,6 +294,13 @@ public class RestauranteResource {
 		return retornoInt;
 	}
 	
+	
+	@GetMapping("/saldorestaurante/{id}")
+	public RetornoFloat getSaldoRestaurante(@PathVariable float id) {
+		float saldoRestaurante = restauranteRepository.getSaldoRestaurante(id);
+		RetornoFloat retornoFloat = new RetornoFloat(saldoRestaurante);
+		return retornoFloat;
+	}
 	
 	@GetMapping("/desativo")
 	public List<Restaurante> getRestaurantesDesativados(){

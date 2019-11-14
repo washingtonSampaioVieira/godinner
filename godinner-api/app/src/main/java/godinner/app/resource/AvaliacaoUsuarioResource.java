@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.model.AvaliacaoUsuario;
+import godinner.app.model.RetornoFloat;
 import godinner.app.model.RetornoInt;
 import godinner.app.repository.AvaliacaoUsuarioRepository;
 
@@ -28,10 +29,10 @@ public class AvaliacaoUsuarioResource {
 	
 	
 	@GetMapping("/mediarestaurante/{id}")
-	public RetornoInt getMediaAvaliacaoRestaurante(@PathVariable int id) {
-		int mediaRestaurante = avaliacaoUsuarioRepository.getMediaAvaliacaoRestaurante(id);
-		RetornoInt retornoInt = new RetornoInt(mediaRestaurante );
-		return retornoInt;
+	public RetornoFloat getMediaAvaliacaoRestaurante(@PathVariable float id) {
+		float mediaRestaurante = avaliacaoUsuarioRepository.getMediaAvaliacaoRestaurante(id);
+		RetornoFloat retornoFloat = new RetornoFloat(mediaRestaurante );
+		return retornoFloat;
 	}
 	
 }
