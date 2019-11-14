@@ -40,6 +40,7 @@ import godinner.app.model.Endereco;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
+import godinner.app.model.RetornoInt;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
@@ -287,6 +288,40 @@ public class RestauranteResource {
 	@GetMapping("/debito/{idRestaurante}")
 	public Float getDebitoRestaurante(@PathVariable int idRestaurante) {
 		return restauranteRepository.getDebitoRestaurante(idRestaurante);
+	
+	@GetMapping("/cadastrados")
+	public RetornoInt getTotalRestaurantesCadastrados() {
+		int totalRestaurante = restauranteRepository.getTotalRestaurante();
+		RetornoInt retornoInt =  new RetornoInt(totalRestaurante);
+		return retornoInt;
+	}
+	
+	
+	@GetMapping("/desativo")
+	public List<Restaurante> getRestaurantesDesativados(){
+		
+		List<Restaurante> r = restauranteRepository.getRestaurantesDesativados();
+		int total = r.size();
+		
+		for (int i = 0; i < total; i++) {
+			r.get(i).setSenha(null);	
+		}
+	
+		return  r;
 	}
 
+	
+	@GetMapping("/ativo")
+	public List<Restaurante> getRestaurantesAtivos(){
+		
+		List<Restaurante> r = restauranteRepository.getRestaurantesAtivos();
+		int total = r.size();
+		
+		for (int i = 0; i < total; i++) {
+			r.get(i).setSenha(null);	
+		}
+	
+		return  r;
+	}
+	
 }

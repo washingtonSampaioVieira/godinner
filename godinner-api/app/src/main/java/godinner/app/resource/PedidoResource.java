@@ -29,8 +29,12 @@ import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.AES;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Pedido;
+import godinner.app.model.Produto;
 import godinner.app.model.ProdutoPedido;
 import godinner.app.model.Restaurante;
+import godinner.app.model.RetornoFloat;
+import godinner.app.model.RetornoFloat;
+import godinner.app.model.RetornoInt;
 import godinner.app.model.StatusPedido;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.PedidoRepository;
@@ -208,5 +212,32 @@ public class PedidoResource {
 
 		return pedidoRepository.saveAll(pedidos);
 	}
+	
+	
+	@GetMapping("/totalcomissao")
+	public RetornoFloat getTotalComissaoPaga() {
+		float totalComissao = pedidoRepository.getTotalComissaoPaga();
+		RetornoFloat retornoFloat =  new RetornoFloat(totalComissao);
+		return retornoFloat;
+	}
+	
+	
+	@GetMapping("/pedidorestaurante/{id}")
+	public RetornoInt getTotalPedidoPorRestaurante(@PathVariable int id) {
+		int totalPedidoRestaurante = pedidoRepository.getTotalPedidoPorRestaurante(id);
+		RetornoInt retornoInt = new RetornoInt(totalPedidoRestaurante);
+		return retornoInt;
+	}
+	
+	
 
+	/*@GetMapping("/totalrestaurantes")
+	public List<Pedido> getTotalPedidosFeitosPorRestaurante(){
+		return pedidoRepository.getTotalPedidosFeitosPorRestaurante();
+	}*/
 }
+	
+	
+	
+	
+	

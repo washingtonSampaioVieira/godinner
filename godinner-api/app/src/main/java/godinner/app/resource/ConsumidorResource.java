@@ -22,6 +22,7 @@ import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
+import godinner.app.model.RetornoInt;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
@@ -113,7 +114,6 @@ public class ConsumidorResource {
 	public Consumidor getRestauranteByToken(@RequestHeader String token) {
 		AES aes = new AES(this.secret);
 		token = aes.decrypt(token);
-//		token = 
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Consumidor consumidorLogado = consumidorRepository.getConsumidorByEmail(email);
 		return consumidorLogado;
@@ -128,5 +128,12 @@ public class ConsumidorResource {
 		    String encryptedString = aes.encrypt(originalString) ;
 		    String decryptedString = aes.decrypt(encryptedString ) ;
 
+	}
+	
+	@GetMapping("/cadastrados")
+	public RetornoInt getConsumidoresCadastrados() {
+		int total = consumidorRepository.getTotalConsumidor();
+		RetornoInt retornoInt = new RetornoInt(total);
+		return retornoInt;
 	}
 }
