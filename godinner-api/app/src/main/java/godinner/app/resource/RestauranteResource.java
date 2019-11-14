@@ -41,6 +41,7 @@ import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
 import godinner.app.model.RetornoInt;
+import godinner.app.model.RetornoFloat;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
@@ -285,7 +286,6 @@ public class RestauranteResource {
 		return restauranteRepository.getRestauranteFromCategoriaMaiorQue4(id);
 	}
 	
-	
 	@GetMapping("/cadastrados")
 	public RetornoInt getTotalRestaurantesCadastrados() {
 		int totalRestaurante = restauranteRepository.getTotalRestaurante();
@@ -305,6 +305,10 @@ public class RestauranteResource {
 		}
 	
 		return  r;
+	@GetMapping("/debito/{idRestaurante}")
+	public RetornoFloat getDebitoRestaurante(@PathVariable int idRestaurante) {
+		
+		return new RetornoFloat(restauranteRepository.getDebitoRestaurante(idRestaurante));
 	}
 
 	
