@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.model.AvaliacaoUsuario;
+import godinner.app.model.RetornoInt;
 import godinner.app.repository.AvaliacaoUsuarioRepository;
 
 @RestController
@@ -23,4 +25,13 @@ public class AvaliacaoUsuarioResource {
 	public List<AvaliacaoUsuario> getAvaliacoesUsuario() {
 		return avaliacaoUsuarioRepository.findAll();
 	}
+	
+	
+	@GetMapping("/mediarestaurante/{id}")
+	public RetornoInt getMediaAvaliacaoRestaurante(@PathVariable int id) {
+		int mediaRestaurante = avaliacaoUsuarioRepository.getMediaAvaliacaoRestaurante(id);
+		RetornoInt retornoInt = new RetornoInt(mediaRestaurante );
+		return retornoInt;
+	}
+	
 }

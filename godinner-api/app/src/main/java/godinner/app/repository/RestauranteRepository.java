@@ -58,5 +58,17 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 	
 	@Query(value = "select * from tbl_restaurante as r where  (select count(*) from tbl_produto as p inner join tbl_categoria_produto as cp on cp.id_produto = p.id_produto where p.id_restaurante  = r.id_restaurante and cp.id_categoria = ?1 ) > 2 order by rand() ", nativeQuery = true)
 	List<Restaurante> getRestauranteFromCategoriaMaiorQue4(int id);
+	
+	
+	
+	@Query(value="select count(*) as Total_Restaurantes from tbl_restaurante", nativeQuery = true)
+	public int getTotalRestaurante();
+	
+	
+	@Query(value="select * from tbl_restaurante as r where r.status = 0", nativeQuery = true)
+	public List<Restaurante> getRestaurantesDesativados();
+	
+	@Query(value="select * from tbl_restaurante as r where r.status = 1", nativeQuery = true)
+	public List<Restaurante> getRestaurantesAtivos();
 }
 
