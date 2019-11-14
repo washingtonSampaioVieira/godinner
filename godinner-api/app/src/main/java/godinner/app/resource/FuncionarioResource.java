@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.AES;
 import godinner.app.helper.ValidaCadastro;
+import godinner.app.model.Calendario;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
 import godinner.app.model.Funcionario;
+import godinner.app.model.RetornoInt;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
@@ -57,4 +59,19 @@ public class FuncionarioResource {
 		Funcionario funcionarioLogado = funcionarioRepository.getFuncionarioByEmail(email);
 		return funcionarioLogado;
 	}
+	
+	@GetMapping("/restaurantescadastrado")
+	public String getRestauranteCadastradoPorMes() {
+		
+		
+		Calendario calendario = new Calendario();
+		
+		
+		return calendario.jsonMeses(funcionarioRepository.getRestauranteCadastradoPorMes());
+	}
+	
+	
+	
+	
+	
 }
