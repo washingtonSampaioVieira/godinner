@@ -283,5 +283,10 @@ public class RestauranteResource {
 	public List<Restaurante> getRestaurantePorCategoria(@PathVariable int id) {
 		return restauranteRepository.getRestauranteFromCategoriaMaiorQue4(id);
 	}
+	
+	@GetMapping("/debito/{idRestaurante}")
+	public Float getDebitoRestaurante(@PathVariable int idRestaurante) {
+		return restauranteRepository.getDebitoRestaurante(idRestaurante);
+	}
 
 }
