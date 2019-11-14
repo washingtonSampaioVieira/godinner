@@ -236,12 +236,13 @@ public class PedidoResource {
 		List<Pedido> p = restauranteRepository.setPedidosDebito(idRestaurante);
 		
 		int tamanho = p.size();
-		
-		for (int i = 0; i < tamanho; i++) {
-			p.get(i).setComissaoPaga(1);
+
+//		for (int i = 0; i < tamanho; i++) {
+		for (Pedido pedido : p) {
+			pedido.setComissaoPaga(1);
+			pedidoRepository.save(pedido);
 		}
 		
-		pedidoRepository.saveAll(p);
 			
 		return p;
 	}
