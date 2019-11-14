@@ -285,6 +285,9 @@ public class RestauranteResource {
 		return restauranteRepository.getRestauranteFromCategoriaMaiorQue4(id);
 	}
 	
+	@GetMapping("/debito/{idRestaurante}")
+	public Float getDebitoRestaurante(@PathVariable int idRestaurante) {
+		return restauranteRepository.getDebitoRestaurante(idRestaurante);
 	
 	@GetMapping("/cadastrados")
 	public RetornoInt getTotalRestaurantesCadastrados() {
