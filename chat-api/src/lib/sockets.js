@@ -6,10 +6,15 @@ const AuthFunc = require('../dao/AuthFunc');
 module.exports.listen = function(app) {
     io = socketio.listen(app);
 
+
+    
+
     // io = io.of('/chat'); - namespace
     io.on('connection', (socket) => {
         socket.on('join', function(data) {
 
+            console.log("aaa")
+            
             if(data.remetente === "C") {
                 socket.join(data.room);
                 socket.room = data.room;
@@ -19,7 +24,10 @@ module.exports.listen = function(app) {
 
                 setTimeout(function() {
                     io.sockets.in(socket.room).emit('message', {nome: "BOOT", message: `Bom dia ${socket.username}! Em instantes um de nossos atendentes irá te atender. \n`});
-                }, 200);
+                }, 400);
+
+                socket.broadcast.emit("suporte", {id: data.room, nome: data.username});
+
             }else if(data.remetente === "F") {
                 const authFunc = new AuthFunc();
                 authFunc.buscarFuncionario(data.token, (error, res, body) => {
@@ -36,7 +44,6 @@ module.exports.listen = function(app) {
                 });
             }
                 
-            //console.log(`${socket.username} entrou na sala ${socket.room}.`);
             socket.broadcast.to(socket.room).emit('userjoinedthechat', socket.username +": entrou no chat. \n");
         });
 
@@ -49,7 +56,7 @@ module.exports.listen = function(app) {
                 if(sockets_id[first_key]) {
                     const mensagem = new Mensagem();
                     if(mensagem.salvar(socket.room, socket.remetente, data.message)) {
-                        io.sockets.in(socket.room).emit('message', {nome: socket.username, message: data.message});
+                        io.sockets.in(socket.room).emit('message', {nome: socket.username, message: data});
                     }
                 }
             } catch (error) {}

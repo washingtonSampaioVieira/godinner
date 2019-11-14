@@ -5,7 +5,7 @@ const AuthUser = require('./dao/AuthUser');
 const con = require('./db_connection');
 
 routes.get('/todos', (req, res) => {
-    let sql = "SELECT * FROM tbl_";
+    let sql = "SELECT * FROM tbl_suporte_consumidor";
 
     con.query(sql, function(err, result){
         res.send(result);
