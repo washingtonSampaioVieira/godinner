@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.config.JwtTokenUtill;
+import godinner.app.helper.AES;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
@@ -66,6 +68,9 @@ public class PedidoResource {
 
 	@Autowired
 	RestauranteRepository restauranteRepository;
+	
+	@Value("aes.secret.key")
+	private String secret;
 
 	@GetMapping
 	public List<Pedido> getPedidos() {
@@ -107,8 +112,10 @@ public class PedidoResource {
 	@PutMapping("/recebido/{id}")
 	public void setPedidoRecebido(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
 		Pedido pedido = pedidoRepository.getPedidoById(id);
-
 		String token = request.getHeader("token");
+		
+		AES aes = new AES(this.secret);
+		token = aes.decrypt(token);
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		Consumidor consumidor = consumidorRepository.getConsumidorByEmail(email);
 
@@ -146,6 +153,9 @@ public class PedidoResource {
 		Pedido pedido = pedidoRepository.getPedidoById(id);
 
 		String token = request.getHeader("token");
+		
+		AES aes = new AES(this.secret);
+		token = aes.decrypt(token);
 		String email = jwtTokenUtil.getUsernameFromToken(token);
 		System.out.println(email);
 		Restaurante restaurante = restauranteRepository.getRestauranteByEmail(email);
