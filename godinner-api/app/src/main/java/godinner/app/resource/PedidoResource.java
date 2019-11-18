@@ -232,15 +232,17 @@ public class PedidoResource {
 	
 
 	@PutMapping("/debito/{idRestaurante}")
-	public List<Pedido> setPedidosDebito(@PathVariable int idRestaurante, HttpServletResponse response) throws IOException {
-		List<Pedido> p = restauranteRepository.setPedidosDebito(idRestaurante);
+	public List<Pedido> setPedidosDebito(@PathVariable Integer idRestaurante, HttpServletResponse response){
+		List<Pedido> p = pedidoRepository.setPedidosDebito(idRestaurante);
 		
-		int tamanho = p.size();
+		
+//		int tamanho = p.size();
 
 //		for (int i = 0; i < tamanho; i++) {
 		for (Pedido pedido : p) {
-			pedido.setComissaoPaga(1);
-			pedidoRepository.save(pedido);
+			System.out.println(pedido.toString());
+			 pedido.setComissaoPaga(1);
+			 pedidoRepository.save(pedido);
 		}
 		
 			

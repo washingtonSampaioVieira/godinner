@@ -75,7 +75,10 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 	@Query(value="select * from tbl_restaurante as r where r.status = 1", nativeQuery = true)
 	public List<Restaurante> getRestaurantesAtivos();
 	
-	@Query(value="SELECT *  from tbl_pedido as p WHERE p.data_do_pedido <= NOW() AND p.id_restaurante = ?1", nativeQuery = true)
-	public List<Pedido> setPedidosDebito(int id);
+	
+	@Query(value = "SELECT * FROM tbl_pedido as p ", nativeQuery = true)
+	public List<Pedido> setPedidosDebito(Integer id);
+
+
 }
 
