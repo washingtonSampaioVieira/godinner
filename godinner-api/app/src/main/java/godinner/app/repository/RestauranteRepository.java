@@ -74,5 +74,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 	@Query(value="select sum(valor_total) - sum(valor_total)*9/100  as total from tbl_pedido as p where p.id_restaurante  = ?1 and p.id_status_pedido = 4", nativeQuery = true)
 	public float getSaldoRestaurante(float id);
 
+	
+	
 }
 

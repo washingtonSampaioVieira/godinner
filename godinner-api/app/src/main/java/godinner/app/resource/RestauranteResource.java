@@ -302,6 +302,10 @@ public class RestauranteResource {
 		return retornoFloat;
 	}
 	
+	
+	
+	
+	
 	@GetMapping("/desativo")
 	public List<Restaurante> getRestaurantesDesativados(){
 		

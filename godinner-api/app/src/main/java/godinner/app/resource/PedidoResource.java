@@ -219,6 +219,10 @@ public class PedidoResource {
 		return retornoInt;
 	}
 	
+	@GetMapping("/pedidorestaurante")
+	public List<Pedido> getTotalPedidoFeitoRestaurante(){
+		return pedidoRepository.getTotalPedidoFeitoRestaurante();
+	}
 	
 
 	/*@GetMapping("/totalrestaurantes")
