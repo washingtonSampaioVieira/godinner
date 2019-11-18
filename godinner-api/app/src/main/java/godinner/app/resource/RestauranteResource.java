@@ -313,10 +313,12 @@ public class RestauranteResource {
 		int total = r.size();
 		
 		for (int i = 0; i < total; i++) {
-			r.get(i).setSenha(null);	
+			r.get(i).setSenha(null);
 		}
-	
 		return  r;
+	}
+	
+		
 	@GetMapping("/debito/{idRestaurante}")
 	public RetornoFloat getDebitoRestaurante(@PathVariable int idRestaurante) {
 		
