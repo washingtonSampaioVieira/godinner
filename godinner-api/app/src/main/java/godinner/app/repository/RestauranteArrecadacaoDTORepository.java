@@ -13,4 +13,8 @@ public interface RestauranteArrecadacaoDTORepository extends JpaRepository<Resta
 	public List<RestauranteArrecadacaoDTO> getArrecadacaoRestaurante();
 	
 	
+	@Query(value="select * from view_qtd_pedido_restaurante", nativeQuery=true)
+	public List<RestauranteArrecadacaoDTO> getQtdePedidoRestaurante();
+	
+	
 }

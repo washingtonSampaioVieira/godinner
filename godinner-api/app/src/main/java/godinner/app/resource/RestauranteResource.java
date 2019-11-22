@@ -352,4 +352,11 @@ public class RestauranteResource {
 		return restauranteArrecadacaoDTORepository.getArrecadacaoRestaurante();
 	}
 	
+	@GetMapping("/qtdepedido")
+	public List<RestauranteArrecadacaoDTO> getQtdePedidoRestaurante(){
+		return restauranteArrecadacaoDTORepository.getQtdePedidoRestaurante();
+	}
+	
+	
+	
 }
