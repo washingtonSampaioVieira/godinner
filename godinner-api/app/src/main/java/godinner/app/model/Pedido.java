@@ -46,7 +46,7 @@ public class Pedido {
 	String dataDoPedido;
 
 	@Column(name = "comissao_paga")
-	Boolean comissaoPaga;
+	Integer comissaoPaga;
 
 	@JsonProperty("produtos")
 	@OneToMany(mappedBy = "pedido")
@@ -129,12 +129,12 @@ public class Pedido {
 		this.dataDoPedido = dataDoPedido;
 	}
 
-	public Boolean getComissaoPaga() {
+	public Integer getComissaoPaga() {
 		return comissaoPaga;
 	}
 
-	public void setComissaoPaga(Boolean comissaoPaga) {
-		this.comissaoPaga = comissaoPaga;
+	public void setComissaoPaga(Integer i) {
+		this.comissaoPaga = i;
 	}
 	public Consumidor getConsumidor() {
 		return consumidor;
