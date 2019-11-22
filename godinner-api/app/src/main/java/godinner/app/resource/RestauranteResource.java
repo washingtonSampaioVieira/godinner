@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.processing.SupportedOptions;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,7 @@ import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Endereco;
+import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteArrecadacaoDTO;
@@ -323,8 +326,7 @@ public class RestauranteResource {
 		}
 		return  r;
 	}
-	
-		
+  
 	@GetMapping("/debito/{idRestaurante}")
 	public RetornoFloat getDebitoRestaurante(@PathVariable int idRestaurante) {
 		
