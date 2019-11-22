@@ -231,10 +231,23 @@ public class PedidoResource {
 	
 	
 
-	/*@GetMapping("/totalrestaurantes")
-	public List<Pedido> getTotalPedidosFeitosPorRestaurante(){
-		return pedidoRepository.getTotalPedidosFeitosPorRestaurante();
-	}*/
+	@PutMapping("/debito/{idRestaurante}")
+	public List<Pedido> setPedidosDebito(@PathVariable Integer idRestaurante, HttpServletResponse response){
+		List<Pedido> p = pedidoRepository.setPedidosDebito(idRestaurante);
+		
+		
+//		int tamanho = p.size();
+
+//		for (int i = 0; i < tamanho; i++) {
+		for (Pedido pedido : p) {
+			System.out.println(pedido.toString());
+			 pedido.setComissaoPaga(1);
+			 pedidoRepository.save(pedido);
+		}
+		
+			
+		return p;
+	}
 }
 	
 	

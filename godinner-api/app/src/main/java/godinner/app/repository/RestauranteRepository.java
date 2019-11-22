@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 
@@ -73,5 +74,11 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 	
 	@Query(value="select * from tbl_restaurante as r where r.status = 1", nativeQuery = true)
 	public List<Restaurante> getRestaurantesAtivos();
+	
+	
+	@Query(value = "SELECT * FROM tbl_pedido as p ", nativeQuery = true)
+	public List<Pedido> setPedidosDebito(Integer id);
+
+
 }
 
