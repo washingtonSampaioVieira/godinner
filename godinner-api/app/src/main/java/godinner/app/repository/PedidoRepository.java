@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import godinner.app.model.Pedido;
+import godinner.app.model.Restaurante;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
@@ -37,5 +38,9 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	@Query(value = "SELECT * FROM tbl_pedido as p WHERE p.data_do_pedido <= NOW() AND p.id_restaurante = ?1", nativeQuery = true)
 	public List<Pedido> setPedidosDebito(Integer id);
 	
+	
+	
+	@Query(value="select count(p.valor_total) as resultado, p.id_restaurante from tbl_pedido as p where p.id_status_pedido = 4 group by p.id_restaurante", nativeQuery = true)
+	public List<Pedido> getTotalPedidoFeitoRestaurante();
 	
 }

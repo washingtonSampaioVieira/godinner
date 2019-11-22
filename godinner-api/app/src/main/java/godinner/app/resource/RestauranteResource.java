@@ -43,6 +43,7 @@ import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
 import godinner.app.model.RestauranteExibicao;
+import godinner.app.model.RetornoFloat;
 import godinner.app.model.RetornoInt;
 import godinner.app.model.RetornoFloat;
 import godinner.app.repository.CidadeRepository;
@@ -297,6 +298,17 @@ public class RestauranteResource {
 	}
 	
 	
+	@GetMapping("/saldorestaurante/{id}")
+	public RetornoFloat getSaldoRestaurante(@PathVariable float id) {
+		float saldoRestaurante = restauranteRepository.getSaldoRestaurante(id);
+		RetornoFloat retornoFloat = new RetornoFloat(saldoRestaurante);
+		return retornoFloat;
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/desativo")
 	public List<Restaurante> getRestaurantesDesativados(){
 		
@@ -304,12 +316,11 @@ public class RestauranteResource {
 		int total = r.size();
 		
 		for (int i = 0; i < total; i++) {
-			r.get(i).setSenha(null);	
+			r.get(i).setSenha(null);
 		}
-	
 		return  r;
 	}
-	
+  
 	@GetMapping("/debito/{idRestaurante}")
 	public RetornoFloat getDebitoRestaurante(@PathVariable int idRestaurante) {
 		

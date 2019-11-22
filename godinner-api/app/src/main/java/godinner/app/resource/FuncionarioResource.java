@@ -71,6 +71,13 @@ public class FuncionarioResource {
 	}
 	
 	
+	@GetMapping("arrecadacaomes")
+	public String getArrecadacaoPorMesGodinner() {
+		Calendario calendario = new Calendario();
+		return calendario.jsonMeses(funcionarioRepository.getArrecadacaoPorMesGodinner());
+	}
+	
+	
 	
 	
 	
