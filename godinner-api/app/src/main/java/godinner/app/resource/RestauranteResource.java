@@ -42,6 +42,7 @@ import godinner.app.model.Endereco;
 import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
+import godinner.app.model.RestauranteArrecadacaoDTO;
 import godinner.app.model.RestauranteExibicao;
 import godinner.app.model.RetornoFloat;
 import godinner.app.model.RetornoInt;
@@ -49,6 +50,7 @@ import godinner.app.model.RetornoFloat;
 import godinner.app.repository.CidadeRepository;
 import godinner.app.repository.ConsumidorRepository;
 import godinner.app.repository.EnderecoRepository;
+import godinner.app.repository.RestauranteArrecadacaoDTORepository;
 import godinner.app.repository.RestauranteRepository;
 import godinner.app.storage.Disco;
 
@@ -60,6 +62,10 @@ public class RestauranteResource {
 
 	@Autowired
 	private RestauranteRepository restauranteRepository;
+	
+	@Autowired
+	private RestauranteArrecadacaoDTORepository restauranteArrecadacaoDTORepository;
+
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;
@@ -340,5 +346,17 @@ public class RestauranteResource {
 	
 		return  r;
 	}
+	
+	@GetMapping("/arrecadacao")
+	public List<RestauranteArrecadacaoDTO> getArrecadacaoRestaurante(){
+		return restauranteArrecadacaoDTORepository.getArrecadacaoRestaurante();
+	}
+	
+	@GetMapping("/qtdepedido")
+	public List<RestauranteArrecadacaoDTO> getQtdePedidoRestaurante(){
+		return restauranteArrecadacaoDTORepository.getQtdePedidoRestaurante();
+	}
+	
+	
 	
 }

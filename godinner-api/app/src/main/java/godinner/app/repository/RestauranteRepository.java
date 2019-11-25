@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
 import godinner.app.model.Restaurante;
+import godinner.app.model.RestauranteArrecadacaoDTO;
 
 public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 
