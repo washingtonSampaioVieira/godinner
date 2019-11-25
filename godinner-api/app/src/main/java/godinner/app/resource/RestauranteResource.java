@@ -62,10 +62,9 @@ public class RestauranteResource {
 
 	@Autowired
 	private RestauranteRepository restauranteRepository;
-	
+
 	@Autowired
 	private RestauranteArrecadacaoDTORepository restauranteArrecadacaoDTORepository;
-
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;
@@ -78,7 +77,7 @@ public class RestauranteResource {
 
 	@Autowired
 	private JwtTokenUtill jwtTokenUtil;
-	
+
 	@Value("aes.secret.key")
 	private String secret;
 
@@ -158,7 +157,8 @@ public class RestauranteResource {
 		if (c == null)
 			return null;
 
-		List<Restaurante> r = restauranteRepository.getRestauranteDestaque(c.getEndereco().getCidade().getEstado().getEstado());
+		List<Restaurante> r = restauranteRepository
+				.getRestauranteDestaque(c.getEndereco().getCidade().getEstado().getEstado());
 		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
 		e = setDadosExibicao(e, c);
 		return e;
@@ -170,7 +170,8 @@ public class RestauranteResource {
 		if (c == null)
 			return null;
 
-		List<Restaurante> r = restauranteRepository.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getEstado());
+		List<Restaurante> r = restauranteRepository
+				.getRestauranteExibicao(c.getEndereco().getCidade().getEstado().getEstado());
 		List<RestauranteExibicao> e = castListRestauranteExibicao(r);
 		e = setDadosExibicao(e, c);
 		return e;
@@ -184,7 +185,7 @@ public class RestauranteResource {
 			String destino = restaurantes.get(i).getEndereco().getCep().replace("-", "");
 
 			dados = this.buscarDistanciaTempoGoogle(origin, destino);
-			
+
 //			dados.add("9 Km");
 //			dados.add("15 mins");
 
@@ -196,7 +197,6 @@ public class RestauranteResource {
 		}
 		return restaurantes;
 	}
-
 
 	private ArrayList<String> buscarDistanciaTempoGoogle(String origin, String destino) {
 		URL url;
@@ -233,24 +233,19 @@ public class RestauranteResource {
 				dados = dados + linha;
 				linha = bufferedReader.readLine();
 			}
-			
-			//tratamento caso nao haja rota
+
+			// tratamento caso nao haja rota
 			JsonObject jsonStatus = new JsonParser().parse(dados).getAsJsonObject();
 			String status = jsonStatus.get("status").toString().replace("\"", "");
-			if(!status.equals("OK")) {
+			if (!status.equals("OK")) {
 				return retorno;
 			}
-				
-			
-			
-			
+
 			JsonObject json = new JsonParser().parse(dados).getAsJsonObject();
 			JsonObject primeiraFicha = json.get("routes").getAsJsonArray().get(0).getAsJsonObject();
 
 			JsonArray legs = primeiraFicha.get("legs").getAsJsonArray();
-			
-			
-			
+
 			JsonObject legsJson = new JsonParser().parse(legs.get(0).toString()).getAsJsonObject();
 
 			JsonObject durationText = legsJson.get("duration").getAsJsonObject();
@@ -290,73 +285,86 @@ public class RestauranteResource {
 		Restaurante restaurante = restauranteRepository.getPorId(id);
 		return restaurante;
 	}
-	
+
 	@GetMapping("/categoria/{id}")
 	public List<Restaurante> getRestaurantePorCategoria(@PathVariable int id) {
 		return restauranteRepository.getRestauranteFromCategoriaMaiorQue4(id);
 	}
-	
+
 	@GetMapping("/cadastrados")
 	public RetornoInt getTotalRestaurantesCadastrados() {
 		int totalRestaurante = restauranteRepository.getTotalRestaurante();
-		RetornoInt retornoInt =  new RetornoInt(totalRestaurante);
+		RetornoInt retornoInt = new RetornoInt(totalRestaurante);
 		return retornoInt;
 	}
-	
-	
+
 	@GetMapping("/saldorestaurante/{id}")
 	public RetornoFloat getSaldoRestaurante(@PathVariable float id) {
 		float saldoRestaurante = restauranteRepository.getSaldoRestaurante(id);
 		RetornoFloat retornoFloat = new RetornoFloat(saldoRestaurante);
 		return retornoFloat;
 	}
-	
-	
-	
-	
-	
+
 	@GetMapping("/desativo")
-	public List<Restaurante> getRestaurantesDesativados(){
-		
+	public List<Restaurante> getRestaurantesDesativados() {
+
 		List<Restaurante> r = restauranteRepository.getRestaurantesDesativados();
 		int total = r.size();
-		
+
 		for (int i = 0; i < total; i++) {
 			r.get(i).setSenha(null);
 		}
-		return  r;
+		return r;
 	}
-  
+
 	@GetMapping("/debito/{idRestaurante}")
 	public RetornoFloat getDebitoRestaurante(@PathVariable int idRestaurante) {
-		
+
 		return new RetornoFloat(restauranteRepository.getDebitoRestaurante(idRestaurante));
 	}
 
-	
 	@GetMapping("/ativo")
-	public List<Restaurante> getRestaurantesAtivos(){
-		
+	public List<Restaurante> getRestaurantesAtivos() {
+
 		List<Restaurante> r = restauranteRepository.getRestaurantesAtivos();
 		int total = r.size();
-		
+
 		for (int i = 0; i < total; i++) {
-			r.get(i).setSenha(null);	
+			r.get(i).setSenha(null);
 		}
-	
-		return  r;
+
+		return r;
 	}
-	
+
 	@GetMapping("/arrecadacao")
-	public List<RestauranteArrecadacaoDTO> getArrecadacaoRestaurante(){
+	public List<RestauranteArrecadacaoDTO> getArrecadacaoRestaurante() {
 		return restauranteArrecadacaoDTORepository.getArrecadacaoRestaurante();
 	}
-	
+
 	@GetMapping("/qtdepedido")
-	public List<RestauranteArrecadacaoDTO> getQtdePedidoRestaurante(){
+	public List<RestauranteArrecadacaoDTO> getQtdePedidoRestaurante() {
 		return restauranteArrecadacaoDTORepository.getQtdePedidoRestaurante();
 	}
-	
-	
-	
+
+	@GetMapping("/qtdedebito")
+	public RetornoInt getQtdeRestauranteDebito() {
+		int totalRestaurante = restauranteRepository.getQtdeRestauranteDebito();
+		RetornoInt retornoInt = new RetornoInt(totalRestaurante);
+		return retornoInt;
+	}
+
+	// getRestauranteDebito
+
+	@GetMapping("/verificadebito/{id}")
+	public String getRestauranteDebito(@PathVariable int id) {
+		int total = restauranteRepository.getRestauranteDebito(id);
+		
+
+		if(total >= 1) {
+			return "{\"total\":\""+true+"\"}";
+		}else {
+			return "{\"total\":\""+false+"\"}";
+		}
+	}
+
 }
