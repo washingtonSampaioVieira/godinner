@@ -13,6 +13,6 @@ public class RetornoInt {
 
 	public void setTotal(int total) {
 		this.total = total;
-	}
+	}  
 
 }

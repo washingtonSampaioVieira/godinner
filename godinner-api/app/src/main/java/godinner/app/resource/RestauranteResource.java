@@ -364,5 +364,26 @@ public class RestauranteResource {
 		}
 		return r;
 	}
+	
+	@GetMapping("/qtdedebito")
+	public RetornoInt getQtdeRestauranteDebito() {
+		int totalRestaurante = restauranteRepository.getQtdeRestauranteDebito();
+		RetornoInt retornoInt = new RetornoInt(totalRestaurante);
+		return retornoInt;
+	}
+
+	// getRestauranteDebito
+
+	@GetMapping("/verificadebito/{id}")
+	public String getRestauranteDebito(@PathVariable int id) {
+		int total = restauranteRepository.getRestauranteDebito(id);
+		
+
+		if(total >= 1) {
+			return "{\"total\":\""+true+"\"}";
+		}else {
+			return "{\"total\":\""+false+"\"}";
+		}
+	}
 
 }
