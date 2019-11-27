@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.AES;
+import godinner.app.helper.Email;
 import godinner.app.model.Consumidor;
 import godinner.app.model.Pedido;
 import godinner.app.model.Produto;
@@ -172,6 +173,9 @@ public class PedidoResource {
 			pedido.setStatusPedido(statusPedido);
 
 			pedidoRepository.save(pedido);
+			
+			Email.enviar(pedido.getConsumidor());
+			
 			try {
 				response.sendError(HttpServletResponse.SC_OK);
 			} catch (IOException e) {
