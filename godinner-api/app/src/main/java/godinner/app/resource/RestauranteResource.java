@@ -346,25 +346,25 @@ public class RestauranteResource {
 		return restauranteArrecadacaoDTORepository.getQtdePedidoRestaurante();
 	}
 
-	@PutMapping("/status/{id}")
-	public Restaurante setStatusRestaurante(@PathVariable int id, HttpServletResponse response) {
-		Restaurante r = restauranteRepository.getPorId(id);
-		Integer status = Integer.parseInt(r.getStatus());
-		switch (status) {
-		case 1:
-			r.setStatus("0");
-			restauranteRepository.save(r);
-			break;
+//	@PutMapping("/status/{id}")
+//	public RestauranteExibicao setStatusRestaurante(@PathVariable int id, HttpServletResponse response) {
+//		RestauranteExibicao r = restauranteRepository.getStatus(id);
+//		Integer status = Integer.parseInt(r.getStatus());
+//		switch (status) {
+//		case 1:
+//			r.setStatus("0");
+//			restauranteRepository.save(r);
+//			break;
+//
+//		case 0:
+//			r.setStatus("1");
+//			restauranteRepository.save(r);
+//			break;
+//		default:
+//		}
+//		return r;
+//	}
 
-		case 0:
-			r.setStatus("1");
-			restauranteRepository.save(r);
-			break;
-		default:
-		}
-		return r;
-	}
-	
 	@GetMapping("/qtdedebito")
 	public RetornoInt getQtdeRestauranteDebito() {
 		int totalRestaurante = restauranteRepository.getQtdeRestauranteDebito();
@@ -372,17 +372,14 @@ public class RestauranteResource {
 		return retornoInt;
 	}
 
-	// getRestauranteDebito
-
 	@GetMapping("/verificadebito/{id}")
 	public String getRestauranteDebito(@PathVariable int id) {
 		int total = restauranteRepository.getRestauranteDebito(id);
-		
 
-		if(total >= 1) {
-			return "{\"total\":\""+true+"\"}";
-		}else {
-			return "{\"total\":\""+false+"\"}";
+		if (total >= 1) {
+			return "{\"total\": \"Sim\"}";
+		} else {
+			return "{\"total\": \"Não\"}";
 		}
 	}
 
