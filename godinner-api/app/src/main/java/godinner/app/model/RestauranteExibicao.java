@@ -1,5 +1,8 @@
 package godinner.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class RestauranteExibicao extends Restaurante {
@@ -127,4 +130,6 @@ public class RestauranteExibicao extends Restaurante {
 				+ ", id=" + id + ", email=" + email + ", senha=" + senha + ", razaoSocial=" + razaoSocial + ", cnpj="
 				+ cnpj + ", telefone=" + telefone + ", endereco=" + endereco + ", foto=" + foto + "]";
 	}
+
+	
 }
