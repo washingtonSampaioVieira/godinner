@@ -266,9 +266,12 @@ public class RestauranteResource {
 
 	@GetMapping("/este")
 	public Restaurante getRestauranteByToken(@RequestHeader String token) {
+		
 		AES aes = new AES(this.secret);
+		
 		token = aes.decrypt(token);
 		String email = jwtTokenUtil.getUsernameFromToken(token);
+		
 		Restaurante restauranteLogado = restauranteRepository.getRestauranteByEmail(email);
 		return restauranteLogado;
 	}

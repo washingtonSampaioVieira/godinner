@@ -79,8 +79,21 @@ public class PedidoResource {
 	}
 
 	@PostMapping
-	public Pedido setPedido(@RequestBody Pedido pedido) {
+	public Pedido setPedido(@RequestBody Pedido pedido, HttpServletRequest request, HttpServletResponse response) {
 
+		
+		String token = request.getHeader("token");
+		AES aes = new AES(this.secret);
+		token = aes.decrypt(token);
+		String email = jwtTokenUtil.getUsernameFromToken(token);
+		
+		Consumidor c = consumidorRepository.getConsumidorByEmail(email);
+		
+		if (c == null)
+			return null;
+		
+		pedido.setConsumidor(c);
+				
 		// produto aguardando confirmação
 		StatusPedido statusPedido = new StatusPedido(1);
 		pedido.setStatusPedido(statusPedido);

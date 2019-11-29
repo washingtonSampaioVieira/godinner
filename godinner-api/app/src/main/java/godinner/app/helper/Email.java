@@ -22,25 +22,23 @@ public class Email {
 			email.setSubject("Seu pedido saiu para entrega!");//ASSUNTO
 
 			//MENSAGEM DE DE EMAIL EM HTML
-			String msgHTML = 
-					"<head> "+
-					"    <link href=\"https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap\" rel=\"stylesheet\"> "+
-					"    <link href=\"https://fonts.googleapis.com/css?family=Manjari&display=swap\" rel=\"stylesheet\"> "+
-					"    <link href=\"https://fonts.googleapis.com/css?family=Space+Mono:700&display=swap\" rel=\"stylesheet\"> "+
-					"</head>"+
-					"<table class=\"conteudo\" style=\"padding:20px;margin:0px; background-image: linear-gradient(to bottom right, #d7f1f5, #d2f1e4);box-sizing: border-box;\">"+
-					"    <tr height=\"30\">"+
-					"        <td width=\"100%\" colspan=\"3\"><h2 class=\"titulo-email\" style=\"padding:0px;margin:0px;  color: #157581;font-family: 'Lexend Deca', sans-serif;\">Olá "+c.getNome()+"</h2></td>"+
-					"    </tr>"+
-					"    <tr height=\"100\">"+
-					"        <td width=\"100%\" colspan=\"2\">"+
-					"            <p class=\"texto-email\" style=\"padding:0px;margin:0px;  font-size: 18px;font-family: 'Manjari', sans-serif;margin-top: 5px;\">Seu pedido saiu para a entrega!</p>"+
-					"        </td>"+
-					"        <td width=\"100%\"></td>"+
-					"    </tr>"+
-					"        <td width=\"33%\"></td>"+
-					"    </tr>"+
-					"</table>";
+			String msgHTML = "\"<head> \\r\\n\" + \r\n" + 
+					"					\"    <link href=\\\"https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap\\\" rel=\\\"stylesheet\\\"> \\r\\n\" + \r\n" + 
+					"					\"    <link href=\\\"https://fonts.googleapis.com/css?family=Manjari&display=swap\\\" rel=\\\"stylesheet\\\"> \\r\\n\" + \r\n" + 
+					"					\"    <link href=\\\"https://fonts.googleapis.com/css?family=Space+Mono:700&display=swap\\\" rel=\\\"stylesheet\\\"> \\r\\n\" + \r\n" + 
+					"					\"</head>\\r\\n\" + \r\n" + 
+					"					\"<center>\\r\\n\" + \r\n" + 
+					"					\"    <table class=\\\"conteudo\\\" style=\\\"padding:20px;margin:0px; background-image: linear-gradient(to bottom right, rgb(224, 103, 59), rgb(247, 128, 85));box-sizing: border-box; border-radius: 10px;\\\">\\r\\n\" + \r\n" + 
+					"					\"        <tr height=\\\"30\\\">\\r\\n\" + \r\n" + 
+					"					\"            <td width=\\\"100%\\\" colspan=\\\"3\\\"><h2 class=\\\"titulo-email\\\" style=\\\"padding:0px;margin:0px;  color: #eee;font-family: 'Lexend Deca', sans-serif;\\\">Olá \\\" +c.getNome() + \\\"</h2></td>\\r\\n\" + \r\n" + 
+					"					\"        </tr>\\r\\n\" + \r\n" + 
+					"					\"        <tr height=\\\"100\\\">\\r\\n\" + \r\n" + 
+					"					\"            <td width=\\\"100%\\\">\\r\\n\" + \r\n" + 
+					"					\"                <p class=\\\"texto-email\\\" style=\\\"padding:0px;margin:0px;  font-size: 18px;font-family: 'Manjari', sans-serif;margin-top: 5px;\\\">Seu pedido saiu para a entrega!</p>\\r\\n\" + \r\n" + 
+					"					\"            </td>\\r\\n\" + \r\n" + 
+					"					\"        </tr>\\r\\n\" + \r\n" + 
+					"					\"    </table>\\r\\n\" + \r\n" + 
+					"					\"</center>\";";
 			email.setHtmlMsg(msgHTML);//DEFININDO QUAL A MENSAGEM DO EMAIL
 			email.send();//ENVIANDO EMAIL
 			return true;

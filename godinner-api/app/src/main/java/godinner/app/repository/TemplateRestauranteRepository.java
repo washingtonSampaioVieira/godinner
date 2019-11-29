@@ -9,10 +9,10 @@ import godinner.app.model.TemplateRestaurante;
 
 public interface TemplateRestauranteRepository extends JpaRepository<TemplateRestaurante, Long> {
 	
-	@Query("SELECT t FROM TemplateRestaurante t WHERE t.restaurante.id = ?1")
+	@Query(value ="SELECT * FROM tbl_informacoes_template as t WHERE t.id_restaurante = ?1 limit 1", nativeQuery=true)
 	TemplateRestaurante getTemplate(int idRestaurante);
 	
-	@Query("SELECT t FROM TemplateRestaurante t WHERE t.id = ?1")
+	@Query(value ="SELECT * FROM tbl_informacoes_template as t WHERE t.id_informacoes_template = ?1 limit 1", nativeQuery=true)
 	TemplateRestaurante getTemplateById(int id);
 	
 
