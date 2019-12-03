@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.processing.SupportedOptions;
 
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.AES;
+import godinner.app.helper.Criptografia;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
 import godinner.app.model.Consumidor;
@@ -55,9 +57,13 @@ public class ConsumidorResource {
 
 	@PostMapping
 	public Consumidor setConsumidor(@Validated @RequestBody Consumidor consumidor) {
+		
 		Endereco endereco = consumidor.getEndereco();
 		Endereco enderecoSalvo = enderecoRepository.save(endereco);
-
+		
+		String senha = consumidor.getSenha();
+		consumidor.setSenha(Criptografia.md5(senha));
+		
 		Cidade c = cidadeRepository.getCidade(enderecoSalvo.getCidade().getId());
 
 		enderecoSalvo.setCidade(c);
@@ -67,22 +73,7 @@ public class ConsumidorResource {
 
 		return consumidorSalvo;
 	}
-	@PostMapping("/redesocial")
-	public Consumidor setConsumidorViaRedeSocial(@Validated @RequestBody Consumidor consumidor) {
-		consumidor.setSenha(null);
-		Endereco endereco = consumidor.getEndereco();
-		Endereco enderecoSalvo = enderecoRepository.save(endereco);
-
-		Cidade c = cidadeRepository.getCidade(enderecoSalvo.getCidade().getId());
-
-		enderecoSalvo.setCidade(c);
-		consumidor.setEndereco(enderecoSalvo);
-
-		Consumidor consumidorSalvo = consumidorRepository.save(consumidor);
-
-		return consumidorSalvo;
-	}
-
+	
 	@GetMapping("/valida/cpf/{cpf}")
 	public boolean validarCpf(@PathVariable String cpf) {
 		if (cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")) {
@@ -99,6 +90,7 @@ public class ConsumidorResource {
 		}
 	}
 
+	
 	@GetMapping("/valida/email/{email}")
 	public boolean validarEmail(@PathVariable String email) {
 		if (email.matches("^[a-z0-9.]+@[a-z0-9]+.[a-z]+\\.([a-z]+)?$")) {
@@ -136,4 +128,42 @@ public class ConsumidorResource {
 		RetornoInt retornoInt = new RetornoInt(total);
 		return retornoInt;
 	}
+	
+	@GetMapping("/verifica/email/{email}")
+	public boolean verificaEmailTipoRedeSocial(@PathVariable String email) {
+		if (email.matches("^[a-z0-9.]+@[a-z0-9]+.[a-z]+\\.([a-z]+)?$")) {
+			boolean resultado = (consumidorRepository.validaEmailTipoFacebook(email) == 1 ? true : false);
+
+			return resultado;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

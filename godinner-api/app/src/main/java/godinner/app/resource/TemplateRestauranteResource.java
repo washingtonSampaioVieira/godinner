@@ -63,10 +63,11 @@ public class TemplateRestauranteResource {
 	@GetMapping("/restaurantes/{idRestaurante}")
 	public TemplateRestaurante getTemplate(@PathVariable int idRestaurante) {
 		TemplateRestaurante templateRestaurante = templateRestauranteRepository.getTemplate(idRestaurante);
-		
-		templateRestaurante.getRestaurante().setSenha(null);
-		
+		if(templateRestaurante != null) {
+			templateRestaurante.getRestaurante().setSenha(null);			
+		}
 		return templateRestaurante;
+		
 	}
 	
 	@PutMapping

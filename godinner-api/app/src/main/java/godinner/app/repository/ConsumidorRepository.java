@@ -1,5 +1,4 @@
 package godinner.app.repository;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,10 +23,13 @@ public interface ConsumidorRepository extends JpaRepository<Consumidor, Long> {
 
 	@Query(value = "select * from  tbl_consumidor where id_consumidor = ?1 and id_endereco = ?2", nativeQuery = true)
 	public Consumidor getPorIdAndCidade(int idConsumidor, int idEndereco);
-	
-	@Query(value = "SELECT * FROM tbl_consumidor where senha IS NULL and email = ?1 ", nativeQuery=true)
+
+	@Query(value = "SELECT * FROM tbl_consumidor where senha IS NULL and email = ?1 ", nativeQuery = true)
 	public Consumidor getConsumidorLogadoPorRedeSocial(String email);
-	
-	@Query(value= "SELECT count(*) as Total from tbl_consumidor", nativeQuery=true)
+
+	@Query(value = "SELECT count(*) as Total from tbl_consumidor", nativeQuery = true)
 	public int getTotalConsumidor();
+
+	@Query(value = "select count(*) from tbl_consumidor where rede_social = 1 and email = ?1", nativeQuery = true)
+	public int validaEmailTipoFacebook(String email);
 }

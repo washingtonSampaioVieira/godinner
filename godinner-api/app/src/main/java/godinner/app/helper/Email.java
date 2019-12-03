@@ -15,30 +15,14 @@ public class Email {
 		email.setSmtpPort(465);//PORTA DE SAIDA DO EMAIL
 		email.setHostName("smtp.googlemail.com");//HOST DE ENVIO(NO CASO O GMAIL
 		try {
-			email.setAuthenticator(new DefaultAuthenticator("brace.everything@gmail.com", "duh2019s2@"));//AUTENTICAÇÃO DO REMETENTE DO EMAIL
+			email.setAuthenticator(new DefaultAuthenticator("godinner.tk@gmail.com", "TcC-G$odinner"));//AUTENTICAÇÃO DO REMETENTE DO EMAIL
 			email.setSSLOnConnect(true);
-			email.setFrom("godinnerfood@gmail.com", "Godinner!");//REMETENTE
+			email.setFrom("godinner.tk@gmail.com", "Godinner!");//REMETENTE
 			email.addTo(c.getEmail());
 			email.setSubject("Seu pedido saiu para entrega!");//ASSUNTO
 
 			//MENSAGEM DE DE EMAIL EM HTML
-			String msgHTML = "\"<head> \\r\\n\" + \r\n" + 
-					"					\"    <link href=\\\"https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap\\\" rel=\\\"stylesheet\\\"> \\r\\n\" + \r\n" + 
-					"					\"    <link href=\\\"https://fonts.googleapis.com/css?family=Manjari&display=swap\\\" rel=\\\"stylesheet\\\"> \\r\\n\" + \r\n" + 
-					"					\"    <link href=\\\"https://fonts.googleapis.com/css?family=Space+Mono:700&display=swap\\\" rel=\\\"stylesheet\\\"> \\r\\n\" + \r\n" + 
-					"					\"</head>\\r\\n\" + \r\n" + 
-					"					\"<center>\\r\\n\" + \r\n" + 
-					"					\"    <table class=\\\"conteudo\\\" style=\\\"padding:20px;margin:0px; background-image: linear-gradient(to bottom right, rgb(224, 103, 59), rgb(247, 128, 85));box-sizing: border-box; border-radius: 10px;\\\">\\r\\n\" + \r\n" + 
-					"					\"        <tr height=\\\"30\\\">\\r\\n\" + \r\n" + 
-					"					\"            <td width=\\\"100%\\\" colspan=\\\"3\\\"><h2 class=\\\"titulo-email\\\" style=\\\"padding:0px;margin:0px;  color: #eee;font-family: 'Lexend Deca', sans-serif;\\\">Olá \\\" +c.getNome() + \\\"</h2></td>\\r\\n\" + \r\n" + 
-					"					\"        </tr>\\r\\n\" + \r\n" + 
-					"					\"        <tr height=\\\"100\\\">\\r\\n\" + \r\n" + 
-					"					\"            <td width=\\\"100%\\\">\\r\\n\" + \r\n" + 
-					"					\"                <p class=\\\"texto-email\\\" style=\\\"padding:0px;margin:0px;  font-size: 18px;font-family: 'Manjari', sans-serif;margin-top: 5px;\\\">Seu pedido saiu para a entrega!</p>\\r\\n\" + \r\n" + 
-					"					\"            </td>\\r\\n\" + \r\n" + 
-					"					\"        </tr>\\r\\n\" + \r\n" + 
-					"					\"    </table>\\r\\n\" + \r\n" + 
-					"					\"</center>\";";
+			String msgHTML = "<!DOCTYPE html><html lang='en'><head>    <meta charset='UTF-8'>    <meta name='viewport' content='width=device-width, initial-scale=1.0'>    <meta http-equiv='X-UA-Compatible' content='ie=edge'>    <title>Document</title></head><body>    <head>      <link href=https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap rel=stylesheet>       <link href=https://fonts.googleapis.com/css?family=Manjari&display=swap rel=stylesheet>       <link href=https://fonts.googleapis.com/css?family=Space+Mono:700&display=swap rel=stylesheet>   </head>  <center>      <table cellpadding='10' class=conteudo style='alt:20px;margin:0px; background-image: linear-gradient(to right top, #ee5e2a, #ee6331, #ee6838, #ee6d3e, #ee7245); box-sizing: border-box; border-radius: 10px;'>          <tr height=30>              <td width=100% colspan=3><h2 class=titulo-email style='padding:0px;margin:0px;  color: #fff;font-family: sans-serif;'>Olá " + c.getNome() + "</h2></td>          </tr>          <tr height=100>              <td width=100%>                  <p class=texto-email style='padding:0px;margin:0px;  font-size: 18px;font-family: Manjari, sans-serif;margin-top: 5px; color: #fff;'>Seu pedido saiu para a entrega!</p>              </td>          </tr>      </table>  </center></body></html>";	
 			email.setHtmlMsg(msgHTML);//DEFININDO QUAL A MENSAGEM DO EMAIL
 			email.send();//ENVIANDO EMAIL
 			return true;

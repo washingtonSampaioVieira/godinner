@@ -33,7 +33,9 @@ import com.google.gson.JsonParser;
 
 import godinner.app.config.JwtTokenUtill;
 import godinner.app.helper.AES;
+import godinner.app.helper.Criptografia;
 import godinner.app.helper.Date;
+import godinner.app.helper.Email;
 import godinner.app.helper.Template;
 import godinner.app.helper.ValidaCadastro;
 import godinner.app.model.Cidade;
@@ -95,7 +97,10 @@ public class RestauranteResource {
 
 		enderecoSalvo.setCidade(c);
 		restaurante.setEndereco(enderecoSalvo);
-
+		String senha = restaurante.getSenha();
+		
+		restaurante.setSenha(Criptografia.md5(senha));
+		
 		Restaurante restauranteSalvo = restauranteRepository.save(restaurante);
 
 		return restauranteSalvo;
@@ -385,5 +390,15 @@ public class RestauranteResource {
 			return "{\"total\": \"Não\"}";
 		}
 	}
+	
+	@CrossOrigin
+	@GetMapping("/testeemail")
+	public void enviarEmail() {
+		Consumidor c = new Consumidor();
+		c.setNome("WAshington");
+		c.setEmail("washingtonsampaio.23@gmail.com");
+		Email.enviar(c);
+	}
+	
 
 }

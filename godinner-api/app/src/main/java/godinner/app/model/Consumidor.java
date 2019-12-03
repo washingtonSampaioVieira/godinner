@@ -32,7 +32,6 @@ public class Consumidor {
 	@Size(min = 10, max = 100)
 	private String email;
 
-	
 	@NotNull
 	@Size(min = 6, max = 255)
 	private String senha;
@@ -52,6 +51,17 @@ public class Consumidor {
 	@ManyToOne
 	@NotNull
 	private Endereco endereco;
+
+	@Column(name = "rede_social")
+	private String redeSocial;
+
+	public String getRedeSocial() {
+		return redeSocial;
+	}
+
+	public void setRedeSocial(String redeSocial) {
+		this.redeSocial = redeSocial;
+	}
 
 	public Integer getId() {
 		return id;
@@ -82,8 +92,9 @@ public class Consumidor {
 	}
 
 	public void setSenha(String senha) {
-		
-		this.senha = senha;;
+
+		this.senha = senha;
+		;
 	}
 
 	public String getCpf() {
