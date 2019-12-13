@@ -1,0 +1,48 @@
+.circle{
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+}
+
+.max-select{
+    max-width: 15rem;
+}
+
+.mensagem-slogan{
+    max-width: 50rem;
+    min-height: 40px;
+    height: auto;
+    margin:20px 0 20px 0;
+    padding-top: 8px;
+    font-size: 1.1em;
+}
+
+.select-data{
+    max-width: 50rem;
+}
+
+.border-none{
+    border-top: none;
+}
+
+.max{
+    max-width: 50rem;
+}
+
+.w3-input{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius: 5px ;
+    width: 100%;
+}
+
+.modalPedidos{
+    background-color: #fff;
+    border-radius: 5px;
+    width: 750px;
+    min-height: 200px;
+    height: auto;
+    padding: 30px 50px;
+    justify-content: center;
+    display: block;
+}

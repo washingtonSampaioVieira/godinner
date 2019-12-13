@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+select, textarea, input, .slider{
+    border: 1px solid #DEDEDE;
+    box-shadow: 2px 4px 4px 0px rgba(33, 33, 33, 0.24);
+    /* border-radius: 10px; */
+}
+
+.shadow-none input{
+    box-shadow: none;
+}
+
+.show {
+    display: block !important;
+}
+
+/*RETIRA A FORMATAÇÃO DAS INPUTS*/
+
+textarea:focus, input:focus, select:focus, a:focus {
+    border-color: none !important;
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
+textarea {
+    resize: none !important;
+}
+
+
+.cor-cinza{
+    color: #6c757d;
+    cursor: pointer;
+}
+select {
+    box-sizing: border-box;
+}
+
+textarea {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.img-login {
+    width: 220px !important;
+    height: 200px !important;
+}
+
+.input-file {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    color: #ffffff;
+    height: 30px;
+    font-size: 1.1em;
+    /* border-radius: 5px; */
+    padding: 2px 12px;
+}
+
+
+
+.input-file input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.btn-tamanho{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.icone-img {
+    width: 600px !important;
+}
+
+.imagem-logo-menor{
+    height: 45px;
+}
+
+.simbolo-porcentagem{
+    margin-top: 39px;
+    margin-left: -13px;
+}
+
+.card-maior img{
+    width: 100%;
+    height: 150px;
+}
+
+.card-menor img{
+    width: 100%;
+    height: 150px;
+}
+
+textarea:focus, input:focus, select:focus, a:focus{
+    border-color: none !important;
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.img-background{
+    background-image: url("../imgs/background-food.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-login{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.btn-orange-2{
+    background-color: #F26B3A;
+    width: 20%
+}
+
+.red{
+    background-color: #F26B3A;
+}
+
+/* CSS VISUALIZAR PRODUTOS */
+
+.item-list-p{
+
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+}
+
+.caixa{
+    width: 30%;
+}
+
+
+
+.pointer{
+    cursor: pointer;
+}
+
+/* IMAGEM LISTA PRODUTOS */
+
+.imagem-produto {
+    height: 140px !important;
+}
+
+/* MODAL */
+
+.backdropStyle{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.modalStyle{
+    background-color: #fff;
+    border-radius: 5px;
+    width: 750px;
+   height: 700px;
+    padding: 30px;
+    justify-content: center;
+    display: block;
+}
+
+.blue{
+    background-color: black;
+}
+
+.disabilita-elemento {
+    pointer-events: none;
+    opacity: 0.4;
+}
+ /* Template Restaurante */
+
+.bg-image-container1{
+    background-image: url("http://www.wordwallpapers.com/wp-content/uploads/2015/11/100-Amazing-Mixed-Wallpapers-10-5.jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+}
+
+.navbarColor{
+    background-color: rgba(0, 0, 0, 0.8)
+}
+
+.bg-image-container2{
+    background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?size=626&ext=jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+}
+
+/* Setas Carousel */
+.carousel-control-next-icon:after
+{
+    content: '>';
+    font-family: monospace, 'Courier New', Courier;
+    font-size: 100px;
+    color:rgb(80, 80, 80);
+}
+
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-family: monospace, 'Courier New', Courier;
+    font-size: 100px;
+    color:rgb(80, 80, 80);
+}
+
+.bg-image-container3{
+    background: url("https://voyage-onirique.com/wp-content/uploads/2018/04/WallpaperStudio10-86066.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}

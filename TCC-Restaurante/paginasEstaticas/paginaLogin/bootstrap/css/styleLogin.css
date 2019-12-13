@@ -1,0 +1,119 @@
+body{
+    background-color:  #F8F8F8;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	}
+a:hover {
+	text-decoration: none; 
+	color: #F26B3A;
+	}
+a:active {
+	text-decoration: none;
+    }
+a{
+    color: inherit;
+}
+
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+.navbar-brand img{
+    height: 50px;
+    width: 200px;
+}
+
+.cor-branca{
+    color: #F8F8F8;
+}
+.cor-preta{
+    color:#2D2D2C;
+}
+
+.font-tamanho-42{
+    font-size: 42px;
+}
+.font-tamanho-26{
+    font-size: 26px;
+}
+
+.font-tamanho-23{
+    font-size: 23px;
+}
+
+.font-tamanho-20{
+    font-size: 20px;
+}
+
+.navbar-color{
+    background-color: rgb(253, 253, 253, 80%);
+    
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color:  #F26B3A;
+}
+
+
+.container-header{
+    width: 100%;
+    height: 80px;
+    background-color:  #F8F8F8;
+    box-shadow: -1px 15px 17px -6px rgba(0,0,0,0.34);
+    
+}
+
+
+.btn-orange, .btn-orange a:link, 
+.btn-orange  a:visited{
+    width: 100%;
+    background-color:#ffffff;
+    color: #2D2D2C;  
+    border-color: #F26B3A;
+}
+
+.btn-orange:hover,.btn-orange a:hover,
+.btn-orange a:active{
+    
+    border: 1px solid #F26B3A;
+    color: #2D2D2C;   
+}
+
+.icone-caracteristica img{
+    width: 50px;
+    height: 50px;
+}
+.titulo-card{
+    color: #ffffff;
+    font-size: 42px;
+}
+
+.subtitulo-card{
+    color: #ffffff;
+    font-size: 23px;
+}
+
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green
+}
+
+.transparente{
+    background-color: #ffffffa9;
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+}
+
+
+
+

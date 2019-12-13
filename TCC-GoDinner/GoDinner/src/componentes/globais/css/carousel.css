@@ -1,0 +1,57 @@
+.box{
+    width: 100%;
+    height: 200px;
+    margin: 20px auto;
+    overflow: scroll;
+    overflow-y:hidden;
+    
+  }
+  .box::-webkit-scrollbar {
+      height: 5px;
+      width: 5px;
+      background: #eee;
+  }
+  
+  .box::-webkit-scrollbar-button {
+      width: 5px;
+      height: 5px;
+      background: rgb(255, 255, 255);
+  }
+  
+  .box::-webkit-scrollbar-corner {
+      background: rgb(177, 33, 33);
+  }
+  
+  .box::-webkit-scrollbar-thumb {
+      background: rgb(197, 197, 197);
+  }
+  
+  
+  .tamanho-imagem{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+  }
+  
+  
+  .categoria-comida{
+    width: 150px;
+    float: left;
+    margin-left: 10px;
+  }
+  /*
+  
+    .box::-webkit-scrollbar-corner {
+        background: #333;
+    }
+    .box::-webkit-scrollbar-thumb {
+        background: #333;
+    }
+    */
+    
+    .dummy{
+      width:max-content;
+      height: 200px;
+    
+    }
+   

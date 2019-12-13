@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./bootstrap-4.0.0-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Endereço</title>
+</head>
+
+<body>
+    <header class="d-flex flex-row navbar navbar-light bg-light">
+    </header>
+    <div class="container w-100 d-flex flex-column align-items-center mt-5 pt-5">
+        <form class="d-flex flex-column form-group">
+            <label class="h2 mb-4">Endereço do restaurante</label>
+            
+            <div class="d-flex flex-row p-3">
+                <input class="p-1 w-33 mr-4" id="txt-cep-restaurante" name="txt-cep-restaurante" type="text"
+                    class="form-control" placeholder="CEP">
+                <input class="p-1 w-33 mr-4" id="txt-logradouro-restaurante" name="txt-logradouro-restaurante" type="text"
+                    class="form-control" placeholder="Logradouro">
+                <input class="p-1 w-33" id="txt-bairro-restaurante" name="txt-bairro-restaurante" type="text"
+                class="form-control" placeholder="Bairro">
+            </div>
+            <div class="d-flex flex-row p-3" >
+                <select class="form-control p-1 w-50 mr-4 border-input">
+                    <option> Cidade</option>
+                </select>
+                <select class="form-control p-1 w-50 border-input">
+                    <option> Estado</option>
+                </select>
+
+            </div>
+            <div class="d-flex flex-row p-3">
+                
+                <input class="p-1 col-10 mr-4" id="txt-complemento-restaurante" name="txt-complemento-restaurante" type="text"
+                    class="form-control" placeholder="Complemento">
+                <input class="p-1 col-1 mr-4" id="txt-numero-restaurante" name="txt-numero-restaurante" type="text"
+                    class="form-control" placeholder="N°">
+                
+            </div>
+            <div class="d-flex flex-column p-3">
+                    <label class="mb-2">Referência</label>
+                    <textarea class="form-control p-3 w-100 mr-4 border-input" id="txt-referencia-restaurante" maxlength="150" name="txt-referencia-restaurante" type="text">
+
+                    </textarea>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

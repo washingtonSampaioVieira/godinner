@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalhesPedido">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapseToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="#ca6f06"
+
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/image_produto_detalhes"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:contentDescription="@string/lbl_imagem_produto"
+                android:scaleType="fitXY"
+                android:src="@drawable/img1" />
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/linha2"
+                android:layout_width="1000dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="8dp"
+                android:background="#a4a2a2" />
+            <TextView
+                android:id="@+id/text_nome_produto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Burger King"
+                android:textAlignment="center"
+                android:textColor="@color/Dark"
+                android:textSize="25sp" />
+            <View
+                android:id="@+id/linha3"
+                android:layout_width="1000dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="15dp"
+                android:background="#eee" />
+            <TextView
+                android:id="@+id/text_descricao_produto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="1 carne, pão com gergelim, queijo, alface, tomate, cebola, picles, maionese BK® e ketchup"
+                android:textAlignment="center"
+                android:textColor="@color/Dark"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="100dp"
+            android:background="#eee" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btn_menos_um"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="3dp"
+                android:layout_weight="2"
+                android:text="@string/lbl_menos"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="1dp"
+                app:layout_constraintTop_toBottomOf="@+id/view4"
+                app:rippleColor="@color/Dark"
+                app:strokeColor="#b3b0b0"
+                app:strokeWidth="2dp" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btn_total_produtos"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_weight="3"
+                android:soundEffectsEnabled="false"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:rippleColor="@color/Dark"
+                app:strokeColor="#b3b0b0"
+                app:strokeWidth="2dp"
+                android:text="0"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btn_mais_um"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="3dp"
+                android:layout_weight="2"
+                android:text="@string/lbl_mais"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="1dp"
+                app:rippleColor="@color/Dark"
+                app:strokeColor="#b3b0b0"
+                app:strokeWidth="2dp" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/valor_total"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="5"
+                android:background="@color/colorProgressBar"
+                android:text="R$ 53.11"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
+

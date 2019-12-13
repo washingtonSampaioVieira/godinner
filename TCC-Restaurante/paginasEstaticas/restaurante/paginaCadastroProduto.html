@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link href="./bootstrap/css/styleCadastroProduto.css" rel="stylesheet">
+    <script type="text/javascript" src="jquery/jquery.js"></script>
+</head>
+<body>
+    
+        
+
+    <!--header da pagina e nav-->
+    
+    <header class="container-header">  
+        <div class="container ">
+            <div class="col-5">
+                <img src="img/icone/logo2.png"/> 
+            </div>
+        </div> 
+        <div class="col-7">
+
+        </div>
+        
+    </header>
+    <div class="container">
+
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light  navbar-color">
+        <div class="container">    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <div class="col-9 col-md-10 ">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cadastro de Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Seus Produtos</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-3 col-md-2">    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle pl-0 " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <div class="restaurante-imagem">
+                                <img src="img/icone_slider/6.jpg " class=""/>
+                           </div> 
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </div>
+                
+            </div>
+        </div>
+          </nav>
+    <div class="container">
+        <!--Formulário para cadastro-->
+        <div class="row mt-3">
+            <h1 class="mx-auto">Cadastro de Produtos</h1>
+        </div>
+        <hr/>
+        <form>
+            <div class="row">
+                <!--Coluna de cadastro-->
+                <div class="col-12 col-md-5">
+                    <!--linha nome do Produto-->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label  class="h5">Nome do Produto</label>
+                            <input class="form-control  mb-2 mr-sm-2" type="text" name="" id=""/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 mb-3">
+                            <label  class="h5">Preço</label>
+                            <input class="form-control  mb-2 mr-sm-2" type="text" name="" id=""/>
+                        </div>
+                        <div class="col-3 mb-3">
+                            <label  class="h5">Promoção</label>
+                            <input class="form-control  mb-2 mr-sm-2" type="text" name="" id=""/>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h5 class="simbolo-porcentagem">%</h5>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-8">
+                            <label  class="h5">Categoria do Produto</label>
+                            <select class="custom-select">
+                                <option selected>Selecione a categoria para este produto... </option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1" class="h5">Descrição do Produto</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Coluna de Imagens-->
+                <div class="col-12 col-md-7" id=" div_transparente">
+                    <div class="row">
+                        <div class="col-7 col-md-5 mx-auto ">
+                                <div class="card card-maior">
+                                    <img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">
+                                    <div class="card-body pt-0">
+                                        <p>
+                                            <div class="input-group input-group-sm mb-0 mt-0">
+                                                <input type="text" class="form-control mt-0" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm" placeholder="Escreva uma legenda..">
+                                                <div class="input-file">
+                                                    <span>Anexar</span>
+                                                    <input ref="file" type="file" classe="upload"  multiple="true" id="foto" name="foto" value=""/>
+                                                </div>
+                                            </div>
+                                        </p>
+                                        <a class="btn btn-success  btn-sm tamanho-btn text-white " id="add-campo">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                            Adicionar Campo
+                                        </a>
+                                    </div>
+                                </div>
+                        </div>     
+                    </div>
+                    <div class="row" id="imagens-secundarias">
+                            <script>
+                                    var cont = 1;
+                                    $('#add-campo').click(function () {
+                                        cont++;
+                                        $('#imagens-secundarias').append(
+                                            '<div class="col-5 col-md-4 " id="campo' + cont + '">'+
+                                                '<div class="card card-menor">'+
+                                                    '<img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">'+
+                                                    '<div class="card-body pb-0 pt-0">'+
+                                                    '<p>'+
+                                                        '<div class="input-group input-group-sm mt-0 ">'+
+                                                            '<input type="text" id="inputeste" class="form-control mt-0" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm" placeholder="Escreva uma legenda..">'+
+                                                            ' <div class="input-file">'+
+                                                                '<span>Anexar</span>'+
+                                                                ' <input ref="file" type="file" classe="upload"  multiple="true" id="foto" name="foto" value=""/>'+
+                                                            '<div>'+ 
+                                                                '<a class="btn btn-danger btn-sm mb-2"  id="remInput">'+
+                                                                    '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'+
+                                                                    'Remover'+
+                                                                '</a>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                    '</p>'+
+                                                    '<a class="btn btn-danger tamanho-btn btn-sm mb-2 btn-apagar text-white" id="' + cont + '" >'+
+                                                        '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'+
+                                                        'Remover'+
+                                                    '</a>'+
+                                                    '</div>'+
+                                                '</div>'+   
+                                            '</div> '
+                                        );
+                                    });
+                                
+                                    $('form').on('click', '.btn-apagar', function () {
+                                        var button_id = $(this).attr("id");
+                                        $('#campo' + button_id + '').remove();
+                                    });
+                            </script>
+                    </div>
+                </div> 
+            </div>
+            <div>
+                <a class="btn btn-orange-2  btn-sm text-white  mt-4" id="add-campo">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Cadastrar
+                </a>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="jquery/javascript.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="jquery/pooper.js"></script>
+</body>
+</html>

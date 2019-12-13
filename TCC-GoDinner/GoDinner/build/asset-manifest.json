@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1da88f96.chunk.css",
+    "main.js": "/static/js/main.b490492f.chunk.js",
+    "main.js.map": "/static/js/main.b490492f.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.4eaa0380.js",
+    "runtime~main.js.map": "/static/js/runtime~main.4eaa0380.js.map",
+    "static/css/2.ff85ba5b.chunk.css": "/static/css/2.ff85ba5b.chunk.css",
+    "static/js/2.cfbc23ad.chunk.js": "/static/js/2.cfbc23ad.chunk.js",
+    "static/js/2.cfbc23ad.chunk.js.map": "/static/js/2.cfbc23ad.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.674557f824cded57387285ca97fc106d.js": "/precache-manifest.674557f824cded57387285ca97fc106d.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ff85ba5b.chunk.css.map": "/static/css/2.ff85ba5b.chunk.css.map",
+    "static/css/main.1da88f96.chunk.css.map": "/static/css/main.1da88f96.chunk.css.map",
+    "static/media/1.png": "/static/media/1.bbd6ecc3.png",
+    "static/media/2.jpg": "/static/media/2.bbec4151.jpg",
+    "static/media/android.png": "/static/media/android.6808a2c7.png",
+    "static/media/background-a-go-dinner.jpg": "/static/media/background-a-go-dinner.43a0312c.jpg",
+    "static/media/style.css": "/static/media/background_quem-_somos.c24bb52a.jpg",
+    "static/media/background_prato.png": "/static/media/background_prato.079d2ea1.png",
+    "static/media/fotoCelular.png": "/static/media/fotoCelular.3e88b699.png",
+    "static/media/go-dinner-garfo.png": "/static/media/go-dinner-garfo.80e936f2.png",
+    "static/media/go-dinner.png": "/static/media/go-dinner.59f62fae.png",
+    "static/media/logo.png": "/static/media/logo.7856ebea.png"
+  }
+}

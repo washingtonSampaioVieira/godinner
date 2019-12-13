@@ -1,0 +1,84 @@
+.logo{
+    width: 200px;
+}
+
+.seta{
+    width: 50px;
+}
+
+.container{
+    height: 700px;
+}
+
+.navbar{
+    height: 100px;
+}
+
+.andamento-cadastro{
+    height: 5px;
+    background: #F26B3A;
+}
+
+
+.btn-orange, .btn-orange a:link, 
+.btn-orange  a:visited{
+    width: 120px;
+    border: 2px solid #F26B3A;
+    color: #F26B3A;
+    margin-left: 370px;
+}
+
+.btn-orange:hover,.btn-orange a:hover,
+.btn-orange a:active{
+    background: #F26B3A;
+    color: #ffffff;
+    
+}
+
+form{
+    width: 500px;
+    height: 300px;
+}
+
+input, .slider{
+    height: 40px;
+    border: 1px solid #DEDEDE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+
+.img-login{
+    width: 150px;
+    height: 150px;
+}
+
+.file-input{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.label-file{
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.file-input + .label-file {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #F26B3A;
+    display: inline-block;
+}
+
+.file-input:focus + .label-file,
+.file-inputs + .label-file:hover {
+    background-color: #F26B3A;
+}
+

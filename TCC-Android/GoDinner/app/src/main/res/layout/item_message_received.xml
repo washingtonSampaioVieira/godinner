@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/text_message_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rounded_rectangle_orange"
+        android:maxWidth="240dp"
+        android:minWidth="120dp"
+        android:paddingBottom="26dp"
+        android:paddingEnd="40dp"
+        android:paddingStart="12dp"
+        android:paddingTop="24dp"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toRightOf="@id/marginSpacer_beforeMessage" />
+
+    <ImageView
+        android:id="@+id/square1"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/descricao_img_random"
+        android:src="@drawable/ic_square1"
+        app:layout_constraintLeft_toRightOf="@id/message_tail" />
+
+    <ImageView
+        android:id="@+id/message_tail"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="3dp"
+        android:contentDescription="@string/descricao_img_random"
+        android:src="@drawable/ic_tail2"
+        app:layout_constraintEnd_toEndOf="@+id/marginSpacer_beforeMessage" />
+
+    <android.support.v4.widget.Space
+        android:id="@+id/marginSpacer_beforeMessage"
+        android:layout_width="20dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/text_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="12dp"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_message_body" />
+
+    <TextView
+        android:id="@+id/text_message_name"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginStart="12dp"
+        android:maxLines="1"
+        android:paddingTop="5dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/square1" />
+</android.support.constraint.ConstraintLayout>

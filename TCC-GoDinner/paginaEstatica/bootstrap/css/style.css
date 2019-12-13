@@ -1,0 +1,199 @@
+body{
+    background-color: #F9F7F7;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	}
+a:hover {
+	text-decoration: none; 
+	color: #F26B3A;
+	}
+a:active {
+	text-decoration: none;
+    }
+a{
+    color: inherit;
+}
+
+.navbar-brand img{
+    height: 50px;
+    width: 200px;
+}
+
+.cor-branca{
+    color: #F8F8F8;
+}
+.cor-preta{
+    color:#2D2D2C;
+}
+
+.font-tamanho-42{
+    font-size: 42px;
+}
+.font-tamanho-26{
+    font-size: 26px;
+}
+
+.font-tamanho-23{
+    font-size: 23px;
+}
+
+.font-tamanho-20{
+    font-size: 20px;
+}
+
+.navbar-color{
+    background-color: rgb(253, 253, 253, 80%);
+    
+}
+
+
+.item-carousel{
+    height: 200px;
+    
+}
+
+.item-carousel img{
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+    width: 100%; 
+    height: 75%;
+}
+
+.imagem-esta-com-fome img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+
+}
+.navbar-light .navbar-nav .nav-link {
+    color:  #F26B3A;
+}
+
+.caixa-header{
+    background-image: url(../../img/background/background_header.jpg);
+    background-size: cover;
+    height: 600px;
+    background-repeat: no-repeat;
+}
+.lead-formatacao{
+    color:#F26B3A;
+    text-shadow: -1px 2px 6px rgba(242, 107, 58, 0.932);
+    font-weight: bold;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+}
+.display-4-formatacao{
+    columns: #000000;
+    font-weight: bold;
+    text-shadow: -1px 2px 6px rgba(150, 150, 150, 1);
+}
+.display-4-formatacao-2{
+    color: #ffffff;
+}
+
+.icone-garfo{
+    width: 50px;
+    height: 50px;
+}
+
+.caixa-cadastro{
+    background-color: #ED5017;
+}
+
+.icone-dinheiro{
+    width: 100px;
+    height: 100px;
+}
+
+.icone-social{
+    width: 30px;
+    height: 30px;
+}
+
+.icone-app{
+    width: 150px;
+    height: 50px;
+}
+
+.background-card{
+    background-color: rgb(247, 67, 2);
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.btn-orange, .btn-orange a:link, 
+.btn-orange  a:visited{
+    background: #ffffff;
+    color: #F26B3A;  
+}
+
+.btn-orange:hover,.btn-orange a:hover,
+.btn-orange a:active{
+    
+    border: 1px solid #F26B3A;
+    
+    color: #F26B3A;   
+}
+
+.icone-caracteristica img{
+    width: 50px;
+    height: 50px;
+}
+.titulo-card{
+    color: #ffffff;
+    font-size: 42px;
+}
+
+.subtitulo-card{
+    color: #ffffff;
+    font-size: 23px;
+}
+
+.background-mesa {
+    width: 100%;
+    height: 100%;
+}
+
+.background-caracteristicas{
+    background-image: url("../../img/background/background_caracteristicas.jpeg")
+}
+
+.icone-android {
+    width: 100px;
+    height: 100px;
+}
+
+.img-icones{
+    width: 50px;
+    height: 50px;
+}
+.backgound-icones{
+    height: 120px;
+    background: url(../../img/backgound_icones.jpeg);
+    width: 100%;
+    background-size: contain;
+}
+
+.backgound-icones-icones{
+    background-color: rgb(253, 253, 253,76%);;
+}
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green
+}
+
+.transparente{
+    background-color: #ffffffa9;
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+}
+

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SacolaFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <!--<ImageButton-->
+                    <!--android:id="@+id/btn_voltar"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:contentDescription="@string/btn_voltar"-->
+                    <!--android:src="@drawable/ic_back3" />-->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/lbl_sacola"
+                    android:textAlignment="center"
+                    android:textColor="#4D4D4D"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!--<ImageButton-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:contentDescription="@string/btn_voltar"-->
+                    <!--android:src="@drawable/ic_bag" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="172dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/maps_img"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_image"
+                    android:orientation="vertical"
+                    android:paddingBottom="4dp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingTop="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical"
+                        android:paddingEnd="6dp"
+                        android:paddingStart="8dp"
+                        android:paddingTop="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="6"
+                                android:text="@string/lbl_entregarem"
+                                android:textColor="#4D4D4D"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="28dp"
+                                android:layout_weight="1"
+                                android:contentDescription="@string/lbl_more"
+                                android:src="@drawable/ic_more_vert" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txt_endereco_entrega"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#4D4D4D"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cac9c9" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_valor_entrega"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:paddingEnd="6dp"
+                                android:paddingStart="8dp"
+                                android:textColor="#4D4D4D"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_tempo_entrega"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:paddingEnd="6dp"
+                                android:paddingStart="8dp"
+                                android:textColor="#4D4D4D"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/lbl_imagem_entregador"
+                            android:src="@drawable/ic_entregador" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="#dedbdb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="372dp"
+                android:orientation="vertical"
+                android:paddingEnd="12dp"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_meus_pedidos"
+                    android:textColor="#4D4D4D"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/border_linearlayout2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_nome_restaurante"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:text="@string/lbl_nenhum_pedido"
+                        android:textAlignment="center"
+                        android:textColor="#4D4D4D"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cac9c9" />
+
+                    <ListView
+                        android:id="@+id/lista_pedidos"
+                        android:layout_width="match_parent"
+                        android:layout_height="136dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/border_linearlayout2"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_pedido"
+                        android:textAlignment="textStart"
+                        android:textColor="#4D4D4D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txt_valor_pedido"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_preco_padrao"
+                        android:textAlignment="textEnd"
+                        android:textColor="#4D4D4D"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_entrega"
+                        android:textAlignment="textStart"
+                        android:textColor="#4D4D4D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txt_valor_entrega2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_preco_padrao"
+                        android:textAlignment="textEnd"
+                        android:textColor="#4D4D4D"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_total_geral"
+                        android:textAlignment="textStart"
+                        android:textColor="#4D4D4D"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_total_geral"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_preco_padrao"
+                        android:textAlignment="textEnd"
+                        android:textColor="#4D4D4D"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="14dp"
+                android:paddingStart="14dp">
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/btn_esvaziar_sacola"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:text="@string/lbl_esvaziar_sacola"
+                    android:textAlignment="center"
+                    android:textColor="#4D4D4D"
+                    android:textSize="14sp"
+                    app:backgroundTint="@android:color/transparent"
+                    app:cornerRadius="8dp"
+                    app:rippleColor="#33AAAAAA"
+                    app:strokeColor="#b3b0b0"
+                    app:strokeWidth="2dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="0.15" />
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/btn_finalizar_compra"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="#E07148"
+                    android:backgroundTint="#E07148"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:text="@string/lbl_finalizar_compra"
+                    android:textAlignment="center"
+                    android:textColor="#f8f8f8"
+                    android:textSize="14sp"
+                    app:backgroundTint="@android:color/transparent"
+                    app:cornerRadius="8dp"
+                    app:rippleColor="#a33b15"
+                    app:strokeColor="#E07148"
+                    app:strokeWidth="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

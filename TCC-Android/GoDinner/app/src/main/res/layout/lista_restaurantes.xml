@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="5.3"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="4dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <TextView
+                android:id="@+id/rank_restaurante"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                android:textSize="12sp"
+                android:layout_alignParentStart="true"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_rating_star"
+                    android:contentDescription="@string/lbl_avaliacao_estrela"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/avaliacao_restaurante"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@android:color/holo_orange_dark"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/nome_restaurante"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:textSize="16sp"
+            android:textColor="#2D2D2D"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:id="@+id/distancia"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#2D2D2D"
+                android:textSize="12sp"
+                android:lines="1"
+                android:ellipsize="end"/>
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:background="#555"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/preco"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#2D2D2D"
+                android:textSize="12sp"
+                android:lines="1"
+                android:ellipsize="end"/>
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:background="#555"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tempo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#2D2D2D"
+                android:textSize="12sp"
+                android:lines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_weight="1.4"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxHeight="100px"
+            android:maxWidth="100px"
+            android:contentDescription="@string/lbl_logo_restaurante"
+            android:src="@drawable/ic_chef" />
+
+    </FrameLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/linha3"
+        android:layout_width="1000dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:background="#eee" />
+</LinearLayout>

@@ -1,0 +1,25 @@
+.navbar {
+  height: 100px;
+}
+
+.andamento-cadastro {
+  height: 7px;
+  background: #F26B3A !important;
+  animation-name: progressBar;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 10%;
+  }
+}
+
+.seta {
+  width: 50px;
+}
+
+.logo {
+  width: 200px;
+}

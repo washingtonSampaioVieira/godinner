@@ -1,0 +1,90 @@
+<div class="row mt-5">
+                <div class="col-3 ">
+                    <a href="#" class="btn btn-orange">Cadastrar</a>
+                </div>
+            </div>
+            <div id="dynamicDiv">
+                <p>
+                    <div class="col-3">
+                            <div class="card card-menor">
+                                <img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title text-center">Imagem Principal</h5> 
+                                    <p>
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" >
+                                                <label class="custom-file-label" for="inputGroupFile01"></label>
+                                            </div>
+                                        </div>
+                                    </p>
+                                    <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                        Remover Imagem
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </p>
+            </div>
+                <script>
+                        $(function () {
+                            var scntDiv = $('#dynamicDiv');
+                            $(document).on('click', '#addInput', function () {
+                                $(  '<a>'+
+                                    '<div class="col-3">'+
+                                    '<div class="card card-menor"> '+
+                                        '<div class="card card-menor">'+
+                                            '<img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">'+
+                                            '<div class="card-body pb-0">' +
+                                                '<h5 class="card-title text-center">Imagem Principal</h5>'+
+                                                '<p>'+
+                                                    '<div class="input-group mb-3">'+
+                                                        '<div class="custom-file>'+
+                                                            ' <input type="file" class="custom-file-input" id="inputGroupFile01" >'+
+                                                            '<label class="custom-file-label" for="inputGroupFile01"></label>'+
+                                                        '</div>'+
+                                                    '</div>'+
+                                                '</p>'+
+                                                '<a class="btn btn-danger mt-5" href="javascript:void(0)" id="remInput">'+
+                                                    '<span class="glyphicon glyphicon-minus" aria-hidden="true">'+'</span>'+
+                                                    'Remover Imagem'+
+                                                '</a>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                 '</div>'+
+                                 '</a>').appendTo(scntDiv);
+                            return false;
+                        });
+                        $(document).on('click', '#remInput', function () {
+                            $(this).parents('p').remove();
+                            return false;
+                        });
+                    });
+                </script>
+				
+				
+				
+				<div class="row">
+            <div class="col-3">
+                <div class="card card-menor">
+                    <img src="img/icone_slider/8.jpg" class="card-img-top tamanho-imagem-produto" alt="...">
+                    <div class="card-body pb-0">
+                        <h5 class="card-title text-center">Imagem Principal</h5> 
+                        <p>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01" >
+                                    <label class="custom-file-label" for="inputGroupFile01"></label>
+                                </div>
+                            </div>
+                        </p>
+                        <a class="btn btn-danger" href="javascript:void(0)" id="remInput">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            Remover Imagem
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>

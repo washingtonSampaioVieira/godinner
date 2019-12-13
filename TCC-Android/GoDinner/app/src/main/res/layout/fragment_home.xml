@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/fragment_home"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment"
+    android:focusableInTouchMode="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="0dp"
+                    android:baselineAligned="false">
+
+                    <!-- Entregar em... -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="4dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_entregarem"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:id="@+id/txt_endereco_entrega"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:ellipsize="end"/>
+                    </LinearLayout>
+                    <!-- Filtros -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal">
+
+                        <Button
+                            android:id="@+id/btn_filtros"
+                            android:layout_width="88dp"
+                            android:layout_height="42dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/lbl_filtros"
+                            android:textColor="@android:color/holo_orange_dark"
+                            android:textStyle="bold"
+
+                            android:paddingEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:foreground="?attr/selectableItemBackground"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/txt_buscar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_search1"
+                    android:hint="@string/lbl_pratos_restaurantes"
+                    android:inputType="text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="18dp"
+                    android:drawablePadding="12dp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="11dp"
+                android:background="#eee"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_restaurantes_proximos"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/restaurantes_proximos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="11dp"
+                android:background="#eee"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_categorias"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/categorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="11dp"
+                android:background="#eee"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lista_restaurantes"
+                android:layout_width="match_parent"
+                android:layout_height="480dp"
+                android:layout_marginTop="6dp">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+</FrameLayout>

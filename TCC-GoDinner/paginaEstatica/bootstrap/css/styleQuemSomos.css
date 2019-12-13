@@ -1,0 +1,13 @@
+.caixa-header-quem-somos{
+    background-image: url(../../img/background/background_quem-_somos.jpg);
+    background-size: cover;
+    height: 600px;
+    background-repeat: no-repeat;
+}
+
+.background-valor{
+    background-image: url(../../img/background/background_missao.jpg);
+    background-size: cover;
+    min-height: 400px;
+    background-repeat: no-repeat;
+}

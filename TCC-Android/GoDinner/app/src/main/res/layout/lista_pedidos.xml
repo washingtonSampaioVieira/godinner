@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="41dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:padding="4dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="14dp">
+
+        <TextView
+            android:id="@+id/nome_pedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:textColor="#4D4D4D"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/preco_pedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3.5"
+            android:textColor="#4D4D4D"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/opcoes_pedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/lbl_more"
+            android:src="@drawable/ic_more_horiz" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cac9c9" />
+</LinearLayout>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tamplete Restaurante</title>
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+        <script type="text/javascript" src="jquery/jquery.js"></script>
+        <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            .bg-image-container1{
+                background-image: url("http://www.wordwallpapers.com/wp-content/uploads/2015/11/100-Amazing-Mixed-Wallpapers-10-5.jpg");
+                background-size: 100% 100%;
+                background-repeat: repeat;
+            }
+
+            .navbarColor{
+                background-color: rgba(0, 0, 0, 0.8)
+            }
+
+            .bg-image-container2{
+                background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?size=626&ext=jpg");
+                background-size: 100% 100%;
+                background-repeat: repeat;
+            }
+            
+            /* Setas Carousel */
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                height: 100px;
+                width: 100px; 
+                outline: black;
+                text-align: center;
+                line-height: 0.9;
+                background-image: none;
+            }
+
+            .carousel-control-next-icon:after
+            {
+                content: '>';
+                font-family: monospace, 'Courier New', Courier;
+                font-size: 100px;
+                color:rgb(80, 80, 80);
+            }
+
+            .carousel-control-prev-icon:after {
+                content: '<';
+                font-family: monospace, 'Courier New', Courier;
+                font-size: 100px;
+                color:rgb(80, 80, 80);
+            }
+
+            .bg-image-container3{
+                background: url("https://voyage-onirique.com/wp-content/uploads/2018/04/WallpaperStudio10-86066.jpg");
+                background-size: 100% 100%;
+                background-repeat: repeat;
+            }
+
+        </style>
+    </head>
+
+
+
+    <body class="w-75 mx-auto">
+        <!-- container-inicial -->
+        <div class="container-fluid bg-image-container1 p-0" style="min-height: 700px" background>
+
+            <!-- navbar -->
+            <nav class="navbar navbarColor justify-content-around">
+                <a class="navbar-brand" href="#">
+                    <img src="https://purepng.com/public/uploads/large/burger-king-logo-xua.png" class=" rounded float-left" style="max-width: 55px" alt=""/>
+                </a>
+                <ul class="nav justify-content-end w-50">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Sobre o Restaurante</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Container Sla -->
+        <div class="container-fluid bg-image-container2" style="min-height: 250px" back>
+            <h1 class="pt-2 pb-2 text-center text-light">
+                Burger Classic
+            </h1>
+            <div class="d-block">
+                <p class="h5 text-center text-light">
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam quis nostrud exercitation ullamco.
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur dipisicing elit, sed do eiusmod Incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam quis nostrud exercitation ullamco               
+                </p>
+            </div>
+        </div>
+
+        <!-- Container Carousel -->
+        <div class="container-fluid" style="min-height: 700px">
+            <h1 class="text-center pt-2">MENU</h1>
+            <div class="container w-25 mt-3 mb-0">
+                <div class="d-flex justify-content-between">
+
+                    <figure class="figure my-auto">
+                        <img class="m-1" style="max-height: 64px" src="https://cdn3.iconfinder.com/data/icons/fast-food-outline-2/427/burger_hamburger_meat_cheese_food_meal_fast_restaurant_junk_fastfood-64.png" alt="Icone Hambúguer" />
+                    </figure>
+                    <figure class="figure my-auto">
+                        <img class="m-1" style="max-height: 64px" src="https://cdn3.iconfinder.com/data/icons/fast-food-outline-2/439/pizza_italian_cheese_slice_tomato_food_meal_fast_restaurant_junk_fastfood-64.png" alt="Icone Pizza" />
+                    </figure>
+                    <figure class="figure my-auto">
+                        <img class="m-1" style="max-height: 64px" src="https://cdn0.iconfinder.com/data/icons/fastfood-29/64/cup-soft-drink-water-takeaway-fastfood-cola-64.png" alt="Icone Refrigerante" />
+                    </figure>
+                </div>
+            </div>
+            <hr>
+            <!-- carousel -->
+            
+            <div class="carousel slide mt-5" id="ProdutosRestaurante" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#ProdutosRestaurante" data-slide-to="0" class="active"></li>
+                    <li data-target="#ProdutosRestaurante" data-slide-to="1"></li>
+                    <li data-target="#ProdutosRestaurante" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-flex justify-content-around p-3">
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Itens Carousel -->
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-around p-3">
+                            
+                            <div class="card mb-2 float-left" style="max-width: 18rem;">
+
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-around p-3">
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-2 float-left" style="width: 18rem;">
+                                <img class="card-img-top" src="https://png.pngtree.com/element_pic/17/07/26/eb63d3b8ae4d2a1de45ba95e6d5b53ae.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title text-center">Burguer</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <!-- SETAS -->
+                <a class="carousel-control-prev" href="#ProdutosRestaurante" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#ProdutosRestaurante" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Container Mais Vendidos -->
+        <div class="container-fluid bg-image-container3 p-0" style="min-height: 400px">
+            <div class="container-fluid navbarColor p-5" style="min-height: inherit">
+                <div class="container w-50 mx-auto">
+                    <!-- Titulo -->
+                    <h1 class="text-center text-white">Mais Vendidos</h1>
+
+                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
+                        <div class="d-flex flex-column text-white">
+                            <h3>Burguer 1</h3>
+                        </div>
+                        <div class="d-flex flex-column text-white">
+                            <h3>15,00</h3>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
+                        <div class="d-flex flex-column text-white">
+                            <h3>Burguer 2</h3>
+                        </div>
+                        <div class="d-flex flex-column text-white">
+                            <h3>15,00</h3>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
+                        <div class="d-flex flex-column text-white">
+                            <h3>Burguer 3</h3>
+                        </div>
+                        <div class="d-flex flex-column text-white">
+                            <h3>15,00</h3>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between pt-3 mb-3" style="border-bottom: 3px solid white; border-bottom-style:dotted;">
+                        <div class="d-flex flex-column text-white">
+                            <h3>Burguer 4</h3>
+                        </div>
+                        <div class="d-flex flex-column text-white">
+                            <h3>15,00</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container sobre nós -->
+        <div class="container-fluid" style="min-height: 300px">
+            <h1 class="text-center p-3">Sobre Nós</h1>
+            <p class="text-center w-75 text-wrap mx-auto" style="max-height: 300rem">
+                Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
+                e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja
+                de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não
+                Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
+                e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja
+                de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não
+            </p>
+            <div class="d-flex flex-row w-75 mx-auto mt-5 justify-content-around">
+                <div class="d-flex flex-column">
+                    Burguer Classic - Barueri
+                </div>
+                <div class="d-flex flex-column">
+                    Pagamento pelo App GoDinner: Visa , Elo, Amex,
+                </div>
+            </div>
+        </div>
+
+        <!-- Container Galeira -->
+        <div class="container-fluid">
+            <h1 class="text-center p-3">Galeria de fotos</h1>
+            <div class="row">
+                <div class="col-md-12">
+                
+                    <figure class="col-md-4 float-left">
+                        <a href="" data-size="1600x1067">
+                            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg" class="img-fluid">
+                        </a>
+                    </figure>
+                
+                    <figure class="col-md-4 float-left">
+                        <a href="" data-size="1600x1067">
+                            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(150).jpg" class="img-fluid" />
+                        </a>
+                    </figure>
+                
+                    <figure class="col-md-4 float-left">
+                        <a href="" data-size="1600x1067">
+                            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(152).jpg" class="img-fluid" />
+                        </a>
+                    </figure>
+                
+                    <figure class="col-md-4 float-left">
+                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" data-size="1600x1067">
+                        <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" class="img-fluid" />
+                        </a>
+                    </figure>
+                
+                    <figure class="col-md-4 float-left">
+                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(151).jpg" data-size="1600x1067">
+                        <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(151).jpg" class="img-fluid" />
+                        </a>
+                    </figure>
+                
+                    <figure class="col-md-4 float-left">
+                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg" data-size="1600x1067">
+                        <img alt="picture" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(40).jpg" class="img-fluid" />
+                        </a>
+                    </figure>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

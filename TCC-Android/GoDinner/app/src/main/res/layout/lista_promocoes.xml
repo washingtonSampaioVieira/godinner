@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="165dp"
+    android:layout_height="148dp"
+    android:layout_marginEnd="18dp"
+    android:background="@drawable/border_linearlayout"
+    android:orientation="vertical"
+    android:paddingEnd="4dp"
+    android:paddingStart="4dp"
+    android:paddingTop="6dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:paddingEnd="4dp"
+        android:paddingStart="4dp">
+
+        <ImageView
+            android:id="@+id/image_produto"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:background="@color/Image"
+            android:contentDescription="@string/lbl_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_food" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/nome_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Combo Burger Jr"
+        android:textAlignment="center"
+        android:textColor="#444"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp"
+        android:paddingEnd="0dp"
+        android:paddingStart="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="De: "
+            android:textColor="#555"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/preco_antigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:text="15,00"
+            android:textColor="#555"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Por: R$"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/preco_novo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15,00"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="90dp"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_item"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/lbl_description"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:src="@drawable/com_facebook_profile_picture_blank_square" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#555" />
+        </LinearLayout>
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/btn_deslogar"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:background="#E07148"
+            android:backgroundTint="#E07148"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="Sair"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:backgroundTint="@android:color/transparent"
+            app:rippleColor="#a33b15"
+            app:strokeColor="#E07148"
+            app:strokeWidth="2dp" />
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/btn_chat"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:background="#E07148"
+            android:backgroundTint="#E07148"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="Chat"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:backgroundTint="@android:color/transparent"
+            app:rippleColor="#a33b15"
+            app:strokeColor="#E07148"
+            app:strokeWidth="2dp" />
+        <!--<Button-->
+        <!--android:id="@+id/btn_chat"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Chat" />-->
+    </LinearLayout>
+</FrameLayout>

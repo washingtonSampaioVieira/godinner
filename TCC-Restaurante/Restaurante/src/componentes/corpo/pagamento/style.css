@@ -1,0 +1,595 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	font: normal 1em 'DinRound';
+	/* box-shadow: 10px 20px 100px rgba(0, 0, 0, 0.05) inset; */
+	user-select: none;
+	width: 100%;
+	position: absolute;
+}
+
+a, button {
+	outline: none;
+}
+
+#pen{
+	display: flex;
+    flex-direction: column;
+}
+
+/* UPPERCASE */
+#pen, .Detailes-Input{
+	text-transform: uppercase;
+	color: #fff;
+}
+
+.Detailes-Input{
+	text-align: center;
+}
+
+.Card-Holder-input input{
+	letter-spacing: 3px;
+}
+
+.Card-Total_Title {
+	color: #fff !important;
+}
+
+.Card {
+	position: relative;
+	margin: auto;
+	box-shadow: 4px 8px 20px 6px rgba(160, 160, 160, 0.5);
+	height: 370px;
+	width: 1000px;
+	transition: all 0.4s ease;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-content: stretch;
+	align-items: flex-start;
+	overflow: hidden;
+}
+
+.Card .flex-item:nth-child(1) {
+	order: 0;
+	flex: 0 1;
+	align-self: auto;
+	transition: all 0.07s;
+}
+
+.Card .flex-item:nth-child(1).Remove_Box {
+	flex: 0 1 0;
+}
+
+.Card .flex-item:nth-child(2) {
+	order: 0;
+	/* flex: 0 1 75%; */
+	align-self: auto;
+	transition: all 0.07s;
+}
+
+.Card .flex-item:nth-child(2).Remove_Box {
+	flex: 0 1 100%;
+}
+
+.Card .Card-Checkout__List {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.Card .Card-Checkout__List .List-Content {
+	background: #fff;
+	height: 100%;
+	width: 100%;
+	transition: all 0.07s;
+}
+
+.Card .Card-Checkout__List .List-Content.Remove_Box {
+	width: 0;
+	overflow: hidden;
+}
+
+.Card .Card-Checkout__List .List-Content ul {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.Card .Card-Checkout__List .List-Content ul li {
+	display: block;
+	padding: 20px 0 0 20px;
+	position: relative;
+}
+
+.Card .Card-Checkout__List .List-Content ul li img {
+	width: 40px;
+	height: 40px;
+	display: inherit;
+	float: left;
+	margin-right: 8px;
+}
+
+.Card .Card-Checkout__List .List-Content ul li span {
+	font-family: inherit;
+	margin: 2px 0 0 0;
+}
+
+.Card .Card-Checkout__List .List-Content ul li span.Product-AlbumName {
+	font-weight: 500;
+	font-size: 0.85em;
+	z-index: 0;
+}
+
+.Card .Card-Checkout__List .List-Content ul li span.Product-SingerName {
+	font-weight: 400;
+	font-size: 0.75em;
+	z-index: 0;
+}
+
+.Card .Card-Checkout__List .List-Content ul li span.Product-SingerName .by {
+	display: inline;
+	/* color: #717171; */
+}
+
+.Card .Card-Checkout__List .List-Content ul li span.block {
+	display: block;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count {
+	margin: 0;
+	padding: 0;
+	line-height: 26px;
+	font-size: 12px;
+	height: 26px;
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #d9d9d9;
+	width: 38px;
+	position: absolute;
+	top: 26px;
+	right: 20px;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count:hover {
+	border-color: #643ebb;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count:hover .Product-Count-handler-wrap {
+	border-color: #643ebb;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-input {
+	width: 100%;
+	text-align: center;
+	outline: 0;
+	-moz-appearance: textfield;
+	line-height: 26px;
+	height: 26px;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	/* color: #666; */
+	border: 0;
+	padding: 0;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-input-wrap {
+	overflow: hidden;
+	height: 26px;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler {
+	text-align: center;
+	line-height: 12px;
+	height: 12px;
+	overflow: hidden;
+	display: block;
+	cursor: pointer;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler:hover, .Card .Card-Checkout__List .List-Content ul li .Product-Count-handler:active, .Card .Card-Checkout__List .List-Content ul li .Product-Count-handler:focus {
+	background: #643ebb;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler-up {
+	border-bottom: 1px solid #d9d9d9;
+	padding-top: 1px;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler-up-inner:after {
+	content: '+';
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler-up-disabled {
+	opacity: 0.72;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler-down-inner:after {
+	content: '-';
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Count-handler-wrap {
+	float: right;
+	border-left: 1px solid #d9d9d9;
+	width: 14px;
+	height: 26px;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Remove {
+	position: absolute;
+	color: #999;
+	left: 7px;
+	top: 35px;
+	font-size: 0.6em;
+	font-family: sans-serif;
+	cursor: pointer;
+	display: none;
+}
+
+.Card .Card-Checkout__List .List-Content ul li .Product-Remove:hover {
+	font-weight: 600;
+	color: #666;
+}
+
+.Card .Card-Checkout__List .List-Content ul li:hover .Product-Remove {
+	display: block;
+}
+
+.Card .Card-Checkout__List .List-Seprator {
+	border-top: 2px dashed #ddd;
+	position: relative;
+	top: -66px;
+}
+
+.Card .Card-Checkout__List .Card-Shipping {
+	position: relative;
+	top: -55px;
+	left: 20px;
+}
+
+.Card .Card-Checkout__List .Card-Shipping .Shipping-Title {
+	color: #d0d0d0;
+	font-size: 0.8em;
+}
+
+.Card .Card-Checkout__List .Card-Shipping .Shipping-Cost {
+	font-weight: 500;
+	color: #7e51c4;
+}
+
+.Card .Card-Inner {
+	overflow: hidden;
+	background-image: linear-gradient(to right top, #f26b3a, #f37040, #f37446, #f4794b, #f47d51);
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.Card .Card-Inner .Card-Logo {
+	display: inline-block;
+	top: 35px;
+	right: 35px;
+	position: absolute;
+	transition: all 0.2s;
+}
+
+.Card .Card-Inner .Card-Logo svg {
+	height: 28px;
+	width: 90px;
+}
+
+.Card .Card-Inner .Card-Title {
+	position: absolute;
+	top: 30px;
+	left: 40px;
+	transition: all 0.4s;
+}
+
+.Card .Card-Inner .Card-Title h2 {
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+	font-size: 1.6em;
+	margin: 0;
+	color: #fff;
+	font-weight: 500;
+}
+
+.Card .Card-Inner .Card-Total {
+	color: #fff;
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+	position: absolute;
+	bottom: 30px;
+	left: 40px;
+}
+
+.Card .Card-Inner .Card-Total .Card-Total_Number {
+	font-size: 3em;
+	font-weight: 300;
+	color: #ffffff !important;
+}
+
+.Card-Total-Title {
+	color: #ffffff !important;
+}
+
+.Card .Card-Inner .Card-Wave {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 0;
+}
+
+.Card .Card-Inner .Card-Wave:before, .Card .Card-Inner .Card-Wave:after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-radius: 50% 50%;
+}
+
+.Card .Card-Inner .Card-Wave:after {
+	height: 700px;
+	width: 700px;
+	left: 32%;
+	top: 40%;
+	opacity: 0.8;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.Card .Card-Inner .Card-Wave:before {
+	height: 1500px;
+	width: 1500px;
+	left: -40%;
+	top: -328%;
+	left: -35%;
+	top: -323%;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.Card .Card-Inner .Card-Btn {
+	z-index: 1000;
+	position: absolute;
+	bottom: 35px;
+	right: 35px;
+	transition: all 0.4s;
+}
+
+.Card .Card-Inner .Card-Btn button {
+	/* background: linear-gradient(-45deg, #cca24b, #dcba72); */
+	background-image: linear-gradient(to right, #faa61a, #fba922, #fcad29, #feb02f, #ffb335);
+	color: #fff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	border: 0;
+	padding: 8px 16px 11px 16px;
+	margin: 0;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.Card .Card-Inner .Credit-Number {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-content: stretch;
+	align-items: flex-start;
+	top: 160px;
+	width: 80%;
+	left: 75px;
+	transition: all 0.4s;
+}
+
+.Card .Card-Inner .Credit-Number .Parts {
+	background: transparent;
+	font-weight: 500;
+	color: #fff;
+	border: 0;
+	font-size: 2em;
+	letter-spacing: 12px;
+	text-align: center;
+	width: 25%;
+	outline: none;
+}
+
+.Card .Card-Inner .Credit-Number .Parts:nth-child(1) {
+	order: 0;
+	flex: 0 1 25%;
+	align-self: stretch;
+}
+
+.Card .Card-Inner .Credit-Number .Parts:nth-child(2) {
+	order: 0;
+	flex: 0 1 25%;
+	align-self: stretch;
+}
+
+.Card .Card-Inner .Credit-Number .Parts:nth-child(3) {
+	order: 0;
+	flex: 0 1 25%;
+	align-self: stretch;
+}
+
+.Card .Card-Inner .Credit-Number .Parts:nth-child(4) {
+	order: 0;
+	flex: 0 1 25%;
+	align-self: stretch;
+}
+
+.Card .Card-Inner .Card-Details-Wrapper {
+	position: absolute;
+	bottom: 26px;
+	display: flex;
+	left: 35px;
+	transition: all 0.4s;
+}
+
+/* MUDA COR DO PLACEHOLDER */
+
+.Card ::-webkit-input-placeholder {
+	color: rgba(255, 255, 255, 0.658);
+}
+
+.Card :-moz-placeholder {
+	color: rgba(255, 255, 255, 0.658);
+}
+
+.Card ::-moz-placeholder {
+	color: rgba(255, 255, 255, 0.658);
+}
+
+.Card :-ms-input-placeholder {
+	color: rgba(255, 255, 255, 0.658);
+}
+
+.Card .Card-Inner .Card-Details-Wrapper .Details-Title {
+	/* color: rgba(255, 255, 255, 0.8); */
+	color: #fff;
+	font-weight: 400;
+	font-size: 0.9em;
+	margin: 0 0 20px;
+}
+
+.Card .Card-Inner .Card-Details-Wrapper .Detailes-Input {
+	background: transparent;
+	font-weight: 500;
+	color: #fff;
+	border: 0;
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+	font-size: 1.2em;
+	width: 85%;
+	outline: none;
+	
+}
+
+.Card .Card-Inner .Card-Details-Wrapper .Card-Holder {
+	width: 35%;
+}
+
+.Card .Card-Inner .Card-Details-Wrapper .Card-Expiration {
+	width: 27%;
+}
+
+.Card .Card-Inner .Card-Details-Wrapper .Card-CVV {
+	width: 20%;
+}
+
+.Card .Card-Inner .Back_To_Payment {
+	transition: all 0.4s;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+}
+
+.Card .Card-Inner .Back_To_Payment svg {
+	margin: 0px 120px;
+	overflow: visible;
+	fill: none;
+	stroke: #bfbfbf;
+	stroke-width: 2;
+	stroke-miterlimit: 10;
+	height: 100%;
+}
+
+.Card .Card-Inner .Back_To_Payment rect {
+	fill: black;
+	stroke: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	cursor: pointer;
+}
+
+.Card .Card-Inner .Payment-Success {
+	visibility: hidden;
+	transition: all 0.4s;
+	opacity: 0;
+	padding: 135px 0px;
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+	text-align: center;
+}
+
+.Card .Card-Inner .Payment-Success h2 {
+	margin: 0;
+	font-size: 1.6em;
+}
+
+.Card .Card-Inner .Payment-Success h3 {
+	margin: 7px 0 35px;
+	font-weight: 500;
+	font-size: 1.28em;
+}
+
+.Card .Card-Inner .Payment-Success p {
+	margin: 8px 0 0;
+	font-size: 1.15em;
+}
+
+#success .Card-Inner {
+	background-image: linear-gradient(to right, #47a615, #4ea522, #54a42c, #5aa235, #5fa13d);
+}
+
+#success .Card-Title, #success .Back_To_Payment, #success .Credit-Number, #success .Card-Details-Wrapper, #success .Card-Btn {
+	display: none;
+}
+
+#success .Card-Logo {
+	top: 70px;
+	right: 324px;
+}
+
+#success .Payment-Success {
+	visibility: visible;
+	opacity: 1;
+}
+
+.Credit-Check-Validation {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.4s;
+	top: 35px;
+	left: 330px;
+	color: red;
+}
+
+.Credit-Check-Validation.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.Credit-Check-Validation p {
+	font-size: 0.82em;
+	margin: 0;
+	line-height: 19px;
+}
+
+.Credit-Check-Validation p svg {
+	width: 18px;
+	height: 18px;
+	fill: red;
+	float: left;
+	margin-right: 10px;
+}
+
+footer {
+	margin: 45px 0;
+	width: 100%;
+}
+
+footer p {
+	text-align: center;
+	margin: 6px 0 0;
+	padding: 0;
+	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.04);
+}
+
+footer p a {
+	text-decoration: none;
+}
+
+footer p a:hover {
+	border-bottom: 1px dotted;
+}

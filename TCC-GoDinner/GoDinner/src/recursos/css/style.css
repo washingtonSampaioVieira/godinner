@@ -1,0 +1,430 @@
+
+
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    outline: none;
+  }
+  .switch input {
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  input:checked + .slider {
+    background-color: #269900;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+.slider{
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+  
+.border-bottom-laranja{
+    border: 1px #F26B3A solid;
+    background: #F26B3A;
+    color:#ffffff;
+}
+
+.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
+
+.caixa-header-2{
+    background-image: url(../imgs/background_quem-_somos.jpg); 
+    background-size: cover;
+    height: 600px;
+    margin-top:120px;
+    background-repeat: no-repeat;
+}
+.z-index{
+    position: absolute;
+    z-index: 9999;
+}
+
+.border-bottom-laranja:hover{
+    border: 1px #F26B3A solid;
+    background: #ffffff;
+    color:#F26B3A;
+    transition: 1s;
+}
+textarea:focus, input:focus, select:focus, a:focus {
+    border-color: none !important;
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+/*  FORMATAÇÃO GLOBAL */
+a:link, a:visited {
+	text-decoration: none;
+	}
+a:hover {
+	text-decoration: none; 
+	color: #F26B3A;
+	}
+a:active {
+	text-decoration: none;
+    }
+a{
+    color: inherit;
+}
+
+.font-tamanho-42{
+    font-size: 42px;
+}
+.font-tamanho-26{
+    font-size: 26px;
+}
+
+.font-tamanho-23{
+    font-size: 23px;
+}
+
+.font-tamanho-20{
+    font-size: 20px;
+}
+
+.cor-branca{
+    color: #F8F8F8;
+}
+.cor-preta{
+    color:#2D2D2C;
+}
+/*NAV BAR*/
+.navbar-brand img{
+    height: 50px;
+    width: 200px;
+}
+
+.navbar-color{
+    background-color: rgba(253, 253, 253, 0.918);
+    
+}
+
+.background-valor{
+    background-image: url(../imgs/background_missao.jpg);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color:  #F26B3A;
+}
+
+
+
+.tamanho_imagem{
+    width: 70%; 
+    height: 70%;
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+}
+
+.menu-container{
+    height: 100px;
+}
+
+
+.imagem-esta-com-fome img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+
+}
+
+/*CAIXA DE CABEÇALHO*/
+.caixa-header{
+    
+    background-image: url(../imgs/background-go-dinner-header.jpg); 
+    background-size: cover;
+    height: 450px;
+    margin-top:100px;
+    background-repeat: no-repeat;
+}
+.lead-formatacao{
+    color:#F26B3A;
+    text-shadow: -1px 2px 6px rgba(242, 107, 58, 0.932);
+    font-weight: bold;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+}
+.display-4-formatacao{
+    columns: #000000;
+    font-weight: bold;
+    text-shadow: -1px 2px 6px rgba(150, 150, 150, 1);
+}
+.display-4-formatacao-2{
+    color: #ffffff;
+}
+
+
+.background-card{
+    background-color: rgb(247, 67, 2);
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+}
+
+/*FORMATAÇÃO DO BOTÃO*/
+.btn-orange, .btn-orange a:link, 
+.btn-orange  a:visited{
+    background: #ffffff;
+    color: #F26B3A; 
+    border: 1px solid #F26B3A  
+}
+
+.btn-orange:hover,.btn-orange a:hover,
+.btn-orange a:active{
+    
+    border: 1px solid #F26B3A;
+    background: #F26B3A;
+    color: #ffffff ;   
+}
+
+
+
+/*FORMATAÇÃO DO CARD*/
+.titulo-card{
+    color: #ffffff;
+    font-size: 42px;
+}
+
+.subtitulo-card{
+    color: #ffffff;
+    font-size: 23px;
+}
+
+/*BACKGROUNDS*/
+.background-mesa {
+    width: 100%;
+    height: 100%;
+}
+
+.background-caracteristicas{
+    background-image: url(../imgs/background-go-dinner-caracteristica.jpeg);
+}
+
+/*FORMATAÇÃO DE ICONES*/
+
+.icone-android {
+    width: 100px;
+    height: 100px;
+}
+
+
+.icone-garfo{
+    width: 50px;
+    height: 50px;
+}
+
+.caixa-cadastro{
+    background-color: #ED5017;
+}
+
+.icone-dinheiro{
+    width: 100px;
+    height: 100px;
+}
+
+.icone-social{
+    width: 30px;
+    height: 30px;
+}
+
+.icone-app{
+    width: 150px;
+    height: 50px;
+}
+
+.icone-caracteristica img{
+    width: 50px;
+    height: 50px;
+}
+
+.img-icones{
+    width: 50px;
+    height: 50px;
+}
+.backgound-icones{
+    height: 120px;
+    /* background: url(../../img/backgound_icones.jpeg); */
+    width: 100%;
+    background-size: contain;
+}
+
+.backgound-icones-icones{
+    background-color: rgb(253, 253, 253,76%);;
+}
+
+
+.transparente{
+    background-color: #ffffffb4;
+    box-shadow: 10px 10px 41px -21px rgba(0,0,0,0.75);
+}
+
+.link-menu{
+    color:#2D2D2C;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+
+
+
+.link-menu:hover{
+    color:#F26B3A;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.link-menu-2{
+    color:#2D2D2C;
+}
+
+.link-menu-2:hover{
+    color:#F26B3A;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .display-4-formatacao{
+        font-size: 42px;
+    }
+
+    .card-title{
+        font-size: 33px;
+        
+    }
+
+    .font-tamanho-23, .font-tamanho-42{
+        font-size:23px;
+    }
+
+    .lead-formatacao, .card-text{
+        font-size: 20px;
+    }
+
+    .btn-orange, .font-tamanho-26, .font-tamanho-20{
+        font-size: 16px;
+    }
+    
+    .jumbotron{
+        height: 400px;
+    }
+
+    .jumbotron-2{
+        height: 200px;
+    }
+
+    .icone-android{
+        height: 80px;
+        width: 70px;
+    }
+    .jumbotron-3{
+        height: 900px;
+    }
+
+    .imagem-quem-somos{
+        width: 100px;
+        height: 100px;
+    }
+
+    .link-menu, .link-menu-2{
+        color:#2D2D2C;
+        padding-bottom: 5px;
+    }
+    
+    
+    
+    .link-menu:hover , .link-menu-2:hover{
+        color:#2D2D2C;
+    }
+}
+
+
+
+.overlay{
+    position:fixed;
+     background:url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png);
+    -webkit-animation:100s scroll infinite linear;
+    -moz-animation:100s scroll infinite linear;
+    -o-animation:100s scroll infinite linear;
+    -ms-animation:100s scroll infinite linear;
+    animation:100s scroll infinite linear;
+    top:0;
+    left:0;
+    width:100%;
+   height:100%;
+  }
+
+  @-webkit-keyframes scroll{
+    100%{
+      background-position:0px -3000px;
+    }
+  }
+  
+  @-moz-keyframes scroll{
+    100%{
+      background-position:0px -3000px;
+    }
+  }
+  
+  @-o-keyframes scroll{
+    100%{
+      background-position:0px -3000px;
+    }
+  }
+  
+  @-ms-keyframes scroll{
+    100%{
+      background-position:0px -3000px;
+    }
+  }
+  
+  @keyframes scroll{
+    100%{
+      background-position:0px -3000px;
+    }
+  }
+  
+  
+  
+  
